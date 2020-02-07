@@ -1,5 +1,5 @@
-# IVSHS-LMS
-Ignacio Villamor Senior High School - Library Management System
+# IVBSHS-LMS
+Ignacio B. Villamor Senior High School - Library Management System
 
 ## Cloning Instructions
 1. Clone repository from your local machine.
