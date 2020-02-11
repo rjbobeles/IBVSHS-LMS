@@ -36,4 +36,34 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //User -> LogBook
+    public function userLogBook() {
+        return $this->hasMany('App\LogBook', 'actor_id', 'id');
+    }
+    
+    //User -> DamageReport
+    public function userDamageReport() {
+        return $this->hasMany('App\DamageReport', 'actor_id', 'id');
+    }
+    
+    //User -> LogPatron
+    public function userLogPatron() {
+        return $this->hasMany('App\LogPatron', 'actor_id', 'id');
+    }
+
+    //User -> Log Transaction
+    public function userLogTransaction() {
+        return $this->hasMany('App\LogTransaction', 'actor_id', 'id');
+    }
+
+    //User -> LogUser -> Actor (Issuer)
+    public function userLogUserActor() {
+        return $this->hasMany('App\LogUser', 'actor_id', 'id');
+    }
+
+    //User -> LogUser -> Target (Issuee)
+    public function userLogUser() {
+        return $this->hasMany('App\LogUser', 'user_id', 'id');
+    }
 }
