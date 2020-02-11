@@ -15,11 +15,13 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('patron_id');
-            $table->bigInteger('book_id');
+            $table->bigInteger('patron_id')->unsigned();
+            $table->foreign('patron_id')->references('id')->on('patrons');
+            $table->bigInteger('book_id')->unsigned();
+            $table->foreign('book_id')->references('id')->on('books');
             $table->date('date_issued');
-            $table->date('date_due');
-            $table->date('date_returned');
+            $table->date('date_due')->nullable();
+            $table->date('date_returned')->nullable();
             $table->timestamps();
         });
     }

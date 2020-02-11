@@ -15,8 +15,12 @@ class CreateDamageReportsTable extends Migration
     {
         Schema::create('damage_reports', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('patron_id');
-            $table->bigInteger('book_id');
+            $table->bigInteger('patron_id')->unsigned();
+            $table->foreign('patron_id')->references('id')->on('patrons');
+            $table->bigInteger('book_id')->unsigned();
+            $table->foreign('book_id')->references('id')->on('books');
+            $table->bigInteger('actor_id')->unsigned();
+            $table->foreign('actor_id')->references('id')->on('users');
             $table->string('comment', 1200);
             $table->timestamps();
         });

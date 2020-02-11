@@ -15,10 +15,10 @@ class CreateLogTransactionsTable extends Migration
     {
         Schema::create('log_transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('actor_id');
+            $table->bigInteger('actor_id')->unsigned();
+            $table->foreign('actor_id')->references('id')->on('users');
             $table->string('action', 1000);
-            $table->bigInteger('patron_id');
-            $table->bigInteger('book_id');
+            $table->bigInteger('transaction_id');
             $table->date('date_issued');
             $table->date('date_due');
             $table->date('date_returned');
