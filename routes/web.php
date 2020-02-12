@@ -1,14 +1,18 @@
 <?php
+/*
+|--------------------------------------------------------------------------
+| Authentication Route
+|--------------------------------------------------------------------------
+|
+| Removes reegister route when an account with an admin role already exists.
+|
+*/
 
-//Barcode Testing
-Route::get('/barcode', function() {
-    echo DNS1D::getBarcodeSVG("201600000012", "EAN13");
-});
-
-//Get rid of this.. eventually
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\User;
+if (User::where("role","=", "admin")->exists())
+    Auth::routes(['register' => false, 'verify' => true]);
+else
+    Auth::routes(['verify' => true]);
 
 /*
 |--------------------------------------------------------------------------
@@ -21,21 +25,44 @@ Route::get('/', function () {
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 //Patron Routes
 Route::middleware('guest')->group(function() {
 
 });
 
 //Users Route
-Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Libarian Routes
-Route::middleware('auth', 'verified', 'isLibarian')->group(function() {
+/*
+|--------------------------------------------------------------------------
+| Librarian Route
+|--------------------------------------------------------------------------
+|
+| Routes that can only be accessible by Librarians
+|
+*/
 
+Route::middleware('auth', 'verified', 'isLibarian')->group(function() {
+    
+    //Librarian Route
+    Route::prefix('librarian')->group(function () {
+        
+    });
 });
 
-//Admin Routes
+/*
+|--------------------------------------------------------------------------
+| Admin Route
+|--------------------------------------------------------------------------
+|
+| Routes that can only be accessible by Admins
+|
+*/
+
 Route::middleware('auth', 'verified', 'isAdmin')->group(function() {
 
     //Admin Route
