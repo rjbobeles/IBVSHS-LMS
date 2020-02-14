@@ -4,15 +4,11 @@
 | Authentication Route
 |--------------------------------------------------------------------------
 |
-| Removes reegister route when an account with an admin role already exists.
+| Enables email verification bundled with Authentication system. 
 |
 */
 
-use App\User;
-if (User::where("role","=", "admin")->exists())
-    Auth::routes(['register' => false, 'verify' => true]);
-else
-    Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true]);
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +42,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 |
 */
 
-Route::middleware('auth', 'verified', 'isLibarian')->group(function() {
+Route::middleware('auth', 'verified', 'isLibarian', 'isActive')->group(function() {
     
     //Librarian Route
     Route::prefix('librarian')->group(function () {
@@ -63,10 +59,13 @@ Route::middleware('auth', 'verified', 'isLibarian')->group(function() {
 |
 */
 
-Route::middleware('auth', 'verified', 'isAdmin')->group(function() {
+Route::middleware('auth', 'verified', 'isAdmin', 'isActive')->group(function() {
 
     //Admin Route
     Route::prefix('admin')->group(function () {
+
+        //User Controller
+        Route::resource('users', 'UserController');
 
         //System Logs
         Route::prefix('logs')->group(function () {
