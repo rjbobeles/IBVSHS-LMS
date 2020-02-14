@@ -4,16 +4,18 @@ Ignacio B. Villamor Senior High School - Library Management System
 ## Cloning Instructions
 1. Clone repository from your local machine.
 2. Using your bash/cmd/terminal, locate the project directory.
-3. Run `composer update`.
-4. Head to your preferred code editor and look for **.env.example**.
+3. Open the directory with your preferred code editor
+4. Look for **.env.example**.
 5. Duplicate this file and rename it to **.env**.
-6. Open the newly duplicated file and locate the database connection properties.
-7. Follow the steps under **Database Configuration**.
-8. If you are using the online credentials from your team leader **DO NOT RUN STEP 9**
-9. Follow the steps under **SMTP Configuration**.
-10. Using your bash/cmd/terminal, run `php artisan migrate`.
-11. To install NPM scripts, run `npm install`. 
-12. To compile sass and your javascripts, run `npm run dev`.
+8. Open the newly duplicated file and locate the database connection properties.
+9. Follow the steps under **Database Configuration**.
+10. If you are using the online credentials from your team leader **DO NOT RUN STEP 9**
+11. Follow the steps under **SMTP Configuration**.
+6. Run `composer update`.
+7. If problems come up, run `php artisan clear:cache` then, `php artisan config:cache`
+12. Using your bash/cmd/terminal, run `php artisan migrate`.
+13. To install NPM scripts, run `npm install`. 
+14. To compile sass and your javascripts, run `npm run dev`.
 
 ## Database Configuration
 The `.env` by default has the following values:
