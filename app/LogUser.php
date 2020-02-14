@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogUser extends Model
 {
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password'
+    ];
+
+
     //User <- Loguser <- Actor (Issuer)
     public function userLogUserActor() {
         return $this->belongsto('App\User', 'actor_id', 'id');
