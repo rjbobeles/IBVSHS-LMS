@@ -79,19 +79,19 @@ Route::middleware('auth', 'verified', 'isAdmin', 'isActive')->group(function() {
             //Book Logs
             Route::prefix('book')->group(function () {
                 Route::get('/', 'LogBookController@index')->name('log.book.index');
-                Route::get('/{id}', 'LogBookController@show')->name('log.book.index');
+                Route::get('/{id}', 'LogBookController@show')->name('log.book.show');
             });
 
             //Patron Logs
             Route::prefix('patron')->group(function () {
                 Route::get('/', 'LogPatronController@index')->name('log.patron.index');
-                Route::get('/{id}', 'LogPatronController@show')->name('log.patron.index');
+                Route::get('/{id}', 'LogPatronController@show')->name('log.patron.show');
             });
 
             //Transaction Logs
             Route::prefix('transaction')->group(function () {
                 Route::get('/', 'LogTransactionController@index')->name('log.transaction.index');
-                Route::get('/{id}', 'LogTransactionController@show')->name('log.transaction.index');
+                Route::get('/{id}', 'LogTransactionController@show')->name('log.transaction.show');
             });
         });
     });
