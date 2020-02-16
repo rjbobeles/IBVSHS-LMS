@@ -1,0 +1,19 @@
+@extends('layouts.app')
+
+@section('content')
+    <h1>{{$logPatron->patron_id}}</h1>
+    <div>
+        <p>{{$logPatron->actor_id}}</p>
+        <p>{{$logPatron->action}}</p>
+        <p>{{$logPatron->role}}</p>
+        <p>{{$logPatron->patron_id}}</p>
+        <p>{{$logPatron->firstname}}</p>
+        <p>{{$logPatron->middlename}}</p>
+        <p>{{$logPatron->lastname}}</p>
+        <p>{{$logPatron->email}}</p>
+        <p>{{$logPatron->contactno}}</p>
+        <p>{{$logPatron->deactivated}}</p>
+        <p>{{$logPatron->created_at}}</p>
+        <p>{{$logPatron->update_at}}</p>
+    </div>
+@endsection

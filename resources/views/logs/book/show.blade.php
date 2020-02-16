@@ -1,0 +1,25 @@
+@extends('layouts.app')
+
+@section('content')
+    <h1>{{$logBook->book_id}}</h1>
+    <div>
+        <p>{{$logBook->actor_id}}</p>
+        <p>{{$logBook->action}}</p>
+        <p>{{$logBook->book_id}}</p>
+        <p>{{$logBook->callnumber}}</p>
+        <p>{{$logBook->title}}</p>
+        <p>{{$logBook->author}}</p>
+        <p>{{$logBook->isbn}}</p>
+        <p>{{$logBook->volume}}</p>
+        <p>{{$logBook->edition}}</p>
+        <p>{{$logBook->year_published}}</p>
+        <p>{{$logBook->publisher}}</p>
+        <p>{{$logBook->genre}}</p>
+        <p>{{$logBook->condition}}</p>
+        <p>{{$logBook->status}}</p>
+        <p>{{$logBook->barcodeno}}</p>
+        <p>{{$logBook->book_image}}</p>
+        <p>{{$logBook->created_at}}</p>
+        <p>{{$logBook->update_at}}</p>
+    </div>
+@endsection
