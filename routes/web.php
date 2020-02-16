@@ -87,6 +87,12 @@ Route::middleware('auth', 'verified', 'isAdmin', 'isActive')->group(function() {
                 Route::get('/', 'LogPatronController@index');
                 Route::get('/{id}', 'LogPatronController@show');
             });
+
+            //Transaction Logs
+            Route::prefix('transaction')->group(function () {
+                Route::get('/', 'LogTransactionController@index');
+                Route::get('/{id}', 'LogTransactionController@show');
+            });
         });
     });
 });
