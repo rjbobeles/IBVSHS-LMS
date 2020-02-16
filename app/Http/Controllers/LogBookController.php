@@ -14,7 +14,8 @@ class LogBookController extends Controller
      */
     public function index()
     {
-        //
+        $logBooks = LogBook::all();
+        return view('logs.book.index')->with('logBooks', $logBooks);
     }
 
     /**
@@ -25,6 +26,6 @@ class LogBookController extends Controller
      */
     public function show(LogBook $logBook)
     {
-        //
+        //return LogBook::find($logBook);
     }
 }

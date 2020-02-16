@@ -14,7 +14,8 @@ class LogPatronController extends Controller
      */
     public function index()
     {
-        //
+        $logPatrons = LogPatron::all();
+        return view('logs.patron.index')->with('logPatrons',$logPatrons);
     }
 
     /**
@@ -25,6 +26,6 @@ class LogPatronController extends Controller
      */
     public function show(LogPatron $logPatron)
     {
-        //
+        //return LogPatron::find($logPatron);
     }
 }

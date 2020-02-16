@@ -14,7 +14,8 @@ class LogUserController extends Controller
      */
     public function index()
     {
-        //
+        $logUsers = LogUser::all();
+        return view('logs.user.index')->with('logUsers', $logUsers);
     }
 
     /**
@@ -25,6 +26,6 @@ class LogUserController extends Controller
      */
     public function show(LogUser $logUser)
     {
-        //
+        //return LogUser::find($logUser);
     }
 }
