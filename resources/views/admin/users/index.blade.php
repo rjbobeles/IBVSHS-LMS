@@ -64,11 +64,12 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="5" style="text-align: center;"><b>No User Accounts Found!</b></td>
+                                    <td colspan="6" style="text-align: center;"><b>No User Accounts Found!</b></td>
                                 </tr>
                             @endif
                         </tbody>
                     </table>
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>
