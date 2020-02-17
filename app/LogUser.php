@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class LogUser extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+
+    protected $fillable = [
+        'actor_id', 'action', 'user_id', 'firstname', 'middlename', 'lastname', 'email', 'username', 'password', 'contactno', 'role', 'deactivated'
+    ];
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
