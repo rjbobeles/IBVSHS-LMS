@@ -10,15 +10,26 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::where('id', '!=', auth()->id())->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate(20);
+        /*
+        if($request->has('ob'))
+        {   
+            if($request->ob === 'id') $users = User::orderBy('id', 'ASC')->paginate(20);
+            else if ($request->ob === 'name') $users = User::orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate(20);
+            else if ($request->ob === 'role') $users = User::orderBy('role', 'ASC')->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate(20);
+            else if ($request->ob === 'status') $users = User::orderBy('deactivated', 'ASC')->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate(20);
+            else abort(404);
+        }
+        else */
+        $users = User::orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate(20);
+
         return View('admin.users.index')->With('users', $users);
     }
 
