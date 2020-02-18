@@ -72,26 +72,26 @@ Route::middleware('auth', 'verified', 'isAdmin', 'isActive')->group(function() {
     
             //User Logs
             Route::prefix('user')->group(function () {
-                Route::get('/', 'LogUserController@index');
-                Route::get('/{id}', 'LogUserController@show');
+                Route::get('/', 'LogUserController@index')->name('logs.user.index');
+                Route::get('/{id}', 'LogUserController@show')->name('logs.user.show');
             });
 
             //Book Logs
             Route::prefix('book')->group(function () {
-                Route::get('/', 'LogBookController@index');
-                Route::get('/{id}', 'LogBookController@show');
+                Route::get('/', 'LogBookController@index')->name('logs.book.index');
+                Route::get('/{id}', 'LogBookController@show')->name('logs.book.show');
             });
 
             //Patron Logs
             Route::prefix('patron')->group(function () {
-                Route::get('/', 'LogPatronController@index');
-                Route::get('/{id}', 'LogPatronController@show');
+                Route::get('/', 'LogPatronController@index')->name('logs.patron.index');
+                Route::get('/{id}', 'LogPatronController@show')->name('logs.patron.show');
             });
 
             //Transaction Logs
             Route::prefix('transaction')->group(function () {
-                Route::get('/', 'LogTransactionController@index');
-                Route::get('/{id}', 'LogTransactionController@show');
+                Route::get('/', 'LogTransactionController@index')->name('logs.transaction.index');
+                Route::get('/{id}', 'LogTransactionController@show')->name('logs.transaction.show');
             });
         });
     });
