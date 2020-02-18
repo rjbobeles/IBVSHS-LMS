@@ -50,9 +50,6 @@ Route::middleware('auth', 'verified', 'isLibarian', 'isActive')->group(function(
     });
 });
 
-//Route::get('/books', 'BookController@addBook');
-Route::resource('books', 'BookController');
-
 /*
 |--------------------------------------------------------------------------
 | Admin Route
