@@ -10,6 +10,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Issued By</th>
                                 <th>Action</th>
                                 <th>Role</th>
@@ -24,13 +25,14 @@
                             @if(count($logPatrons) > 0)
                                 @foreach($logPatrons as $logPatron)
                                     <tr>
-                                        <td>{{$logPatron->actor_id}} | {{$logPatron->userLogPatron->username}}</td>
-                                        <td>{{$logPatron->action}}</td>
-                                        <td>{{$logPatron->role}}</td>
-                                        <td>{{$logPatron->patron_id}}</td>
-                                        <td>{{$logPatron->lastname}}, {{$logPatron->firstname}} {{$logPatron->middlename}}</td>
-                                        <td>{{$logPatron->deactivated}}</td>
-                                        <td>{{$logPatron->created_at}}</td>
+                                        <td>{{ $logPatron->id }}</td>
+                                        <td>{{ $logPatron->actor_id }} | {{ $logPatron->userLogPatron->username }}</td>
+                                        <td>{{ $logPatron->action }}</td>
+                                        <td>{{ $logPatron->role }}</td>
+                                        <td>{{ $logPatron->patron_id }}</td>
+                                        <td>{{ $logPatron->lastname }}, {{ $logPatron->firstname }} {{ $logPatron->middlename }}</td>
+                                        <td>{{ $logPatron->deactivated }}</td>
+                                        <td>{{ $logPatron->created_at }}</td>
                                         <th>
                                             <div class="dropdown dropright" style="text-align: center;">
                                                 <a class="btn btn-sm btn-primary dropdown-toggle dropdown-toggle-none" href="#" role="button" id="action-{{ $logPatron->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -38,7 +40,7 @@
                                                 </a>
 
                                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="action-{{ $logPatron->id }}">
-                                                    <a class="dropdown-item" href="{{route('logs.patron.show', $logPatron->id)}}">View Details</a>
+                                                    <a class="dropdown-item" href="{{ route('logs.patron.show', $logPatron->id) }}">View Details</a>
                                                 </div>
                                             </div>
                                         </th>

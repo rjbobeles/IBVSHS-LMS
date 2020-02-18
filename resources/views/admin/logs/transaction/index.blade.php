@@ -10,6 +10,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Issued By</th>
                                 <th>Action</th>
                                 <th>Transaction ID</th>
@@ -21,10 +22,11 @@
                             @if(count($logTransactions) > 0)
                                 @foreach($logTransactions as $logTransaction)
                                     <tr>
-                                        <td>{{$logTransaction->actor_id}} | {{$logTransaction->userLogTransaction->username}}</td>
-                                        <td>{{$logTransaction->action}}</td>
-                                        <td>{{$logTransaction->transaction_id}}</td>
-                                        <td>{{$logTransaction->created_at}}</td>
+                                        <td>{{ $logTransaction->id }}</td>
+                                        <td>{{ $logTransaction->actor_id }} | {{ $logTransaction->userLogTransaction->username }}</td>
+                                        <td>{{ $logTransaction->action }}</td>
+                                        <td>{{ $logTransaction->transaction_id }}</td>
+                                        <td>{{ $logTransaction->created_at }}</td>
                                         <th>
                                             <div class="dropdown dropright" style="text-align: center;">
                                                 <a class="btn btn-sm btn-primary dropdown-toggle dropdown-toggle-none" href="#" role="button" id="action-{{ $logTransaction->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,7 +34,7 @@
                                                 </a>
 
                                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="action-{{ $logTransaction->id }}">
-                                                    <a class="dropdown-item" href="{{route('logs.transaction.show', $logTransaction->id)}}">View Details</a>
+                                                    <a class="dropdown-item" href="{{ route('logs.transaction.show', $logTransaction->id) }}">View Details</a>
                                                 </div>
                                             </div>
                                         </th>
