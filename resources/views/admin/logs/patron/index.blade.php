@@ -18,7 +18,7 @@
                                 <th>Name</th>
                                 <th>Status</th>
                                 <th>Created At</th>
-                                <th></th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,7 +48,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="6" style="text-align: center;"><b>No Patron Logs Found!</b></td>
+                                    <td colspan="9" style="text-align: center;"><b>No Patron Logs Found!</b></td>
                                 </tr>
                             @endif
                         </tbody>

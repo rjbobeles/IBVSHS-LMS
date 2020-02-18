@@ -20,7 +20,7 @@
                                 <th>Status</th>
                                 <th>Barcode No</th>
                                 <th>Created At</th>
-                                <th></th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,7 +52,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="10" style="text-align: center;"><b>No Book Logs Found!</b></td>
+                                    <td colspan="11" style="text-align: center;"><b>No Book Logs Found!</b></td>
                                 </tr>
                             @endif
                         </tbody>

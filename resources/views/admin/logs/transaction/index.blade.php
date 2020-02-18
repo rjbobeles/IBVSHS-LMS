@@ -15,7 +15,7 @@
                                 <th>Action</th>
                                 <th>Transaction ID</th>
                                 <th>Created At</th>
-                                <th></th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
