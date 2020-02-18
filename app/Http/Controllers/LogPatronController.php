@@ -14,7 +14,8 @@ class LogPatronController extends Controller
      */
     public function index()
     {
-        //
+        $logPatrons = LogPatron::orderBy('created_at','desc')->paginate(20);
+        return view('admin.logs.patron.index')->with('logPatrons',$logPatrons);
     }
 
     /**
@@ -23,8 +24,9 @@ class LogPatronController extends Controller
      * @param  \App\LogPatron  $logPatron
      * @return \Illuminate\Http\Response
      */
-    public function show(LogPatron $logPatron)
+    public function show($id)
     {
-        //
+        $logPatron = LogPatron::find($id);
+        return view('admin.logs.patron.show')->with('logPatron', $logPatron);
     }
 }
