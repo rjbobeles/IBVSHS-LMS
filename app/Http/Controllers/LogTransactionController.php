@@ -14,8 +14,8 @@ class LogTransactionController extends Controller
      */
     public function index()
     {
-        $logTransactions = LogTransaction::all();
-        return view('logs.transaction.index')->with('logTransactions', $logTransactions);
+        $logTransactions = LogTransaction::orderBy('created_at','desc')->paginate(20);
+        return view('admin.logs.transaction.index')->with('logTransactions', $logTransactions);
     }
 
     /**
@@ -24,9 +24,9 @@ class LogTransactionController extends Controller
      * @param  \App\LogTransaction  $logTransaction
      * @return \Illuminate\Http\Response
      */
-    public function show(LogTransaction $logTransaction)
+    public function show($id)
     {
-        $transactionLog = LogTransaction::find($logTransaction);
-        return view('logs.transaction.show')->with('transactionLog', $transactionLog);
+        $logTransaction = LogTransaction::find($id);
+        return view('admin.logs.transaction.show')->with('logTransaction', $logTransaction);
     }
 }

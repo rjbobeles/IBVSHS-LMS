@@ -14,8 +14,8 @@ class LogBookController extends Controller
      */
     public function index()
     {
-        $logBooks = LogBook::all();
-        return view('logs.book.index')->with('logBooks', $logBooks);
+        $logBooks = LogBook::orderBy('created_at','desc')->paginate(20);
+        return view('admin.logs.book.index')->with('logBooks', $logBooks);
     }
 
     /**
@@ -24,8 +24,9 @@ class LogBookController extends Controller
      * @param  \App\LogBook  $logBook
      * @return \Illuminate\Http\Response
      */
-    public function show(LogBook $logBook)
+    public function show($id)
     {
-        //return LogBook::find($logBook);
+        $logBook = LogBook::find($id);
+        return view('admin.logs.book.show')->with('logBook', $logBook);
     }
 }
