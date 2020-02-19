@@ -50,7 +50,7 @@ Route::middleware('auth', 'verified', 'isLibarian', 'isActive')->group(function(
     });
 });
 
-//Route::get('/books', 'BookController@addBook');
+//Book Controller
 Route::resource('books', 'BookController');
 
 /*

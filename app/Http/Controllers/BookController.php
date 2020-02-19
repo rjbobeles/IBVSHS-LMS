@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use App\Book;
-use DB;
-use Carbon\Carbon;
 
 class BookController extends Controller
 {
@@ -63,19 +62,15 @@ class BookController extends Controller
         $book->genre = $request->input('genre');
         $book->condition = $request->input('condition');
         $book->status = $request->input('status');
-        
-        //Removes all dash in isbn
-        $isbn_arr = str_split($book->isbn);
-        $barcodeNo_arr = array();
 
-        foreach ($isbn_arr as $value) {
-            if ($value != '-') {
-                array_push($barcodeNo_arr, $value);
-            }
+        $getLastBarcodeNo = DB::table('books')->select('barcodeno')->orderBy('barcodeno', 'desc')->take(1)->first();
+
+        if ($getLastBarcodeNo != null) {
+            $newBarcodeNo = $getLastBarcodeNo->barcodeno + 1;
+            $book->barcodeno = $newBarcodeNo; 
+        } else {
+            $book->barcodeno = 202000000001;
         }
-
-        $barcodeNo = implode($barcodeNo_arr);
-        $book->barcodeno = $barcodeNo;
 
         //Handle FileUpload
         if ($request->hasFile('book_image')){
@@ -95,12 +90,6 @@ class BookController extends Controller
 
         $book->book_image = $fileNameToStore;
         $book->save();
-
-        if (strlen(strval($book->id)) != 12) 
-        {
-            $book->id = Carbon::now()->year.'0000000'.$book->id;
-            $book->update();
-        }
 
         return redirect('/books');
     }
@@ -161,19 +150,6 @@ class BookController extends Controller
         $book->genre = $request->input('genre');
         $book->condition = $request->input('condition');
         $book->status = $request->input('status');
-        
-        //Removes all dash in isbn
-        $isbn_arr = str_split($book->isbn);
-        $barcodeNo_arr = array();
-
-        foreach ($isbn_arr as $value) {
-            if ($value != '-') {
-                array_push($barcodeNo_arr, $value);
-            }
-        }
-
-        $barcodeNo = implode($barcodeNo_arr);
-        $book->barcodeno = $barcodeNo;
 
         //Handle FileUpload
         if ($request->hasFile('book_image')){
