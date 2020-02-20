@@ -1,17 +1,6 @@
 <?php
 /*
 |--------------------------------------------------------------------------
-| Authentication Route
-|--------------------------------------------------------------------------
-|
-| Enables email verification bundled with Authentication system. 
-|
-*/
-
-Auth::routes(['verify' => true]);
-
-/*
-|--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -25,13 +14,47 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Patron Routes
+/*
+|--------------------------------------------------------------------------
+| Patron Route
+|--------------------------------------------------------------------------
+|
+| Routes that can only be accessible by Patrons
+|
+*/
+
 Route::middleware('guest')->group(function() {
 
 });
 
-//Users Route
+/*
+|--------------------------------------------------------------------------
+| User Route
+|--------------------------------------------------------------------------
+|
+| Routes that can only be accessible by Users
+|
+*/
+
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('user')->group(function () {
+        
+    //Auth Routes
+    Auth::routes(['verify' => true]);
+});
+
+Route::middleware('auth')->group(function() { 
+    
+    //User Route
+    Route::prefix('user')->group(function () {
+           
+        //Change Password
+        Route::get('/changepassword', 'Auth\ChangePasswordController@edit')->name('changepassword.edit');
+        Route::put('/changepassword', 'Auth\ChangePasswordController@update')->name('changepassword.put');
+    });
+});
 
 /*
 |--------------------------------------------------------------------------
