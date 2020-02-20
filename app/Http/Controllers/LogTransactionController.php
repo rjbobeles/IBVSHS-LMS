@@ -14,17 +14,19 @@ class LogTransactionController extends Controller
      */
     public function index()
     {
-        //
+        $logTransactions = LogTransaction::orderBy('created_at','desc')->paginate(20);
+        return view('admin.logs.transaction.index')->with('logTransactions', $logTransactions);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\LogUser  $logTransaction
+     * @param  \App\LogTransaction  $logTransaction
      * @return \Illuminate\Http\Response
      */
-    public function show(LogTransaction $logTransaction)
+    public function show($id)
     {
-        //
+        $logTransaction = LogTransaction::find($id);
+        return view('admin.logs.transaction.show')->with('logTransaction', $logTransaction);
     }
 }

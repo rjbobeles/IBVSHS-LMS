@@ -114,7 +114,7 @@ class UserController extends Controller
         if(auth()->user()->id == $id) abort(403);
         
         $user = User::find($id);
-        return View('admin.users.edit')->With('user', $user);;
+        return View('admin.users.edit')->With('user', $user);
     }
 
     /**
@@ -210,3 +210,4 @@ class UserController extends Controller
         return redirect()->route('users.index')->With('success', $message);
     }
 }
+

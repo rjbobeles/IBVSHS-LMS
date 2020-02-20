@@ -14,7 +14,8 @@ class LogUserController extends Controller
      */
     public function index()
     {
-        //
+        $logUsers = LogUser::orderBy('created_at','desc')->paginate(20);
+        return view('admin.logs.user.index')->with('logUsers', $logUsers);
     }
 
     /**
@@ -23,8 +24,9 @@ class LogUserController extends Controller
      * @param  \App\LogUser  $logUser
      * @return \Illuminate\Http\Response
      */
-    public function show(LogUser $logUser)
+    public function show($id)
     {
-        //
+        $logUser = LogUser::find($id);
+        return view('admin.logs.user.show')->with('logUser', $logUser);
     }
 }
