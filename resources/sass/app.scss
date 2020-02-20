@@ -2,7 +2,8 @@
 @import 'variables';
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Muli');
 
 // Dependencies
 @import '~bootstrap/scss/bootstrap';
@@ -10,3 +11,210 @@
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
+
+
+div#nav {
+    background-color: #fff;
+    
+    nav#colnav {
+        box-shadow: 0px 2px 10px rgba(224, 224, 224, 0.5); 
+        padding: 5px;
+        font-family: 'Raleway', 'Times New Roman';
+        font-size: 14px;
+
+        button {
+            i {
+                font-size: 23px;
+            }
+        }
+
+        ul {
+            line-height: 50.69px;
+
+            li a {
+                color: #424242;
+                transition: color 200ms ease-in;
+            }
+
+            li a:hover {
+                color: #fecc59;
+                text-decoration: none;
+                transition: color 200ms ease-in;
+            }
+
+            li.account-burger {
+                padding-top: 3.4px;
+
+                button {
+                    border: none; 
+                    background-color: rgba(0,0,0,0); 
+                    outline: none;
+
+                    i {
+                        font-size: 23px;
+                    }
+                }
+
+                div.dropdown-menu {
+                    line-height: 15px;
+                }
+            }
+        }
+    }
+
+    div#infobar {
+        background-color: black; 
+        color: white; 
+        height:50px;
+        padding: 17px;
+        font-size: 11px; 
+        font-family: 'Muli', 'Segoe UI';
+
+        i {
+            font-size: 14px;
+            margin-right: 5px;
+        }
+
+        div#contact {
+            text-align: left;
+
+            .email {
+                margin-left: 4px;
+                display: inline-block;
+            }
+
+            .border {
+                height: 8px;
+                width: 1px;
+                margin-left: 4px;
+                margin-right: 4px;
+            }
+        }
+
+        div#socmed {
+            text-align: right;
+
+            i {
+                margin-left: 5px;
+                margin-right: 5px;
+                font-size: 14px;
+            }
+
+            a {
+                color: white;
+            }
+        }
+    }
+    
+    .nav-item {
+        margin: 0 2%; 
+        text-align: right; 
+        font-weight: bold;  
+    }
+    
+    .navbar-nav {
+        width: 100%; 
+    }
+    
+    .navbar-brand {
+        margin: 0 10% 0 2vw; 
+    }
+    
+    .divider {
+        font-weight: bold; 
+    }
+    
+    .show-collapse {
+        display: none; 
+    }
+    
+    .nav-item.account-burger {
+        margin-left: auto; 
+        margin-right: 5%; 
+    }
+    
+    .account-burger > .dropdown > .dropdown-menu{
+        text-align: center; 
+        font-size: 12px;
+    }
+    
+    #item-admin {
+        margin: 0 4% 0 8%; 
+    }
+    
+    #item-manageusers {
+        margin-left: 4%; 
+    }
+    
+    #item-homepage {
+        margin-left: 13vw; 
+    }
+
+    .animated {
+        -webkit-animation-duration: 0.5s;
+        animation-duration: 0.5s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+    }
+    
+    @-webkit-keyframes fadeInDown {
+        from {
+          opacity: 0;
+          -webkit-transform: translate3d(-45%, -20%, 0);
+          transform: translate3d(-45%, -20%, 0);
+        }
+      
+        to {
+          opacity: 1;
+          -webkit-transform: translate3d(-45%, 0, 0);
+          transform: translate3d(-45%, 0, 0);
+        }
+      }
+      
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          -webkit-transform: translate3d(-45%, -20%, 0);
+          transform: translate3d(-45%, -20%, 0);
+        }
+      
+        to {
+          opacity: 1;
+          -webkit-transform: translate3d(-45%, 0, 0);
+          transform: translate3d(-45%, 0, 0);
+        }
+      }
+      
+      .fadeInDown {
+        -webkit-animation-name: fadeInDown;
+        animation-name: fadeInDown;
+      }
+    
+    .collapsed-divider {
+        display: none; 
+    }
+       
+    @media only screen and (max-width: 767px){
+        .show-collapse {
+            display: initial; 
+        }
+        .nav-item {
+            height: 30px; 
+        }
+        .divider {
+            display: none;  
+        }
+        .nav-item.account-burger {
+            display: none; 
+        }
+        #item-admin {
+            margin: 0 2%; 
+        }
+        .collapsed-divider {
+            display: initial;
+        }
+        #socmed {
+            display: none; 
+        }
+    }
+} 
