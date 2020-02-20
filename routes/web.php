@@ -38,12 +38,7 @@ Route::middleware('guest')->group(function() {
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::prefix('user')->group(function () {
-        
-    //Auth Routes
-    Auth::routes(['verify' => true]);
-});
+Route::prefix('user')->group(function () { Auth::routes(['verify' => true]); });
 
 Route::middleware('auth')->group(function() { 
     
