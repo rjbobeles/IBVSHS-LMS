@@ -26,7 +26,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books.addBook');
+        return view('librarian.books.create');
     }
 
     /**
@@ -101,7 +101,7 @@ class BookController extends Controller
     public function edit($id)
     {
         $books = Book::find($id);
-        return view('books.updateBook')->with('books', $books);
+        return view('librarian.books.edit')->with('books', $books);
     }
 
     /**
