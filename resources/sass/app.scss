@@ -41,23 +41,22 @@ div#nav {
                 text-decoration: none;
                 transition: color 200ms ease-in;
             }
+        }
+        div.account-burger {
+            padding-top: 3.4px;
+            width: 135px; 
+            button {
+                border: none; 
+                background-color: rgba(0,0,0,0); 
+                outline: none;
 
-            li.account-burger {
-                padding-top: 3.4px;
-
-                button {
-                    border: none; 
-                    background-color: rgba(0,0,0,0); 
-                    outline: none;
-
-                    i {
-                        font-size: 23px;
-                    }
+                i {
+                    font-size: 23px;
                 }
+            }
 
-                div.dropdown-menu {
-                    line-height: 15px;
-                }
+            div.dropdown-menu {
+                line-height: 15px;
             }
         }
     }
@@ -114,10 +113,11 @@ div#nav {
     
     .navbar-nav {
         width: 100%; 
+        justify-content: center;
     }
     
     .navbar-brand {
-        margin: 0 10% 0 2vw; 
+        margin: 0 0 0 2vw; 
     }
     
     .divider {
@@ -129,7 +129,6 @@ div#nav {
     }
     
     .nav-item.account-burger {
-        margin-left: auto; 
         margin-right: 5%; 
     }
     
@@ -147,7 +146,7 @@ div#nav {
     }
     
     #item-homepage {
-        margin-left: 13vw; 
+
     }
 
     .animated {
@@ -194,7 +193,7 @@ div#nav {
         display: none; 
     }
        
-    @media only screen and (max-width: 767px){
+    @media only screen and (max-width: 991px){
         .show-collapse {
             display: initial; 
         }
