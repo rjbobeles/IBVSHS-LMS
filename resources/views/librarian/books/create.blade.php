@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Update Book</h1>
+    <h1>Add Book</h1>
     <form method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="row">
@@ -101,7 +101,13 @@
                 <!--Condition Label and Text Input-->
                 <div class="form-group">
                     <label for="condition" class="form-label">{{ __('Condition') }}</label>
-                    <input id="condition" type="text" class="form-control @error('condition') is-invalid @enderror" name="condition" value="{{ old('condition') }}" required autocomplete="condition" placeholder="Condition">
+                    <select id="condition" name="condition" class="form-control">
+                        <option value="Fine">Fine</option>
+                        <option value="Very Good">Very Good</option>
+                        <option value="Good">Good</option>
+                        <option value="Fair">Fair</option>
+                        <option value="Poor">Poor</option>
+                    </select>
                     @error('condition')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -111,7 +117,12 @@
                 <!--Status Label and Text Input-->
                 <div class="form-group">
                     <label for="status" class="form-label">{{ __('Status') }}</label>
-                    <input id="status" type="text" class="form-control @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}" required autocomplete="status" placeholder="Status">
+                    <select id="status" name="status" class="form-control">
+                        <option value="Available">Available</option>
+                        <option value="Reserved">Reserved</option>
+                        <option value="Borrowed">Borrowed</option>
+                        <option value="Archived">Archived</option>
+                    </select>
                     @error('status')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

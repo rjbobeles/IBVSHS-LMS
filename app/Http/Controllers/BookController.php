@@ -45,7 +45,7 @@ class BookController extends Controller
             'year_published' => ['required'],
             'publisher' => ['required'],
             'genre' => ['required'],
-            'condition' => ['required', 'in:Find,Very Good,Good,Fair,Poor'],
+            'condition' => ['required', 'in:Fine,Very Good,Good,Fair,Poor'],
             'status' => ['required', 'in:Available,Reserved,Borrowed,Archived'],
             'book_image' => ['image', 'nullable', 'max:200']
         ]);
@@ -121,7 +121,7 @@ class BookController extends Controller
             'year_published' => ['required'],
             'publisher' => ['required'],
             'genre' => ['required'],
-            'condition' => ['required', 'in:Find,Very Good,Good,Fair,Poor'],
+            'condition' => ['required', 'in:Fine,Very Good,Good,Fair,Poor'],
             'status' => ['required', 'in:Available,Reserved,Borrowed,Archived'],
             'book_image' => ['image', 'nullable', 'max:200']
         ]);

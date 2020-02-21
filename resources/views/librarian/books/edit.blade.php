@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Add Book</h1>
+    <h1>Update Book</h1>
     <form method="POST" action="{{ route('books.update', $books->id) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -102,7 +102,13 @@
                 <!--Condition Label and Text Input-->
                 <div class="form-group">
                     <label for="condition" class="form-label">{{ __('Condition') }}</label>
-                    <input id="condition" type="text" class="form-control @error('condition') is-invalid @enderror" name="condition" value="{{ $books->condition }}" required autocomplete="condition" placeholder="Condition">
+                    <select id="condition" name="condition" class="form-control">
+                        <option {{old('condition', $books->condition) == "Fine" ? 'selected':''}} value="Fine">Fine</option>
+                        <option {{old('condition', $books->condition) == "Very Good" ? 'selected':''}} value="Very Good">Very Good</option>
+                        <option {{old('condition', $books->condition) == "Good" ? 'selected':''}} value="Good">Good</option>
+                        <option {{old('condition', $books->condition) == "Fair" ? 'selected':''}} value="Fair">Fair</option>
+                        <option {{old('condition', $books->condition) == "Poor" ? 'selected':''}} value="Poor">Poor</option>
+                    </select>
                     @error('condition')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -112,7 +118,12 @@
                 <!--Status Label and Text Input-->
                 <div class="form-group">
                     <label for="status" class="form-label">{{ __('Status') }}</label>
-                    <input id="status" type="text" class="form-control @error('status') is-invalid @enderror" name="status" value="{{ $books->status }}" required autocomplete="status" placeholder="Status">
+                    <select id="status" name="status" class="form-control">
+                        <option {{old('status', $books->status) == "Available" ? 'selected':''}} value="Available">Available</option>
+                        <option {{old('status', $books->status) == "Reserved" ? 'selected':''}} value="Reserved">Reserved</option>
+                        <option {{old('status', $books->status) == "Borrowed" ? 'selected':''}} value="Borrowed">Borrowed</option>
+                        <option {{old('status', $books->status) == "Archived" ? 'selected':''}} value="Archived">Archived</option>
+                    </select>
                     @error('status')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
