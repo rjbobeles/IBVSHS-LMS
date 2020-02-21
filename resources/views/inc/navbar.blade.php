@@ -49,26 +49,26 @@
                     <a href="{{ route('login') }}">Log In</a>
                 </li>
                 
-                <!--BURGER-->
-                <li class="nav-item account-burger">
-                    <div class="dropdown">
-                        <button type="button" data-toggle="dropdown">
-                            <i class="fa fa-bars"></i>
-                        </button>
-
-                        <div class="dropdown-menu animated fadeInDown">
-                            <span class="dropdown-item-text">
-                                Howdy! 
-                            </span>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">View All Books</a>
-                            <a class="dropdown-item" href="#">My Borrowed Books</a>
-                            <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('login') }}">Log In</a>
-                        </div>
-                    </div>
-                </li>
             </ul>
+            <!--BURGER-->
+            <div class="nav-item account-burger">
+                <div class="dropdown">
+                    <button type="button" data-toggle="dropdown">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="dropdown-menu animated fadeInDown">
+                        <span class="dropdown-item-text">
+                            Howdy!
+                        </span>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">View All Books</a>
+                        <a class="dropdown-item" href="#">My Borrowed Books</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('login') }}">Log In</a>
+                    </div>
+                </div>
+            </div>
         </div>  
     </nav>
 </div>
