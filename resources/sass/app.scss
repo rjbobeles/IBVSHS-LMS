@@ -137,17 +137,6 @@ div#nav {
         font-size: 12px;
     }
     
-    #item-admin {
-        margin: 0 4% 0 8%; 
-    }
-    
-    #item-manageusers {
-        margin-left: 4%; 
-    }
-    
-    #item-homepage {
-
-    }
 
     .animated {
         -webkit-animation-duration: 0.5s;
@@ -205,9 +194,6 @@ div#nav {
         }
         .nav-item.account-burger {
             display: none; 
-        }
-        #item-admin {
-            margin: 0 2%; 
         }
         .collapsed-divider {
             display: initial;
