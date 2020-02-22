@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'callnumber', 'title', 'author', 'isbn', 'volume', 'edition', 'year_published', 'publisher', 'genre', 'condition', 'status', 'barcodeno', 'book_image'
+    ];
+
     //Book -> Transaction
     public function bookTransaction() {
         return $this->hasMany('App\Transaction', 'book_id', 'id');

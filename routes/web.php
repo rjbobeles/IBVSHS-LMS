@@ -68,6 +68,9 @@ Route::middleware('auth', 'verified', 'isLibarian', 'isActive')->group(function(
     });
 });
 
+//Book Controller
+Route::resource('books', 'BookController');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Route
