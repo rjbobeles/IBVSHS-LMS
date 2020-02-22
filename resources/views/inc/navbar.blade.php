@@ -46,34 +46,48 @@
 
                 <!--SHOW ONLY WHEN COLLAPSED-->
                 <li class="nav-item show-collapse">
-                    <a href="{{ route('login') }}">Log In</a>
+                    @guest
+                        <a class="dropdown-item" href="{{ route('login') }}">Login</a>
+                    @endguest
+                    @auth
+                        <a class="dropdown-item" href="{{ route('logout') }} onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @endauth
                 </li>
                 
-                <!--BURGER-->
-                <li class="nav-item account-burger">
-                    <div class="dropdown">
-                        <button type="button" data-toggle="dropdown">
-                            <i class="fa fa-bars"></i>
-                        </button>
-
-                        <div class="dropdown-menu animated fadeInDown">
-                            <span class="dropdown-item-text">
-                                Howdy! 
-                            </span>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">View All Books</a>
-                            <a class="dropdown-item" href="#">My Borrowed Books</a>
-                            <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('login') }}">Log In</a>
-                        </div>
-                    </div>
-                </li>
             </ul>
+            <!--BURGER-->
+            <div class="nav-item account-burger">
+                <div class="dropdown">
+                    <button type="button" data-toggle="dropdown">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="dropdown-menu animated fadeInDown">
+                        <span class="dropdown-item-text">
+                            Howdy!
+                        </span>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">View All Books</a>
+                        <a class="dropdown-item" href="#">My Borrowed Books</a>
+                        <div class="dropdown-divider"></div>
+                        @guest
+                            <a class="dropdown-item" href="{{ route('login') }}">Login</a>
+                        @endguest
+                        @auth
+                            <a class="dropdown-item" href="{{ route('logout') }} onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        @endauth
+                    </div>
+                </div>
+            </div>
         </div>  
     </nav>
 </div>
-
-<p style="text-align: center">|</p>
 
 @if(!Auth::guest() && Auth::user()->role == "Admin")
     

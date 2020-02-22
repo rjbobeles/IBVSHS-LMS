@@ -17320,6 +17320,13 @@ div#nav nav#colnav button i {
 
 div#nav nav#colnav ul {
   line-height: 50.69px;
+  padding-bottom: 0px;
+}
+
+@media (max-width: 992px) {
+  div#nav nav#colnav ul {
+    padding-bottom: 10px;
+  }
 }
 
 div#nav nav#colnav ul li a {
@@ -17335,21 +17342,22 @@ div#nav nav#colnav ul li a:hover {
   transition: color 200ms ease-in;
 }
 
-div#nav nav#colnav ul li.account-burger {
+div#nav nav#colnav div.account-burger {
   padding-top: 3.4px;
+  margin-left: 5%;
 }
 
-div#nav nav#colnav ul li.account-burger button {
+div#nav nav#colnav div.account-burger button {
   border: none;
   background-color: rgba(0, 0, 0, 0);
   outline: none;
 }
 
-div#nav nav#colnav ul li.account-burger button i {
+div#nav nav#colnav div.account-burger button i {
   font-size: 23px;
 }
 
-div#nav nav#colnav ul li.account-burger div.dropdown-menu {
+div#nav nav#colnav div.account-burger div.dropdown-menu {
   line-height: 15px;
 }
 
@@ -17397,48 +17405,67 @@ div#nav div#infobar div#socmed a {
   color: white;
 }
 
+@media (max-width: 992px) {
+  div#nav div#infobar div#socmed {
+    display: none;
+  }
+}
+
 div#nav .nav-item {
   margin: 0 2%;
   text-align: right;
   font-weight: bold;
 }
 
+@media (max-width: 992px) {
+  div#nav .nav-item {
+    height: 30px;
+  }
+}
+
 div#nav .navbar-nav {
   width: 100%;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 
 div#nav .navbar-brand {
-  margin: 0 10% 0 2vw;
+  margin: 0 0 0 2vw;
 }
 
 div#nav .divider {
   font-weight: bold;
 }
 
+@media (max-width: 992px) {
+  div#nav .divider {
+    display: none;
+  }
+}
+
 div#nav .show-collapse {
   display: none;
 }
 
+@media (max-width: 992px) {
+  div#nav .show-collapse {
+    display: initial;
+  }
+}
+
 div#nav .nav-item.account-burger {
-  margin-left: auto;
   margin-right: 5%;
+}
+
+@media (max-width: 992px) {
+  div#nav .nav-item.account-burger {
+    display: none;
+  }
 }
 
 div#nav .account-burger > .dropdown > .dropdown-menu {
   text-align: center;
   font-size: 12px;
-}
-
-div#nav #item-admin {
-  margin: 0 4% 0 8%;
-}
-
-div#nav #item-manageusers {
-  margin-left: 4%;
-}
-
-div#nav #item-homepage {
-  margin-left: 13vw;
 }
 
 div#nav .animated {
@@ -17485,33 +17512,9 @@ div#nav .collapsed-divider {
   display: none;
 }
 
-@media only screen and (max-width: 767px) {
-  div#nav .show-collapse {
-    display: initial;
-  }
-
-  div#nav .nav-item {
-    height: 30px;
-  }
-
-  div#nav .divider {
-    display: none;
-  }
-
-  div#nav .nav-item.account-burger {
-    display: none;
-  }
-
-  div#nav #item-admin {
-    margin: 0 2%;
-  }
-
+@media (max-width: 992px) {
   div#nav .collapsed-divider {
     display: initial;
-  }
-
-  div#nav #socmed {
-    display: none;
   }
 }
 
