@@ -60,16 +60,16 @@ Route::middleware('auth')->group(function() {
 |
 */
 
-Route::middleware('auth', 'verified', 'isLibarian', 'isActive')->group(function() {
+Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function() {
     
     //Librarian Route
     Route::prefix('librarian')->group(function () {
         
+        //Book Controller
+        Route::resource('books', 'BookController');
     });
 });
 
-//Book Controller
-Route::resource('books', 'BookController');
 
 /*
 |--------------------------------------------------------------------------
