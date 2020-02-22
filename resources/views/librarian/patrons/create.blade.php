@@ -46,6 +46,12 @@
 
     <input type="submit" class="btn btn-primary" name="submit">
     </form>
+    <br/>
+    <div class="row">
+        <div class="col">
+            <a href="{{route('patrons.index') }}" class="btn btn-primary btn-sm">Back</a>
+        </div>
+    </div>
 </div>
 </div>
 @endsection

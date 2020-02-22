@@ -1,14 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    
+    <div class="container">
     <div class="well well-lg">
         <h1>{{ __('Viewing Patron: ' . $patrons->lastname .', '. $patrons->firstname)}}</h1>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-5 col-md-4 text-right">Patrons ID:</div>
-            <div class="col-5 col-md-6">{{ $patrons->id }}</div>
-        </div>
         <div class="row">
             <div class="col-5 col-md-4 text-right">Full Name:</div>
             <div class="col-5 col-md-6">{{ $patrons->lastname }}, {{ $patrons->firstname }} {{ $patrons->middlename}}</div>
@@ -22,12 +19,8 @@
             <div class="col-5 col-md-6">{{ $patrons->email_verified_at }}</div>
         </div>
         <div class="row">
-            <div class="col-5 col-md-4 text-right">User ID:</div>
+            <div class="col-5 col-md-4 text-right">Contact Number:</div>
             <div class="col-5 col-md-6">{{ $patrons->contactno }}</div>
-        </div>
-        <div class="row">
-            <div class="col-5 col-md-4 text-right">Username:</div>
-            <div class="col-5 col-md-6">{{ $patrons->username }}</div>
         </div>
         <div class="row">
             <div class="col-5 col-md-4 text-right">Role:</div>
@@ -58,7 +51,8 @@
                         @method('DELETE')
                     </form>
                 </a>
+            
+            </div>
         </div>
     </div>
-</div>
 @endsection

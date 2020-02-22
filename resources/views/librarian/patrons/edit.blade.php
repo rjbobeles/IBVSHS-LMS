@@ -9,7 +9,7 @@
             <div class="form-group row">
                 <label for="firstname" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
                 <div class="col-md-6">
-                    <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ $patron->firstname }}" required autocomplete="firstname">
+                    <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ $patrons->firstname }}" required autocomplete="firstname">
                         @error('firstname')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -19,7 +19,7 @@
                 <div class="form-group row">
                     <label for="middlename" class="col-md-4 col-form-label text-md-right">{{ __('Middle Name') }}</label>
                         <div class="col-md-6">
-                            <input id="middlename" type="text" class="form-control @error('middlename') is-invalid @enderror" name="middlename" value="{{ $patron->middlename }}" required autocomplete="middlename">
+                            <input id="middlename" type="text" class="form-control @error('middlename') is-invalid @enderror" name="middlename" value="{{ $patrons->middlename }}" required autocomplete="middlename">
 
                                 @error('middlename')
                                     <span class="invalid-feedback" role="alert">
@@ -33,7 +33,7 @@
                     <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
 
                     <div class="col-md-6">
-                        <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ $patron->lastname }}" required autocomplete="lastname">
+                        <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ $patrons->lastname }}" required autocomplete="lastname">
 
                                 @error('lastname')
                                     <span class="invalid-feedback" role="alert">
@@ -47,7 +47,7 @@
                     <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                     <div class="col-md-6">
-                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ $patron->username }}" required autocomplete="username">
+                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ $patrons->username }}" required autocomplete="username">
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -61,7 +61,7 @@
                     <label for="contactno" class="col-md-4 col-form-label text-md-right">{{ __('Contact Number') }}</label>
 
                     <div class="col-md-6">
-                        <input id="contactno" type="text" class="form-control @error('contactno') is-invalid @enderror" name="contactno" value="{{ $patron->contactno }}" required autocomplete="contactno">
+                        <input id="contactno" type="text" class="form-control @error('contactno') is-invalid @enderror" name="contactno" value="{{ $patrons->contactno }}" required autocomplete="contactno">
 
                                 @error('contactno')
                                     <span class="invalid-feedback" role="alert">
@@ -73,7 +73,7 @@
             <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
                 <div class="col-md-6">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $patron->email }}" required autocomplete="email">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $patrons->email }}" required autocomplete="email">
                 </div>
             </div>
 
