@@ -13,8 +13,7 @@ class PatronController extends Controller
 {
     public function index()
     {
-        $patrons= Patron::orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate(20);
-
+        $patrons = Patron::orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate(20);
         return view('librarian.patrons.index')->with('patrons', $patrons);
     }
 

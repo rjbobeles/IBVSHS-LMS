@@ -42,7 +42,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 |
 */
 
-Route::middleware('auth', 'verified', 'isActive')->group(function() {
+Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function() {
     
     //Librarian Route
     Route::prefix('librarian')->group(function () {
