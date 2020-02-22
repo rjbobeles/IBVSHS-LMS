@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Book;
+use App\LogBook;
+use App\User;
 
 class BookController extends Controller
 {
@@ -78,6 +80,25 @@ class BookController extends Controller
             'book_image' => $fileNameToStore
         ]);
 
+        LogBook::create([
+            'actor_id' => auth()->user()->id,
+            'action' => 'Add Book',
+            'book_id' => $book->id,
+            'callnumber' => $book->callnumber,
+            'title' => $book->title,
+            'author' => $book->author,
+            'isbn' => $book->isbn,
+            'volume' => $book->volume,
+            'edition' => $book->edition,
+            'year_published' => $book->year_published,
+            'publisher' => $book->publisher,
+            'genre' => $book->genre,
+            'condition' => $book->condition,
+            'status' => $book->status,
+            'barcodeno' => $book->barcodeno,
+            'book_image' => $book->book_image
+        ]);
+
         return redirect()->route('books.index')->with('success', 'New book has been added to the system!');
     }
 
@@ -123,7 +144,7 @@ class BookController extends Controller
             'genre' => ['required'],
             'condition' => ['required', 'in:Fine,Very Good,Good,Fair,Poor'],
             'status' => ['required', 'in:Available,Reserved,Borrowed,Archived'],
-            'book_image' => ['image', 'nullable', 'max:200']
+            'book_image' => ['image', 'nullable', 'max:10240']
         ]);
          
         $book = Book::find($id);
@@ -153,6 +174,26 @@ class BookController extends Controller
         }
     
         $book->save();
+
+        LogBook::create([
+            'actor_id' => auth()->user()->id,
+            'action' => 'Update Book',
+            'book_id' => $book->id,
+            'callnumber' => $book->callnumber,
+            'title' => $book->title,
+            'author' => $book->author,
+            'isbn' => $book->isbn,
+            'volume' => $book->volume,
+            'edition' => $book->edition,
+            'year_published' => $book->year_published,
+            'publisher' => $book->publisher,
+            'genre' => $book->genre,
+            'condition' => $book->condition,
+            'status' => $book->status,
+            'barcodeno' => $book->barcodeno,
+            'book_image' => $book->book_image
+        ]);
+
         return redirect()->route('books.index')->with('success', 'Book has been successfully updated!');
     }
 
