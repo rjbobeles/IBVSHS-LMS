@@ -42,10 +42,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 |
 */
 
-Route::middleware('auth', 'verified', 'isLibarian', 'isActive')->group(function() {
+Route::middleware('auth', 'verified', 'isActive')->group(function() {
     
     //Librarian Route
     Route::prefix('librarian')->group(function () {
+
+        Route::resource('patrons', 'PatronController');
+        //Librarian Patrons View
+        Route::get('/', 'PatronController@index')->name('librarian.patrons.index');
+        Route::get('/{id}', 'PatronController@show')->name('librarian.patrons.show');
         
     });
 });
