@@ -26,7 +26,7 @@ class PatronController extends Controller
     public function show($id)
     {
         $patrons = Patron::find($id);
-        return view('librarian.patrons.solo')->with('patrons', $patrons);
+        return view('librarian.patrons.single')->with('patrons', $patrons);
     }
 
     public function edit($id)
@@ -87,8 +87,9 @@ class PatronController extends Controller
             'firstname' => ['required', 'string', 'max:255'],
             'middlename' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'contactno' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:patrons'],
+            'lrn' => ['required', 'string', 'max:255'],
         ]); 
 
         $patron = Patron::create([
@@ -99,11 +100,11 @@ class PatronController extends Controller
             'contactno' => $request->input('contactno'),
             'email' => $request->input('email'),
             'deactivated' => false,
-            'lrn'=> 12341234,
+            'lrn'=> $request->input('lrn'),
         ]);
         
         $patron->save();
-        return redirect()->route('patrons.index')->With('success', 'Patron Added.');
+        return redirect()->route('librarian.patrons.index')->with('success', 'Patron Added.');
 
     }
 }
