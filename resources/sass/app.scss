@@ -1,4 +1,5 @@
 // Variables
+@import 'breakpoints';
 @import 'variables';
 
 // Fonts
@@ -30,7 +31,11 @@ div#nav {
 
         ul {
             line-height: 50.69px;
+            padding-bottom: 0px;
 
+            @include lg-br {
+                padding-bottom: 10px;
+            }
             li a {
                 color: #424242;
                 transition: color 200ms ease-in;
@@ -42,9 +47,10 @@ div#nav {
                 transition: color 200ms ease-in;
             }
         }
+
         div.account-burger {
             padding-top: 3.4px;
-            width: 135px; 
+            margin-left: 5%;
             button {
                 border: none; 
                 background-color: rgba(0,0,0,0); 
@@ -102,6 +108,10 @@ div#nav {
             a {
                 color: white;
             }
+
+            @include lg-br {
+                display: none;
+            }
         }
     }
     
@@ -109,6 +119,10 @@ div#nav {
         margin: 0 2%; 
         text-align: right; 
         font-weight: bold;  
+
+        @include lg-br {
+            height: 30px; 
+        }
     }
     
     .navbar-nav {
@@ -122,14 +136,26 @@ div#nav {
     
     .divider {
         font-weight: bold; 
+
+        @include lg-br {
+            display: none;  
+        }
     }
     
     .show-collapse {
         display: none; 
+
+        @include lg-br {
+            display: initial;
+        }
     }
     
     .nav-item.account-burger {
         margin-right: 5%; 
+        
+        @include lg-br {
+            display: none; 
+        }
     }
     
     .account-burger > .dropdown > .dropdown-menu{
@@ -180,26 +206,9 @@ div#nav {
     
     .collapsed-divider {
         display: none; 
-    }
-       
-    @media only screen and (max-width: 991px){
-        .show-collapse {
-            display: initial; 
-        }
-        .nav-item {
-            height: 30px; 
-        }
-        .divider {
-            display: none;  
-        }
-        .nav-item.account-burger {
-            display: none; 
-        }
-        .collapsed-divider {
+
+        @include lg-br {
             display: initial;
-        }
-        #socmed {
-            display: none; 
         }
     }
 } 

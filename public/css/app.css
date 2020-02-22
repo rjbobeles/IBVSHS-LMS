@@ -17304,194 +17304,217 @@ readers do not read off random characters that represent icons */
 }
 
 div#nav {
-	background-color: #fff;
+  background-color: #fff;
 }
 
 div#nav nav#colnav {
-	-webkit-box-shadow: 0px 2px 10px rgba(224, 224, 224, 0.5);
-	box-shadow: 0px 2px 10px rgba(224, 224, 224, 0.5);
-	padding: 5px;
-	font-family: 'Raleway', 'Times New Roman';
-	font-size: 14px;
+  box-shadow: 0px 2px 10px rgba(224, 224, 224, 0.5);
+  padding: 5px;
+  font-family: "Raleway", "Times New Roman";
+  font-size: 14px;
 }
 
 div#nav nav#colnav button i {
-	font-size: 23px;
+  font-size: 23px;
 }
 
 div#nav nav#colnav ul {
-	line-height: 50.69px;
+  line-height: 50.69px;
+  padding-bottom: 0px;
+}
+
+@media (max-width: 992px) {
+  div#nav nav#colnav ul {
+    padding-bottom: 10px;
+  }
 }
 
 div#nav nav#colnav ul li a {
-	color: #424242;
-	-webkit-transition: color 200ms ease-in;
-	transition: color 200ms ease-in;
+  color: #424242;
+  -webkit-transition: color 200ms ease-in;
+  transition: color 200ms ease-in;
 }
 
 div#nav nav#colnav ul li a:hover {
-	color: #fecc59;
-	text-decoration: none;
-	-webkit-transition: color 200ms ease-in;
-	transition: color 200ms ease-in
+  color: #fecc59;
+  text-decoration: none;
+  -webkit-transition: color 200ms ease-in;
+  transition: color 200ms ease-in;
 }
 
 div#nav nav#colnav div.account-burger {
-	padding-top: 3.4px;
-	width: 135px
+  padding-top: 3.4px;
+  margin-left: 5%;
 }
 
 div#nav nav#colnav div.account-burger button {
-	border: none;
-	background-color: rgba(0, 0, 0, 0);
-	outline: none
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  outline: none;
 }
 
 div#nav nav#colnav div.account-burger button i {
-	font-size: 23px
+  font-size: 23px;
 }
 
 div#nav nav#colnav div.account-burger div.dropdown-menu {
-	line-height: 15px
+  line-height: 15px;
 }
 
 div#nav div#infobar {
-	background-color: black;
-	color: white;
-	height: 50px;
-	padding: 17px;
-	font-size: 11px;
-	font-family: 'Muli', 'Segoe UI'
+  background-color: black;
+  color: white;
+  height: 50px;
+  padding: 17px;
+  font-size: 11px;
+  font-family: "Muli", "Segoe UI";
 }
 
 div#nav div#infobar i {
-	font-size: 14px;
-	margin-right: 5px
+  font-size: 14px;
+  margin-right: 5px;
 }
 
 div#nav div#infobar div#contact {
-	text-align: left
+  text-align: left;
 }
 
 div#nav div#infobar div#contact .email {
-	margin-left: 4px;
-	display: inline-block
+  margin-left: 4px;
+  display: inline-block;
 }
 
 div#nav div#infobar div#contact .border {
-	height: 8px;
-	width: 1px;
-	margin-left: 4px;
-	margin-right: 4px
+  height: 8px;
+  width: 1px;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 div#nav div#infobar div#socmed {
-	text-align: right
+  text-align: right;
 }
 
 div#nav div#infobar div#socmed i {
-	margin-left: 5px;
-	margin-right: 5px;
-	font-size: 14px
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 14px;
 }
 
 div#nav div#infobar div#socmed a {
-	color: white
+  color: white;
+}
+
+@media (max-width: 992px) {
+  div#nav div#infobar div#socmed {
+    display: none;
+  }
 }
 
 div#nav .nav-item {
-	margin: 0 2%;
-	text-align: right;
-	font-weight: bold
+  margin: 0 2%;
+  text-align: right;
+  font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  div#nav .nav-item {
+    height: 30px;
+  }
 }
 
 div#nav .navbar-nav {
-	width: 100%;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center
+  width: 100%;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 
 div#nav .navbar-brand {
-	margin: 0 0 0 2vw
+  margin: 0 0 0 2vw;
 }
 
 div#nav .divider {
-	font-weight: bold
+  font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  div#nav .divider {
+    display: none;
+  }
 }
 
 div#nav .show-collapse {
-	display: none
+  display: none;
+}
+
+@media (max-width: 992px) {
+  div#nav .show-collapse {
+    display: initial;
+  }
 }
 
 div#nav .nav-item.account-burger {
-	margin-right: 5%
+  margin-right: 5%;
 }
 
-div#nav .account-burger>.dropdown>.dropdown-menu {
-	text-align: center;
-	font-size: 12px
+@media (max-width: 992px) {
+  div#nav .nav-item.account-burger {
+    display: none;
+  }
+}
+
+div#nav .account-burger > .dropdown > .dropdown-menu {
+  text-align: center;
+  font-size: 12px;
 }
 
 div#nav .animated {
-	-webkit-animation-duration: 0.5s;
-	animation-duration: 0.5s;
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
 @-webkit-keyframes fadeInDown {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(-45%, -20%, 0);
-		transform: translate3d(-45%, -20%, 0)
-	}
-	to {
-		opacity: 1;
-		-webkit-transform: translate3d(-45%, 0, 0);
-		transform: translate3d(-45%, 0, 0)
-	}
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-45%, -20%, 0);
+    transform: translate3d(-45%, -20%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(-45%, 0, 0);
+    transform: translate3d(-45%, 0, 0);
+  }
 }
 
 @keyframes fadeInDown {
-	from {
-		opacity: 0;
-		-webkit-transform: translate3d(-45%, -20%, 0);
-		transform: translate3d(-45%, -20%, 0)
-	}
-	to {
-		opacity: 1;
-		-webkit-transform: translate3d(-45%, 0, 0);
-		transform: translate3d(-45%, 0, 0)
-	}
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-45%, -20%, 0);
+    transform: translate3d(-45%, -20%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(-45%, 0, 0);
+    transform: translate3d(-45%, 0, 0);
+  }
 }
 
 div#nav .fadeInDown {
-	-webkit-animation-name: fadeInDown;
-	animation-name: fadeInDown
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
 }
 
 div#nav .collapsed-divider {
-	display: none
+  display: none;
 }
 
-@media only screen and (max-width: 991px) {
-	div#nav .show-collapse {
-		display: initial
-	}
-	div#nav .nav-item {
-		height: 30px
-	}
-	div#nav .divider {
-		display: none
-	}
-	div#nav .nav-item.account-burger {
-		display: none
-	}
-	div#nav .collapsed-divider {
-		display: initial
-	}
-	div#nav #socmed {
-		display: none
-	}
+@media (max-width: 992px) {
+  div#nav .collapsed-divider {
+    display: initial;
+  }
 }
+
