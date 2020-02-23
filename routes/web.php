@@ -64,6 +64,11 @@ Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function
     
     //Librarian Route
     Route::prefix('librarian')->group(function () {
+
+        Route::resource('patrons', 'PatronController');
+        //Librarian Patrons View
+        Route::get('/', 'PatronController@index')->name('librarian.patrons.index');
+        Route::get('/{id}', 'PatronController@show')->name('librarian.patrons.show');
         
         //Book Controller
         Route::resource('books', 'BookController');
