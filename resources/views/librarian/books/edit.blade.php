@@ -103,11 +103,11 @@
                 <div class="form-group">
                     <label for="condition" class="form-label">{{ __('Condition') }}</label>
                     <select id="condition" name="condition" class="form-control">
-                        <option {{old('condition', $books->condition) == "Fine" ? 'selected':''}} value="Fine">Fine</option>
-                        <option {{old('condition', $books->condition) == "Very Good" ? 'selected':''}} value="Very Good">Very Good</option>
-                        <option {{old('condition', $books->condition) == "Good" ? 'selected':''}} value="Good">Good</option>
-                        <option {{old('condition', $books->condition) == "Fair" ? 'selected':''}} value="Fair">Fair</option>
-                        <option {{old('condition', $books->condition) == "Poor" ? 'selected':''}} value="Poor">Poor</option>
+                        <option @if($user->status == "Fine") {{'selected'}} @endif value="Fine">Fine</option>
+                        <option @if($user->status == "Very Good") {{'selected'}} @endif value="Very Good">Very Good</option>
+                        <option @if($user->status == "Good") {{'selected'}} @endif value="Good">Good</option>
+                        <option @if($user->status == "Fair") {{'selected'}} @endif value="Fair">Fair</option>
+                        <option @if($user->status == "Poor") {{'selected'}} @endif value="Poor">Poor</option>
                     </select>
                     @error('condition')
                         <span class="invalid-feedback" role="alert">
@@ -119,10 +119,10 @@
                 <div class="form-group">
                     <label for="status" class="form-label">{{ __('Status') }}</label>
                     <select id="status" name="status" class="form-control">
-                        <option {{old('status', $books->status) == "Available" ? 'selected':''}} value="Available">Available</option>
-                        <option {{old('status', $books->status) == "Reserved" ? 'selected':''}} value="Reserved">Reserved</option>
-                        <option {{old('status', $books->status) == "Borrowed" ? 'selected':''}} value="Borrowed">Borrowed</option>
-                        <option {{old('status', $books->status) == "Archived" ? 'selected':''}} value="Archived">Archived</option>
+                        <option @if($user->status == "Available") {{'selected'}} @endif value="Available">Available</option>
+                        <option @if($user->status == "Reserved") {{'selected'}} @endif value="Reserved">Reserved</option>
+                        <option @if($user->status == "Borrowed") {{'selected'}} @endif value="Borrowed">Borrowed</option>
+                        <option @if($user->status == "Archived") {{'selected'}} @endif value="Archived">Archived</option>
                     </select>
                     @error('status')
                         <span class="invalid-feedback" role="alert">

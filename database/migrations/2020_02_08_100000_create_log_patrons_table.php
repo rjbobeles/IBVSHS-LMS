@@ -18,9 +18,9 @@ class CreateLogPatronsTable extends Migration
             $table->bigInteger('actor_id')->unsigned();
             $table->foreign('actor_id')->references('id')->on('users');
             $table->string('action', 1000);
-            $table->string('role', 30);
             $table->bigInteger('patron_id')->unsigned();
             $table->foreign('patron_id')->references('id')->on('patrons');
+            $table->string('role', 30);
             $table->string('firstname', 500);
             $table->string('middlename', 500);
             $table->string('lastname', 500);

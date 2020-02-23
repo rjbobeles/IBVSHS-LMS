@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\LogUser;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -69,7 +70,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'firstname' => $data['firstname'],
             'middlename' => $data['middlename'],
             'lastname' => $data['lastname'],
@@ -80,5 +81,21 @@ class RegisterController extends Controller
             'role' => 'Admin',
             'deactivated' => false
         ]);
+
+        LogUser::create([
+            'actor_id' => $user->id,
+            'action' => "Create Account",
+            'user_id' => $user->id,
+            'firstname' => $user->firstname,
+            'middlename' => $user->middlename,
+            'lastname' => $user->lastname,
+            'username' => $user->username,
+            'contactno' => $user->contactno,
+            'email' => $user->email,
+            'password' => $user->password,
+            'role' => $user->role,
+            'deactivated' => $user->deactivated
+        ]);
+        return $user;
     }
 }
