@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function() {
            
         //Change Password
         Route::get('/changepassword', 'Auth\ChangePasswordController@edit')->name('changepassword.edit');
-        Route::put('/changepassword', 'Auth\ChangePasswordController@update')->name('changepassword.put');
+        Route::put('/changepassword', 'Auth\ChangePasswordController@update')->name('changepassword.update');
     });
 });
 
@@ -65,11 +65,9 @@ Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function
     //Librarian Route
     Route::prefix('librarian')->group(function () {
 
+        //Patrons
         Route::resource('patrons', 'PatronController');
-        //Librarian Patrons View
-        Route::get('/', 'PatronController@index')->name('librarian.patrons.index');
-        Route::get('/{id}', 'PatronController@show')->name('librarian.patrons.show');
-        
+
         //Book Controller
         Route::resource('books', 'BookController');
     });
@@ -89,6 +87,15 @@ Route::middleware('auth', 'verified', 'isAdmin', 'isActive')->group(function() {
 
     //Admin Route
     Route::prefix('admin')->group(function () {
+
+        //Patron Controller
+        Route::get('/patrons/', 'PatronController@index')->name('admin.patrons.index');
+        Route::post('/patrons/', 'PatronController@store')->name('admin.patrons.store');
+        Route::get('/patrons/create', 'PatronController@create')->name('admin.patrons.create');
+        Route::delete('/patrons/{id}', 'PatronController@destroy')->name('admin.patrons.destroy');
+        Route::put('/patrons/{id}', 'PatronController@update')->name('admin.patrons.update');
+        Route::get('/patrons/{id}', 'PatronController@show')->name('admin.patrons.show');
+        Route::get('/patrons/{id}/edit', 'PatronController@edit')->name('admin.patrons.edit');
 
         //User Controller
         Route::resource('users', 'UserController');
