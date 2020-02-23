@@ -181,17 +181,16 @@ class UserController extends Controller
         if($user->deactivated == true)
         {
             $user->deactivated = false;
-            $user->save();
             $message = "User has been successfully activated!";
             $action = "Activate Account";
         }
         else 
         {
             $user->deactivated = true;
-            $user->save();
             $message = "User has been successfully deactivated!";
             $action = "Deactivate Account";
         }
+        $user->save();
 
         LogUser::create([
             'actor_id' => auth()->user()->id,
