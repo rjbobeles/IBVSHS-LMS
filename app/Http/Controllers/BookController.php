@@ -79,10 +79,26 @@ class BookController extends Controller
         }
 
         if(request()->has('srt')){
-            $books = $books->orderBy('title',request('srt'));
-        }
+            $sort = "";
 
-        $books = $books->paginate(10)->appends([
+            switch (request('srt')) {
+                case 'asc':
+                    $sort = "asc";
+                    break;
+                
+                case 'desc':
+                    $sort = "desc";
+                    break;
+                default:
+                    abort(403);
+                    break;
+            }
+            $books = $books->orderBy('title', $sort);
+        }
+        
+        $books = $books->orderBy('title', 'asc');
+
+        $books = $books->paginate(20)->appends([
             'cndtn' => request('cndtn'),
             'stts' => request('stts'),
             'srt' => request('srt'),
