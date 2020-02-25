@@ -18,7 +18,77 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+
+        $books = new Book;
+
+        if(request()->has('cndtn')){
+            $condition = "";
+
+            switch (request('cndtn')) {
+                case 'vgd':
+                    $condition = "very good";
+                    break;
+
+                case 'gd':
+                    $condition = "good";
+                    break;
+
+                case 'fn':
+                    $condition = "fine";
+                    break;
+                
+                case 'fr':
+                    $condition = "fair";
+                    break;
+
+                case 'pr':
+                    $condition = "poor";
+                    break;
+
+                default:
+                    abort(403);
+                    break;
+            }
+            $books = $books->where('condition', $condition);
+        }
+
+        if(request()->has('stts')){
+            $status = "";
+
+            switch (request('stts')) {
+                case 'avlbl':
+                    $status = "available";
+                    break;
+                
+                case 'rsrvd':
+                    $status = "reserved";
+                    break;
+                
+                case 'brrwd':
+                    $status = "borrowed";
+                    break;
+
+                case 'archv':
+                    $status = "archived";
+                    break;
+                default:
+                    abort(403);
+                    break;
+            }
+            $books = $books->where('status', $status);
+        }
+
+        if(request()->has('srt')){
+            $books = $books->orderBy('title',request('srt'));
+        }
+
+        $books = $books->paginate(10)->appends([
+            'cndtn' => request('cndtn'),
+            'stts' => request('stts'),
+            'srt' => request('srt'),
+        ]);
+        
+        return view('librarian.books.index')->with(compact('books'));
     }
 
     /**
