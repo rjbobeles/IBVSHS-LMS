@@ -27,6 +27,6 @@ class LogBookController extends Controller
     public function show($id)
     {
         $logBook = LogBook::find($id);
-        return view('admin.logs.book.show')->with('logBook', $logBook);
+        return view('admin.logs.book.single')->with('logBook', $logBook);
     }
 }

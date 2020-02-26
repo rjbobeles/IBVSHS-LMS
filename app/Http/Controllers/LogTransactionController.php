@@ -27,6 +27,6 @@ class LogTransactionController extends Controller
     public function show($id)
     {
         $logTransaction = LogTransaction::find($id);
-        return view('admin.logs.transaction.show')->with('logTransaction', $logTransaction);
+        return view('admin.logs.transaction.single')->with('logTransaction', $logTransaction);
     }
 }

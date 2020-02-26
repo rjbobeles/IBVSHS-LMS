@@ -27,6 +27,6 @@ class LogPatronController extends Controller
     public function show($id)
     {
         $logPatron = LogPatron::find($id);
-        return view('admin.logs.patron.show')->with('logPatron', $logPatron);
+        return view('admin.logs.patron.single')->with('logPatron', $logPatron);
     }
 }

@@ -37,7 +37,13 @@
                     </div>
                     <div class="row">
                         <div class="col-5 col-md-4 text-right">Status:</div>
-                        <div class="col-5 col-md-6">{{ $logUser->deactivated }}</div>
+                        <div class="col-5 col-md-6">
+                            @if($logUser->deactivated == 1)
+                                Deactivated
+                            @else
+                                Active
+                            @endif
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-5 col-md-4 text-right">Email:</div>
