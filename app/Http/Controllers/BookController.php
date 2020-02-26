@@ -71,6 +71,11 @@ class BookController extends Controller
                 case 'archv':
                     $status = "archived";
                     break;
+
+                case 'mssng':
+                    $status = "missing";
+                    break;
+
                 default:
                     abort(403);
                     break;
