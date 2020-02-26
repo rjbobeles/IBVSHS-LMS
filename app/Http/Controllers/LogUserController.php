@@ -27,6 +27,6 @@ class LogUserController extends Controller
     public function show($id)
     {
         $logUser = LogUser::find($id);
-        return view('admin.logs.user.show')->with('logUser', $logUser);
+        return view('admin.logs.user.single')->with('logUser', $logUser);
     }
 }
