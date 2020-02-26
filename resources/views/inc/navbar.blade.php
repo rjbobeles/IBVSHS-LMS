@@ -81,15 +81,15 @@
                 <!--SHOW ONLY WHEN COLLAPSED-->
                 @auth
                     <li class="nav-item show-collapse">
-                        <a class="dropdown-item" href="{{ route('changepassword.edit') }}">Change Password</a>
+                        <a href="{{ route('changepassword.edit') }}">Change Password</a>
                     </li>
                 @endauth
                 <li class="nav-item show-collapse">
                     @guest
-                        <a class="dropdown-item" href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Login</a>
                     @endguest
                     @auth
-                        <a class="dropdown-item" href="{{ route('logout') }} onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                     @endauth
                 </li>
@@ -115,10 +115,11 @@
                             <a class="dropdown-item" href="{{ route('login') }}">Login</a>
                         @endguest
                         @auth
+                            <a class="dropdown-item" href="{{ route('changepassword.edit') }}">Change Password</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                         @endauth
-                    </div>
+                    </div>  
                 </div>
             </div>
         </div>  
