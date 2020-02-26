@@ -36,6 +36,7 @@
                                         <a class="dropdown-item" href="{{ route('librarian.books.index',['cndtn' => request('cndtn'), 'stts' => 'rsrvd']) }}">Reserved</a>
                                         <a class="dropdown-item" href="{{ route('librarian.books.index',['cndtn' => request('cndtn'), 'stts' => 'brrwd']) }}">Borrowed</a>
                                         <a class="dropdown-item" href="{{ route('librarian.books.index',['cndtn' => request('cndtn'), 'stts' => 'archv']) }}">Archived</a>
+                                        <a class="dropdown-item" href="{{ route('librarian.books.index',['cndtn' => request('cndtn'), 'stts' => 'mssng']) }}">Archived</a>
                                     </div>
                                 </div>
                                 <div style="text-align: center; margin-left:10px;">
