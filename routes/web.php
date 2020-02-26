@@ -70,6 +70,9 @@ Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function
 
         //Book Controller
         Route::resource('books', 'BookController');
+
+        Route::get('/', 'BookController@Index')->name('librarian.books.index');
+
     });
 });
 
