@@ -61,7 +61,7 @@
                         <a href="#">ADMIN</a>
                     </li><span class="divider">|</span>
                     <li class="nav-item">
-                        <a href="{{ route('users.index')}}" style="color:  #fecc59;">MANAGE USERS</a>
+                        <a href="{{ route('users.index')}}">MANAGE USERS</a>
                     </li>
                     <li class="nav-item">
                         <a href="#">VIEW TRANSACTIONS</a>
@@ -80,21 +80,22 @@
 
                 <!--SHOW ONLY WHEN COLLAPSED-->
                 @auth
-                    <li class="nav-item show-collapse">
-                        <a class="dropdown-item" href="{{ route('changepassword.edit') }}">Change Password</a>
-                    </li>
+                <li class="nav-item show-collapse">
+                    <a class="dropdown-item" href="{{ route('changepassword.edit') }}">Change Password</a>
+                </li>
                 @endauth
+                
                 <li class="nav-item show-collapse">
                     @guest
                         <a class="dropdown-item" href="{{ route('login') }}">Login</a>
                     @endguest
                     @auth
-                        <a class="dropdown-item" href="{{ route('logout') }} onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                     @endauth
                 </li>
-                
             </ul>
+
             <!--BURGER-->
             <div class="nav-item account-burger">
                 <div class="dropdown">
