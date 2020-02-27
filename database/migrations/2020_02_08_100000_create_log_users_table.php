@@ -20,9 +20,9 @@ class CreateLogUsersTable extends Migration
             $table->string('action', 1000);
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('firstname', 500);
-            $table->string('middlename', 500);
-            $table->string('lastname', 500);
+            $table->string('firstname', 50);
+            $table->string('middlename', 50);
+            $table->string('lastname', 50);
             $table->string('role', 30);
             $table->string('username', 250);
             $table->string('contactno', 100);

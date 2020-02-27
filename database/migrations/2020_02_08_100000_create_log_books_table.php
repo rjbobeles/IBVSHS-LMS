@@ -23,7 +23,7 @@ class CreateLogBooksTable extends Migration
             $table->string('callnumber', 200);
             $table->string('title', 300);
             $table->string('author', 300);
-            $table->string('isbn', 300);
+            $table->string('isbn', 30);
             $table->string('volume', 300);
             $table->string('edition', 300);
             $table->integer('year_published');

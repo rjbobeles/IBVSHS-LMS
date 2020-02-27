@@ -18,11 +18,11 @@ class CreateBooksTable extends Migration
             $table->string('callnumber', 200);
             $table->string('title', 300);
             $table->string('author', 300);
-            $table->string('isbn', 300);
+            $table->string('isbn', 30);
             $table->string('volume', 300);
             $table->string('edition', 300);
             $table->integer('year_published');
-            $table->string('publisher', 300);
+            $table->string('publisher', 255);
             $table->string('genre', 500); 
             $table->enum('condition', ['Fine', 'Very Good', 'Good', 'Fair', 'Poor']);
             $table->enum('status', ['Available', 'Reserved', 'Borrowed', 'Archived']);

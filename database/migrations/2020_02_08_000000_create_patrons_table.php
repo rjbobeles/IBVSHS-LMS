@@ -16,9 +16,9 @@ class CreatePatronsTable extends Migration
         Schema::create('patrons', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('role', 30);
-            $table->string('firstname', 500);
-            $table->string('middlename', 500);
-            $table->string('lastname', 500);
+            $table->string('firstname', 50);
+            $table->string('middlename', 50);
+            $table->string('lastname', 50);
             $table->string('email', 250);
             $table->string('contactno', 100);
             $table->boolean('deactivated');

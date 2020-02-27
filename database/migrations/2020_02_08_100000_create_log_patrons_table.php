@@ -21,9 +21,9 @@ class CreateLogPatronsTable extends Migration
             $table->bigInteger('patron_id')->unsigned();
             $table->foreign('patron_id')->references('id')->on('patrons');
             $table->string('role', 30);
-            $table->string('firstname', 500);
-            $table->string('middlename', 500);
-            $table->string('lastname', 500);
+            $table->string('firstname', 50);
+            $table->string('middlename', 50);
+            $table->string('lastname', 50);
             $table->string('email', 250);
             $table->string('contactno', 100);
             $table->boolean('deactivated');
