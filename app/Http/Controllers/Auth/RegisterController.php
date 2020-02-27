@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Rules\AlphaSpace;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\LogUser;
@@ -52,9 +53,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'firstname'     => ['required', 'string', 'max:255'],
-            'middlename'    => ['required', 'string', 'max:255'],
-            'lastname'      => ['required', 'string', 'max:255'],
+            'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
+            'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
+            'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'username'      => ['required', 'string', 'max:255', 'unique:users'],
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'contactno'     => ['required', 'string', 'max:255'],

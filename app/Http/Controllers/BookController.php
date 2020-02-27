@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Book;
 use App\LogBook;
 use App\User;
+use App\Rules\AlphaSpace;
+use App\Rules\ISBN;
 
 class BookController extends Controller
 {
@@ -133,14 +135,14 @@ class BookController extends Controller
         $validate = $request->validate([
             'callnumber' => ['required'],
             'title' => ['required'],
-            'author' => ['required'],
-            'isbn' => ['required'],
-            'year_published' => ['required'],
-            'publisher' => ['required'],
+            'author' => ['required', new AlphaSpace],
+            'isbn' => ['required', new ISBN],
+            'year_published' => ['required', 'integer', 'min:4'],
+            'publisher' => ['required', 'max:255'],
             'genre' => ['required'],
             'condition' => ['required', 'in:Fine,Very Good,Good,Fair,Poor'],
             'status' => ['required', 'in:Available,Reserved,Borrowed,Archived'],
-            'book_image' => ['image', 'nullable', 'max:200']
+            'book_image' => ['image', 'nullable', 'max:10240']
         ]);
         
         $getLastBarcodeNo = DB::table('books')->select('barcodeno')->orderBy('barcodeno', 'desc')->take(1)->first();
@@ -228,10 +230,10 @@ class BookController extends Controller
         $validate = $request->validate([
             'callnumber' => ['required'],
             'title' => ['required'],
-            'author' => ['required'],
-            'isbn' => ['required'],
-            'year_published' => ['required'],
-            'publisher' => ['required'],
+            'author' => ['required', new AlphaSpace],
+            'isbn' => ['required', new ISBN],
+            'year_published' => ['required', 'integer', 'min:4'],
+            'publisher' => ['required', 'max:255'],
             'genre' => ['required'],
             'condition' => ['required', 'in:Fine,Very Good,Good,Fair,Poor'],
             'status' => ['required', 'in:Available,Reserved,Borrowed,Archived'],

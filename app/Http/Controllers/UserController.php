@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\LogUser;
+use App\Rules\AlphaSpace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -52,14 +53,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'role' => ['required', 'in:Admin,Librarian'],
-            'firstname' => ['required', 'string', 'max:255'],
-            'middlename' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'contactno' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role'          => ['required', 'in:Admin,Librarian'],
+            'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
+            'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
+            'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
+            'username'      => ['required', 'string', 'max:255', 'unique:users'],
+            'email'         => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'contactno'     => ['required', 'string', 'max:255'],
+            'password'      => ['required', 'string', 'min:8', 'confirmed'],
         ]); 
 
         $user = User::create([
@@ -128,13 +129,13 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $validate = $request->validate([
-            'role' => ['required', 'in:Admin,Librarian'],
-            'firstname' => ['required', 'string', 'max:255'],
-            'middlename' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'contactno' => ['required', 'string', 'max:255'],
+            'role'          => ['required', 'in:Admin,Librarian'],
+            'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
+            'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
+            'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
+            'username'      => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'contactno'     => ['required', 'string', 'max:255'],
         ]);
 
         $user = User::find($id); 

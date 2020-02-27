@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Patron;
 use App\LogPatron;
+use App\Rules\AlphaSpace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -28,13 +29,13 @@ class PatronController extends Controller
 
     public function store(Request $request){
         $validate = $request->validate([
-            'role' => ['required', 'in:Student,Teacher'],
-            'firstname' => ['required', 'string', 'max:255'],
-            'middlename' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'contactno' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:patrons'],
-            'lrn' => ['required', 'string', 'max:255'],
+            'role'          => ['required', 'in:Student,Teacher'],
+            'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
+            'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
+            'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
+            'contactno'     => ['required', 'string', 'max:255'],
+            'email'         => ['required', 'string', 'email', 'max:255', 'unique:patrons'],
+            'lrn'           => ['required', 'string', 'max:255'],
         ]); 
 
         $patron = Patron::create([
@@ -85,12 +86,12 @@ class PatronController extends Controller
     {
         $patron = Patron::find($id);
         $validate = $request->validate([
-            'role' => ['required', 'in:Student,Teacher'],
-            'firstname' => ['required', 'string', 'max:255'],
-            'middlename' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('patrons')->ignore($patron->id)],
-            'contactno' => ['required', 'string', 'max:255'],
+            'role'          => ['required', 'in:Student,Teacher'],
+            'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
+            'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
+            'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
+            'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('patrons')->ignore($patron->id)],
+            'contactno'     => ['required', 'string', 'max:255'],
             
         ]);
 
