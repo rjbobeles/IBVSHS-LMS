@@ -25,7 +25,7 @@ class CreateLogPatronsTable extends Migration
             $table->string('middlename', 50);
             $table->string('lastname', 50);
             $table->string('email', 250);
-            $table->string('contactno', 100);
+            $table->string('contactno', 20);
             $table->boolean('deactivated');
             $table->timestamps();
         });

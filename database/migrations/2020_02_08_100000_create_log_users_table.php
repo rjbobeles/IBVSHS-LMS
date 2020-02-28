@@ -25,7 +25,7 @@ class CreateLogUsersTable extends Migration
             $table->string('lastname', 50);
             $table->string('role', 30);
             $table->string('username', 250);
-            $table->string('contactno', 100);
+            $table->string('contactno', 20);
             $table->string('password', 200);
             $table->boolean('deactivated');
             $table->string('email', 250);
