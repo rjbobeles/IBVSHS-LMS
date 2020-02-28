@@ -24,7 +24,7 @@
                         <div class="col-5 col-md-6">{{ $user->email_verified_at }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-5 col-md-4 text-right">User ID:</div>
+                        <div class="col-5 col-md-4 text-right">Contact Number:</div>
                         <div class="col-5 col-md-6">{{ $user->contactno }}</div>
                     </div>
                     <div class="row">
