@@ -48,7 +48,7 @@ class BookController extends Controller
             'publisher' => ['required'],
             'genre' => ['required'],
             'condition' => ['required', 'in:Fine,Very Good,Good,Fair,Poor'],
-            'status' => ['required', 'in:Available,Reserved,Borrowed,Archived'],
+            'status' => ['required', 'in:Available,Reserved,Borrowed,Archived,Missing'],
             'book_image' => ['image', 'nullable', 'max:200']
         ]);
         
@@ -143,7 +143,7 @@ class BookController extends Controller
             'publisher' => ['required'],
             'genre' => ['required'],
             'condition' => ['required', 'in:Fine,Very Good,Good,Fair,Poor'],
-            'status' => ['required', 'in:Available,Reserved,Borrowed,Archived'],
+            'status' => ['required', 'in:Available,Reserved,Borrowed,Archived,Missing'],
             'book_image' => ['image', 'nullable', 'max:10240']
         ]);
          

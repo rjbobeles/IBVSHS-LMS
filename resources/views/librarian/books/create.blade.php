@@ -122,6 +122,7 @@
                         <option value="Reserved">Reserved</option>
                         <option value="Borrowed">Borrowed</option>
                         <option value="Archived">Archived</option>
+                        <option value="Missing">Missing</option>
                     </select>
                     @error('status')
                         <span class="invalid-feedback" role="alert">

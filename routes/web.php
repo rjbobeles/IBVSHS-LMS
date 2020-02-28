@@ -70,6 +70,18 @@ Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function
 
         //Book Controller
         Route::resource('books', 'BookController');
+
+        //Transaction Controller
+        Route::get('/transactions/create', 'TransactionController@create')->name('transactions.create');
+        Route::post('/transactions/create/fetchPatron', 'TransactionController@fetchPatron');
+        Route::post('/transactions/create/fetchBook', 'TransactionController@fetchBook');
+        Route::post('/transactions/create', 'TransactionController@store')->name('transactions.store');
+        Route::get('/transactions/{id}/edit', 'TransactionController@edit')->name('transactions.edit');
+        Route::post('/transactions/{id}/edit/fetchPatron', 'TransactionController@fetchPatron');
+        Route::post('/transactions/{id}/edit/fetchBook', 'TransactionController@fetchBook');
+        Route::put('/transactions/{id}/edit', 'TransactionController@update')->name('transactions.update');
+        Route::get('/transactions/{id}/returnBook', 'TransactionController@returnBook')->name('transactions.returnBook');
+        Route::post('/transactions/{id}/returnBook', 'TransactionController@returnBookStore')->name('transactions.returnBookStore');
     });
 });
 
