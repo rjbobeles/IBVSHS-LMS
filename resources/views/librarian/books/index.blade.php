@@ -21,9 +21,6 @@
         </div>
         <div class="col-md-6">
             <div class="options">
-                <a href="user_audit.html" class="btn mr-3">
-                    <i class="fa fa-bookmark">&nbsp;</i>Remove Expired Copyright Books
-                </a>
                 <a href="{{ route('librarian.books.create') }}" class="btn mr-3">
                     <i class="fa fa-plus">&nbsp;</i>Add New Book
                 </a>
@@ -76,7 +73,6 @@
     <table class="table table-bordered">
         <thead class="headcolor">
             <tr>
-                <th></th>
                 <th>ID</th>
                 <th>Book Title</th>
                 <th>Author</th>
@@ -89,7 +85,6 @@
             @if(count($books) > 0)
                 @foreach($books as $book)
                     <tr>
-                        <td id="checkbox"><input type="checkbox" name="#" value="#"></td>
                         <td>{{ $book->id }}</td>
                         <td>{{ $book->title }}</td>
                         <td>{{ $book->author }}</td>
