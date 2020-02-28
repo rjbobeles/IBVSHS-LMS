@@ -35,6 +35,6 @@ class ISBN implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'The field contains an invalid ISBN format.';
     }
 }
