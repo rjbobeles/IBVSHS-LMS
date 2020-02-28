@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\LogUser;
 use App\Rules\AlphaSpace;
+use App\Rules\ValidPHNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -59,7 +60,7 @@ class UserController extends Controller
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'username'      => ['required', 'string', 'max:255', 'unique:users'],
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'contactno'     => ['required', 'string', 'max:255'],
+            'contactno'     => ['required', 'string', 'max:16', new ValidPHNumber],
             'password'      => ['required', 'string', 'min:8', 'confirmed'],
         ]); 
 
@@ -135,7 +136,7 @@ class UserController extends Controller
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'username'      => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
             'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'contactno'     => ['required', 'string', 'max:255'],
+            'contactno'     => ['required', 'string', 'max:16', new ValidPHNumber],
         ]);
 
         $user = User::find($id); 

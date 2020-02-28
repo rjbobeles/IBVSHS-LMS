@@ -6,6 +6,7 @@ use App\User;
 use App\Patron;
 use App\LogPatron;
 use App\Rules\AlphaSpace;
+use App\Rules\ValidPHNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -33,7 +34,7 @@ class PatronController extends Controller
             'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
             'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
-            'contactno'     => ['required', 'string', 'max:255'],
+            'contactno'     => ['required', 'string', 'max:16', new ValidPHNumber],
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:patrons'],
             'lrn'           => ['required', 'string', 'max:255'],
         ]); 
@@ -91,7 +92,7 @@ class PatronController extends Controller
             'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('patrons')->ignore($patron->id)],
-            'contactno'     => ['required', 'string', 'max:255'],
+            'contactno'     => ['required', 'string', 'max:16', new ValidPHNumber],
             
         ]);
 
