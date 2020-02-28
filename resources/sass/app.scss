@@ -212,3 +212,235 @@ div#nav {
         }
     }
 } 
+
+//Franchesca css for librarian
+//librarian homepage
+div#homepage {
+
+    html,body {
+        font-weight: 200;
+        height: 100vh;
+        margin: 10px;
+        text-decoration: none;
+    }
+
+    .searchbar {
+        margin-top: 10px;
+    }
+    
+    input[type=search], select {
+        width: 38%;
+        padding: 12px 20px;
+        display: inline-block;
+        border: 2px solid #fecc59;
+        border-radius: 40px;
+        box-sizing: border-box;
+    }
+    
+    input[type="submit"] {
+        margin-left: -50px;
+        height: 25px;
+        width: 50px;
+        background: transparent;
+        color: #fecc59;
+        border: 0;
+    }
+    
+    input[type="submit"]:hover {
+        margin-left: -50px;
+        height: 25px;
+        width: 50px;
+        background: transparent;
+        color: #ab893b;
+        border: 0;
+    }
+    
+    .caption {
+        display: block;
+        color: #222222;
+        text-align: center;
+        padding: 5px 8px;
+        text-decoration: none;
+        font-size: 13px;
+    }
+    
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+    
+    .thumbnail:hover{
+        border: 2px solid #fecc59;
+    }
+    
+    .thumbnail{
+        width: auto;
+        padding-top: 35px;
+        height:220px;
+        background-color:#dedfdf;
+    }
+    
+    .caption a {
+        display: block;
+        color: #222222;
+        text-align: center;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    .caption .adjust {
+        padding-top: 21px;
+    }
+    
+    .tab {
+        position:absolute;
+        left:350px; 
+    }
+
+    .searchbar{
+        text-align: center;
+    }
+    
+    img {
+        width: 20%;
+    }
+}
+
+//librarian managelibrary
+div#manageLibrary {
+
+    .navbooks {  
+        overflow: hidden;
+        background-color: transparent; 
+    }
+      
+    .navbooks a {
+        float: left;
+        display: block;
+        color: #222222;
+        text-align: center;
+        padding: 5px 8px;
+        text-decoration: none;
+        font-size: 14px;
+        border-bottom: 2px solid gray;
+    }
+      
+    .navbooks a:hover {
+        border-bottom: 2px solid #fecc59;
+    }
+    
+    .navbooks a.active {
+        border-bottom: 2px solid #fecc59;
+    }
+
+    .headcolor {
+        background-color: #92130f;
+        color: white;
+        text-align: center;
+    }
+
+    .btn dropdown-toggle{
+        font-size:12px;
+    }
+
+    input[type=search], select {
+        width: 70%;
+        padding: 12px 20px;
+        margin: 10px 0;
+        display: inline-block;
+        border: 2px solid #fecc59;
+        border-radius: 40px;
+        box-sizing: border-box;
+    }
+    
+    input[type="submit"] {
+        margin-left: -50px;
+        height: 25px;
+        width: 50px;
+        background: transparent;
+        color: #fecc59;
+        border: 0;
+    }
+    
+    input[type="submit"]:hover {
+        margin-left: -50px;
+        height: 25px;
+        width: 50px;
+        background: transparent;
+        color: #ab893b;
+        border: 0;
+    }
+
+    body{
+        background: #f2f2f2;
+    }
+    
+    .dropdown {
+        position: relative;
+        display:inline-block;
+    }
+
+    tbody#body {
+        text-align: center;
+    }
+
+    .options {
+        text-align: right;
+        padding-top:20px;
+    }
+
+    .filter {
+        margin-bottom: 10px;
+    }
+
+    #filterChoices {
+        margin-left: 10px;
+        text-align: center;
+    }
+
+    .sort {
+        text-align: right;
+    }
+}
+//librarian create book
+div#create {
+    body{
+        font-size:20pt;
+        background-color:#f0f0f0;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    #title {
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+
+    #back {
+        text-align: right;
+    }
+}
+//librarian update book
+div#update {
+    body{
+        font-size:20pt;
+        background-color:#f0f0f0;
+    }
+
+    #title {
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    #back {
+        text-align: right;
+    }
+}
