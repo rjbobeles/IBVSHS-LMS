@@ -31,7 +31,13 @@
                                         <td>{{ $logPatron->role }}</td>
                                         <td>{{ $logPatron->patron_id }}</td>
                                         <td>{{ $logPatron->lastname }}, {{ $logPatron->firstname }} {{ $logPatron->middlename }}</td>
-                                        <td>{{ $logPatron->deactivated }}</td>
+                                        <td>
+                                            @if($patron->deactivated == 1)
+                                                Deactivated
+                                            @else
+                                                Active
+                                            @endif
+                                        </td>
                                         <td>{{ $logPatron->created_at }}</td>
                                         <th>
                                             <div class="dropdown dropright" style="text-align: center;">
