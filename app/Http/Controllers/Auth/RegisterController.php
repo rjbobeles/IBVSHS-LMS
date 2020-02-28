@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Rules\AlphaSpace;
+use App\Rules\ValidPHNumber;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\LogUser;
@@ -58,7 +59,7 @@ class RegisterController extends Controller
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'username'      => ['required', 'string', 'max:255', 'unique:users'],
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'contactno'     => ['required', 'string', 'max:255'],
+            'contactno'     => ['required', 'string', 'max:20', new ValidPHNumber],
             'password'      => ['required', 'string', 'min:8', 'confirmed']
         ]);
     }
