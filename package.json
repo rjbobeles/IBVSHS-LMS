@@ -24,6 +24,11 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.12.1"
+        "@fortawesome/fontawesome-free": "^5.12.1",
+        "datatables.net-bs4": "^1.10.20",
+        "datatables.net-buttons-bs4": "^1.6.1",
+        "datatables.net-responsive-bs4": "^2.2.3",
+        "jszip": "^3.2.2",
+        "pdfmake": "^0.1.64"
     }
 }

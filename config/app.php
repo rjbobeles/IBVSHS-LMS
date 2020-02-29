@@ -167,7 +167,8 @@ return [
          */
 
         Milon\Barcode\BarcodeServiceProvider::class,
-
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */

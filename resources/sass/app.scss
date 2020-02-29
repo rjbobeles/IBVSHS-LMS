@@ -1,6 +1,7 @@
 // Variables
 @import 'breakpoints';
 @import 'variables';
+@import 'datatables';
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Raleway');
@@ -212,3 +213,15 @@ div#nav {
         }
     }
 } 
+
+
+table.table.table-bordered.dataTable.no-footer
+{
+    margin-bottom: 0;
+}
+
+div.dataTables_wrapper.dt-bootstrap4.no-footer:nth-child(2) {
+    .row {
+        margin: 20px 0px 20px 0px;
+    }
+}
