@@ -7,7 +7,8 @@
             <div class="card">
                 <div class="card-body">
                     <h1> Patron Logs </h1> 
-                    <table class="table table-bordered">
+                    
+                    <table id="log-patron-table" class="table table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -21,47 +22,35 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @if(count($logPatrons) > 0)
-                                @foreach($logPatrons as $logPatron)
-                                    <tr>
-                                        <td>{{ $logPatron->id }}</td>
-                                        <td>{{ $logPatron->actor_id }} | {{ $logPatron->userLogPatron->username }}</td>
-                                        <td>{{ $logPatron->action }}</td>
-                                        <td>{{ $logPatron->role }}</td>
-                                        <td>{{ $logPatron->patron_id }}</td>
-                                        <td>{{ $logPatron->lastname }}, {{ $logPatron->firstname }} {{ $logPatron->middlename }}</td>
-                                        <td>
-                                            @if($patron->deactivated == 1)
-                                                Deactivated
-                                            @else
-                                                Active
-                                            @endif
-                                        </td>
-                                        <td>{{ $logPatron->created_at }}</td>
-                                        <th>
-                                            <div class="dropdown dropright" style="text-align: center;">
-                                                <a class="btn btn-sm btn-primary dropdown-toggle dropdown-toggle-none" href="#" role="button" id="action-{{ $logPatron->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    ...
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="action-{{ $logPatron->id }}">
-                                                    <a class="dropdown-item" href="{{ route('logs.patron.show', $logPatron->id) }}">View Details</a>
-                                                </div>
-                                            </div>
-                                        </th>
-                                    </tr>
-                                @endforeach
-                            @else
-                                <tr>
-                                    <td colspan="9" style="text-align: center;"><b>No Patron Logs Found!</b></td>
-                                </tr>
-                            @endif
-                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script defer>
+    $(function() {
+        $('#log-patron-table').DataTable({
+            processing: true,
+            serverside: true,
+            responsive: true,
+            "scrollX": true,
+            ajax: '{!! route('logs.patron.data') !!}',
+            columns: [
+                { data: 'id', name: 'id', searchable: false, sortable : true, visible: true },
+                { data: 'issued_by', name: 'issued_by', searchable: true, sortable : true, visible: true },
+                { data: 'action', name: 'action', searchable: false, sortable : true, visible: true },
+                { data: 'role', name: 'role', searchable: false, sortable : true, visible: true},
+                { data: 'patron_id', name: 'patron_id', searchable: false, sortable : true, visible: true },
+                { data: 'name', name: 'name', searchable: true, sortable : true, visible: false }, 
+                { data: 'deactivated', name: 'deactivated', searchable: false, sortable : true, visible: true }, 
+                { data: 'created_at', name: 'created_at', searchable: false, sortable : true, visible: true }, 
+                { data: 'actions', name: 'actions', searchable: false, sortable : false, visible: true }, 
+            ]
+        });
+    });
+</script>
 @endsection

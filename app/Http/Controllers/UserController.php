@@ -10,29 +10,40 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Yajra\Datatables\Datatables;
 
 class UserController extends Controller
 { 
     /**
-     * Display a listing of the resource.
+     * Show the view for listing of resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        /*
-        if($request->has('ob'))
-        {   
-            if($request->ob === 'id') $users = User::orderBy('id', 'ASC')->paginate(20);
-            else if ($request->ob === 'name') $users = User::orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate(20);
-            else if ($request->ob === 'role') $users = User::orderBy('role', 'ASC')->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate(20);
-            else if ($request->ob === 'status') $users = User::orderBy('deactivated', 'ASC')->orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate(20);
-            else abort(404);
-        }
-        else */
-        $users = User::orderBy('lastname', 'ASC')->orderBy('firstname', 'ASC')->paginate(20);
+       return View('admin.users.index');
+    }
 
-        return View('admin.users.index')->With('users', $users);
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexData()
+    {
+        return Datatables::of(User::select(['id', 'firstname', 'middlename', 'lastname', 'middlename', 'role', 'email', 'deactivated']))
+        ->orderColumn('name', function ($query, $order) {
+            $query->orderBy('lastname', $order)->orderBy('firstname', $order)->orderBy('middlename', $order);
+        })
+        ->addColumn('name', function($row) { return $row->lastname . ', ' . $row->firstname . ' ' . $row->middlename; })
+        ->editColumn('deactivated', function($row) { 
+            if($row->deactivated == 1) return "Deactivated";
+            else return "Active";
+        })
+        ->addColumn('actions', 'admin.patrons.action')
+        ->rawColumns(['link', 'actions'])
+        ->setRowId(function ($user) { return $user->id; })
+        ->make(true);
     }
 
     /**
@@ -171,7 +182,7 @@ class UserController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function destroy($id)
     {
         if(auth()->user()->id == $id) abort(403);

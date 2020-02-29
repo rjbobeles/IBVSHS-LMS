@@ -7,7 +7,8 @@
             <div class="card">
                 <div class="card-body">
                     <h1> User Logs </h1> 
-                    <table class="table table-bordered">
+
+                    <table id="log-users-table" class="table table-bordered" width="100%">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -18,34 +19,6 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @if(count($logUsers) > 0)
-                                @foreach($logUsers as $logUser)
-                                    <tr>
-                                        <td>{{ $logUser->id}} </td>
-                                        <td>{{ $logUser->actor_id}} | {{ $logUser->userLogUserActor->username }} </td>
-                                        <td>{{ $logUser->action}} </td>
-                                        <td>{{ $logUser->user_id}} </td>
-                                        <td>{{ $logUser->created_at}} </td>
-                                        <th>
-                                            <div class="dropdown dropright" style="text-align: center;">
-                                                <a class="btn btn-sm btn-primary dropdown-toggle dropdown-toggle-none" href="#" role="button" id="action-{{ $logUser->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    ...
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="action-{{ $logUser->id }}">
-                                                    <a class="dropdown-item" href="{{ route('logs.user.show', $logUser->id) }}">View Details</a>
-                                                </div>
-                                            </div>
-                                        </th>
-                                    </tr>
-                                @endforeach
-                            @else
-                                <tr>
-                                    <td colspan="6" style="text-align: center;"><b>No User Logs Found!</b></td>
-                                </tr>
-                            @endif
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -53,3 +26,26 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+<script>
+    $(function() {
+        $('#log-users-table').DataTable({
+            processing: true,
+            serverside: true,
+            responsive: true,
+            "scrollX": true,
+            ajax: '{!! route('logs.user.data') !!}',
+            columns: [
+                { data: 'id', name: 'id', searchable: false, sortable : true, visible: true },
+                { data: 'issued_by', name: 'issued_by', searchable: true, sortable : true, visible: true },
+                { data: 'action', name: 'action', searchable: false, sortable: true, visible: true },
+                { data: 'user_id', name: 'user_id', searchable: true, sortable: true, visible: true },
+                { data: 'created_at', name: 'created_at', searchable: false, sortable: true, visible: true },
+                { data: 'actions', name: 'actions', searchable: false, sortable: false, visible: true },
+            ]
+        });
+    });
+</script>
+@endsection
+        

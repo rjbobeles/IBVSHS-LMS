@@ -68,6 +68,10 @@ Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function
         //Patrons
         Route::resource('patrons', 'PatronController');
 
+        //Datatable Routes
+        Route::get('/dt/books', 'BookController@indexData')->name('books.index.data'); 
+        Route::get('/dt/patrons', 'PatronController@indexData')->name('patrons.index.data');
+        
         //Book Controller
         Route::resource('books', 'BookController');
 
@@ -102,6 +106,14 @@ Route::middleware('auth', 'verified', 'isAdmin', 'isActive')->group(function() {
 
         //User Controller
         Route::resource('users', 'UserController');
+
+        //Datatable Routes
+        Route::get('/dt/users', 'UserController@indexData')->name('users.index.data'); 
+        Route::get('/dt/patrons', 'PatronController@indexDataAdmin')->name('admin.patrons.index.data'); 
+        Route::get('/dt/logs/user', 'LogUserController@indexData')->name('logs.user.data');
+        Route::get('/dt/logs/book', 'LogBookController@indexData')->name('logs.book.data'); 
+        Route::get('/dt/logs/patron', 'LogPatronController@indexData')->name('logs.patron.data');
+        Route::get('/dt/logs/transaction', 'LogTransactionController@indexData')->name('logs.transaction.data');
 
         //System Logs
         Route::prefix('logs')->group(function () {

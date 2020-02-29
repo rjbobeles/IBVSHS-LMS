@@ -6,8 +6,11 @@
         <div class="col">        
             <div class="card">
                 <div class="card-body">
+                    @include('inc.messages')
+
                     <h1> Book Logs </h1> 
-                    <table class="table table-bordered">
+
+                    <table id="log-books-table" class="table table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -15,7 +18,6 @@
                                 <th>Action</th>
                                 <th>Book ID</th>
                                 <th>Title</th>
-                                <th>Author</th>
                                 <th>ISBN</th>
                                 <th>Status</th>
                                 <th>Barcode No</th>
@@ -23,39 +25,6 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @if(count($logBooks) > 0)
-                                @foreach($logBooks as $logBook)
-                                    <tr>
-                                        <td>{{ $logBook->id }}</td>
-                                        <td>{{ $logBook->actor_id }} | {{ $logBook->userLogBook->username }}</td>
-                                        <td>{{ $logBook->action }}</td>
-                                        <td>{{ $logBook->book_id }}</td>
-                                        <td>{{ $logBook->title }}</td>
-                                        <td>{{ $logBook->author }}</td>
-                                        <td>{{ $logBook->isbn }}</td>
-                                        <td>{{ $logBook->status }}</td>
-                                        <td>{{ $logBook->barcodeno }}</td>
-                                        <td>{{ $logBook->created_at }}</td>
-                                        <th>
-                                            <div class="dropdown dropright" style="text-align: center;">
-                                                <a class="btn btn-sm btn-primary dropdown-toggle dropdown-toggle-none" href="#" role="button" id="action-{{ $logBook->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    ...
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="action-{{ $logBook->id }}">
-                                                    <a class="dropdown-item" href="{{ route('logs.book.show', $logBook->id) }}">View Details</a>
-                                                </div>
-                                            </div>
-                                        </th>
-                                    </tr>
-                                @endforeach
-                            @else
-                                <tr>
-                                    <td colspan="11" style="text-align: center;"><b>No Book Logs Found!</b></td>
-                                </tr>
-                            @endif
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -63,3 +32,30 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+<script>
+    $(function() {
+        $('#log-books-table').DataTable({
+            processing: true,
+            serverside: true,
+            responsive: true,
+            "scrollX": true,
+            ajax: '{!! route('logs.book.data') !!}',
+            columns: [
+                { data: 'id', name: 'id', searchable: false, sortable : true, visible: true },
+                { data: 'issued_by', name: 'issued_by', searchable: true, sortable : true, visible: true },
+                { data: 'action', name: 'action', searchable: false, sortable: true, visible: true },
+                { data: 'book_id', name: 'book_id', searchable: false, sortable: true, visible: true },
+                { data: 'title', name: 'title', searchable: true, sortable: true, visible: true },
+                { data: 'isbn', name: 'isbn', searchable: true, sortable: true, visible: true },
+                { data: 'status', name: 'status', searchable: false, sortable: true, visible: true },
+                { data: 'barcodeno', name: 'barcodeno', searchable: true, sortable: false, visible: true },
+                { data: 'created_at', name: 'created_at', searchable: false, sortable: true, visible: true },
+                { data: 'actions', name: 'actions', searchable: false, sortable: false, visible: true },
+            ]
+        });
+    });
+</script>
+@endsection
+                    

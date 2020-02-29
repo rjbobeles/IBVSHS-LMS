@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\LogTransaction;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class LogTransactionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show the view for listing of resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -18,6 +19,23 @@ class LogTransactionController extends Controller
         return view('admin.logs.transaction.index')->with('logTransactions', $logTransactions);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexData()
+    {
+        return Datatables::of(LogTransaction::select(['id', 'actor_id', 'action', 'transaction_id', 'created_at']))
+        ->addColumn('issued_by', function($row) { return $row->actor_id . ' | ' . $row->userLogTransaction->username; })
+        ->orderColumn('issued_by', function ($query, $order) {
+            $query->orderBy('id', $order);
+        })
+        ->addColumn('actions', 'admin.logs.transaction.action')
+        ->rawColumns(['link', 'actions'])
+        ->make(true);  
+    }
+     
     /**
      * Display the specified resource.
      *
