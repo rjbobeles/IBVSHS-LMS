@@ -19,8 +19,8 @@ class CreateBooksTable extends Migration
             $table->string('title', 300);
             $table->string('author', 300);
             $table->string('isbn', 30);
-            $table->string('volume', 300);
-            $table->string('edition', 300);
+            $table->string('volume', 10)->nullable();
+            $table->string('edition', 10)->nullable();
             $table->integer('year_published');
             $table->string('publisher', 255);
             $table->string('genre', 500); 
