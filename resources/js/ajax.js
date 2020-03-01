@@ -1,6 +1,6 @@
 //Autocomplete ajax for searching borrower name in librarian.transactions.create
 $(document).ready(function(){
-    $('#lastname').keyup(function(){ 
+    $('#borrower_name').keyup(function(){ 
         var query = $(this).val();
         if(query != ''){
             var _token = $('input[name="_token"]').val();
@@ -24,7 +24,7 @@ $(document).ready(function(){
 });
     
 $(document).on('click', '#patronList li', function(){  
-    $('#lastname').val($(this).text());  
+    $('#borrower_name').val($(this).text());  
     $('#patronList').fadeOut();  
 });
 
@@ -60,7 +60,7 @@ $(document).on('click', '#bookList li', function(){
 
 //Autocomplete ajax for searching borrower name in librarian.transactions.edit
 $(document).ready(function(){
-    $('#lastname').keyup(function(){ 
+    $('#borrower_name').keyup(function(){ 
         var query = $(this).val();
         if(query != ''){
             var _token = $('input[name="_token"]').val();
@@ -84,7 +84,7 @@ $(document).ready(function(){
 });
 
 $(document).on('click', '#patronList li', function(){  
-    $('#lastname').val($(this).text());  
+    $('#borrower_name').val($(this).text());  
     $('#patronList').fadeOut();  
 });
 

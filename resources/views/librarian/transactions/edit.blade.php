@@ -7,14 +7,14 @@
             <div class="col-3">
                 <!--Borrower Label and Text Input-->
                 <div class="form-group">
-                    <label for="lastname" class="form-label">{{ __('Borrower') }}</label>
-                    <input type="text" name="lastname" id="lastname" class="form-control @error('lastname') is-invalid @enderror" value="{{ $transactions->patronTransaction->lastname }}" required placeholder="Enter Borrower's Name" />
-                    @error('lastname')
+                    <label for="borrower_name" class="form-label">{{ __('Borrower') }}</label>
+                    <input type="text" name="borrower_name" id="borrower_name" class="form-control @error('borrower_name') is-invalid @enderror" value="{{ $transactions->patronTransaction->lastname }}, {{ $transactions->patronTransaction->firstname }} {{ $transactions->patronTransaction->middlename }}" required placeholder="Enter Borrower's Name" />
+                    @error('borrower_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <div id="patronList"></div>
+                    <div id="patronList" style="position: relative"></div>
                 </div>
                 {{ csrf_field() }}
             </div>
@@ -28,7 +28,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <div id="bookList"></div>
+                    <div id="bookList" style="position: relative"></div>
                 </div>
             </div>
             <div class="col-3">

@@ -19,7 +19,7 @@
                 <!--Borrowing User Label and Read Only Text Input-->
                 <label for="borrowing_user" class="form-label">Borrowing User:</label>
                 <input type="text" name="borrowing_user" id="borrowing_user" class="form-control" 
-                    value="{{ $transactions->patronTransaction->lastname }}, {{ $transactions->patronTransaction->firstname }}" readonly/><br>
+                    value="{{ $transactions->patronTransaction->lastname }}, {{ $transactions->patronTransaction->firstname }} {{ $transactions->patronTransaction->middlename }}" readonly/><br>
                 <div class="row">
                     <div class="col-6">
                         <!--Borrow Date Label and Read Only Date Input-->

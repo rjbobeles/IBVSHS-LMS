@@ -24,10 +24,14 @@ class TransactionController extends Controller
         {
             $query = $request->get('query');
             $data = DB::table('patrons')->where('lastname', 'LIKE', "%{$query}%")->get();
-            $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+            $output = '<ul class="dropdown-menu" style="display:block; position:absolute">';
+            $sugg_ctr = 0;
             foreach($data as $row)
             {
-                $output .= '<li><a href="#">'.$row->lastname.'</a></li>';
+                $output .= '<li class="p-1"><a href="#" class="p-1" style="text-decoration:none">'.$row->lastname.', '.$row->firstname.' '.$row->middlename.'</a></li>';
+                $sugg_ctr++;
+                if ($sugg_ctr == 6)
+                    break;
             }
             $output .= '</ul>';
             return response()->json($output);
@@ -40,10 +44,14 @@ class TransactionController extends Controller
         {
             $query = $request->get('query');
             $data = DB::table('books')->where('title', 'LIKE', "%{$query}%")->get();
-            $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+            $output = '<ul class="dropdown-menu" style="display:block; position:absolute">';
+            $sugg_ctr = 0;
             foreach($data as $row)
             {
-                $output .= '<li><a href="#">'.$row->title.'</a></li>';
+                $output .= '<li class="p-1"><a class="p-1" style="text-decoration:none" href="#">'.$row->title.'</a></li>';
+                $sugg_ctr++;
+                if ($sugg_ctr == 6)
+                    break;
             }
             $output .= '</ul>';
             return response()->json($output);
@@ -53,13 +61,22 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'lastname' => ['required'],
+            'borrower_name' => ['required'],
             'book_title' => ['required'],
             'date_issued' => ['required'],
             'date_due' => ['required']
         ]);
         
-        $lastname = $request->input('lastname');
+        $borrower_name = $request->input('borrower_name');
+        $brw_name_arr = str_split($borrower_name);
+        $lastname_arr = array();
+
+        foreach ($brw_name_arr as $value) {
+            if ($value != ',') array_push($lastname_arr, $value);
+            else if ($value == ',') break;
+        }
+
+        $lastname = implode($lastname_arr);
         $patron_arr = DB::table('patrons')->where('lastname', '=', $lastname)->first(array('id', 'lastname'));
 
         $book_title = $request->input('book_title');
@@ -85,13 +102,22 @@ class TransactionController extends Controller
     public function update(Request $request, $id)
     {
         $validate = $request->validate([
-            'lastname' => ['required'],
+            'borrower_name' => ['required'],
             'book_title' => ['required'],
             'date_issued' => ['required'],
             'date_due' => ['required']
         ]);
 
-        $lastname = $request->input('lastname');
+        $borrower_name = $request->input('borrower_name');
+        $brw_name_arr = str_split($borrower_name);
+        $lastname_arr = array();
+
+        foreach ($brw_name_arr as $value) {
+            if ($value != ',') array_push($lastname_arr, $value);
+            else if ($value == ',') break;
+        }
+
+        $lastname = implode($lastname_arr);
         $patron_arr = DB::table('patrons')->where('lastname', '=', $lastname)->first(array('id', 'lastname'));
 
         $book_title = $request->input('book_title');
