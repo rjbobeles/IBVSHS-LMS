@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="create">
-    <h1 class="text-center" id="title">Add New Book Record</h1>
+    <h1 class="text-center" id="title">Add Book Record</h1>
     <div class="container">
         <div class="col-12 mx-auto">
             <div class="card shadow">
@@ -152,7 +152,7 @@
                         </div>
                         <div class="row">
                             <div class="col" id="back">
-                                <a href="{{ route('librarian.books.index')}}" class="btn shadow btn-secondary">Back</a>
+                                <a href="{{ route('books.index')}}" class="btn shadow btn-secondary">Back</a>
                             </div>
                             <div class="col">
                                 <button type="submit" class="btn shadow btn-primary">

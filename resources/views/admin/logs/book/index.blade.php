@@ -8,7 +8,7 @@
                 <div class="card-body">
                     @include('inc.messages')
 
-                    <h1> Book Logs </h1> 
+                    <h1 class="page-title"> Book Logs </h1> 
 
                     <table id="log-books-table" class="table table-bordered" style="width:100%">
                         <thead>

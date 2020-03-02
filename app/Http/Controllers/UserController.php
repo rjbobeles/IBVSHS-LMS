@@ -40,7 +40,7 @@ class UserController extends Controller
             if($row->deactivated == 1) return "Deactivated";
             else return "Active";
         })
-        ->addColumn('actions', 'admin.patrons.action')
+        ->addColumn('actions', 'admin.users.action')
         ->rawColumns(['link', 'actions'])
         ->setRowId(function ($user) { return $user->id; })
         ->make(true);

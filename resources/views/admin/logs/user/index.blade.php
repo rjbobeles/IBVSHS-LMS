@@ -6,7 +6,7 @@
         <div class="col">        
             <div class="card">
                 <div class="card-body">
-                    <h1> User Logs </h1> 
+                    <h1 class="page-title"> User Logs </h1> 
 
                     <table id="log-users-table" class="table table-bordered" width="100%">
                         <thead>

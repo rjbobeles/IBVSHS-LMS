@@ -6,7 +6,7 @@
         <div class="col">        
             <div class="card">
                 <div class="card-body">
-                    <h1> Transaction Logs </h1> 
+                    <h1 class="page-title"> Transaction Logs </h1> 
 
                     <table id="log-transaction-table" class="table table-bordered" style="width:100%">
                         <thead>

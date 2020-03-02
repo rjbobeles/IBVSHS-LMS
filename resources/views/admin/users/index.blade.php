@@ -8,7 +8,7 @@
                 <div class="card-body">
                     @include('inc.messages')
                     
-                    <h1> Users <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">Add User</a> </h1> 
+                    <h1 class="page-title"> Users <a href="{{ route('users.create') }}" class="btn btn-sm btn-lms">Add User</a> </h1> 
                                     
                     <table id="users-table" class="table table-bordered" style="width:100%">
                         <thead>

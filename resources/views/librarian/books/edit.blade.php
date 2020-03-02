@@ -153,7 +153,7 @@
                         </div>
                         <div class="row">
                             <div class="col" id="back">
-                                <a href="{{ route('librarian.books.index')}}" class="btn shadow btn-secondary">Back</a>
+                                <a href="{{ route('books.index')}}" class="btn shadow btn-secondary">Back</a>
                             </div>
                             <div class="col">
                                 <button type="submit" class="btn btn-primary">

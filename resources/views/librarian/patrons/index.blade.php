@@ -8,7 +8,7 @@
                 <div class="card-body">
                     @include('inc.messages')
 
-                    <h1> Patrons <a href="{{route('patrons.create') }}" class="btn btn-primary btn-sm">Add Patron</a> </h1>
+                    <h1 class="page-title"> Patrons <a href="{{route('patrons.create') }}" class="btn btn-lms btn-sm">Add Patron</a> </h1>
                     
                     <table id="patrons-table" class="table table-bordered" style="width:100%">
                         <thead>
