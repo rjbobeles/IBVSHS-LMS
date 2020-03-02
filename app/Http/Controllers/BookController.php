@@ -78,7 +78,7 @@ class BookController extends Controller
             $Ext = $request->file('book_image')->getClientOriginalExtension();
             $fileNameToStore = $filename . '_' . time() . '.' . $Ext;
             $path = $request->file('book_image')->storeAs('public/book_images', $fileNameToStore);
-        } else $fileNameToStore = 'no-image.jpg';
+        } else $fileNameToStore = 'no-image.png';
         
         $book = Book::create([
             'callnumber' => $request->input('callnumber'),
@@ -126,7 +126,8 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $book = Book::find($id);
+        return view('librarian.books.single')->with('book', $book);
     }
 
     /**
@@ -182,7 +183,7 @@ class BookController extends Controller
             $Ext = $request->file('book_image')->getClientOriginalExtension();
             $fileNameToStore = $filename . '_' . time() . '.' . $Ext;
             $path = $request->file('book_image')->storeAs('public/book_images', $fileNameToStore);
-        } else $fileNameToStore = 'no-image.jpg';
+        } else $fileNameToStore = 'no-image.png';
 
         if ($request->hasFile('book_image')){
             Storage::delete('public/book_images/'.$book->book_image);
