@@ -6,7 +6,7 @@
         <div class="col">        
             <div class="card">
                 <div class="card-body">
-                    <h1> Display Books </h1> 
+                    <h1 class="page-title"> Display Books <a href="{{route('books.create') }}" class="btn btn-lms btn-sm">Add Book</a> </h1> 
                     
                     <table id="books-table" class="table table-bordered" style="width:100%">
                         <thead>

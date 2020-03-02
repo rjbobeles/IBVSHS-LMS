@@ -14,214 +14,289 @@
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
+// Components
+//@import '';
+@import 'navbar';
+@import 'custom-datatables';
 
-div#nav {
-    background-color: #fff;
-    
-    nav#colnav {
-        box-shadow: 0px 2px 10px rgba(224, 224, 224, 0.5); 
-        padding: 5px;
-        font-family: 'Raleway', 'Times New Roman';
-        font-size: 14px;
-
-        button {
-            i {
-                font-size: 23px;
-            }
-        }
-
-        ul {
-            line-height: 50.69px;
-            padding-bottom: 0px;
-
-            @include lg-br {
-                padding-bottom: 10px;
-            }
-            li a {
-                color: #424242;
-                transition: color 200ms ease-in;
-            }
-
-            li a:hover {
-                color: #fecc59;
-                text-decoration: none;
-                transition: color 200ms ease-in;
-            }
-        }
-
-        div.account-burger {
-            padding-top: 3.4px;
-            margin-left: 5%;
-            button {
-                border: none; 
-                background-color: rgba(0,0,0,0); 
-                outline: none;
-
-                i {
-                    font-size: 23px;
-                }
-            }
-
-            div.dropdown-menu {
-                line-height: 15px;
-            }
-        }
-    }
-
-    div#infobar {
-        background-color: black; 
-        color: white; 
-        height:50px;
-        padding: 17px;
-        font-size: 11px; 
-        font-family: 'Muli', 'Segoe UI';
-
-        i {
-            font-size: 14px;
-            margin-right: 5px;
-        }
-
-        div#contact {
-            text-align: left;
-
-            .email {
-                margin-left: 4px;
-                display: inline-block;
-            }
-
-            .border {
-                height: 8px;
-                width: 1px;
-                margin-left: 4px;
-                margin-right: 4px;
-            }
-        }
-
-        div#socmed {
-            text-align: right;
-
-            i {
-                margin-left: 5px;
-                margin-right: 5px;
-                font-size: 14px;
-            }
-
-            a {
-                color: white;
-            }
-
-            @include lg-br {
-                display: none;
-            }
-        }
-    }
-    
-    .nav-item {
-        margin: 0 2%; 
-        text-align: right; 
-        font-weight: bold;  
-
-        @include lg-br {
-            height: 30px; 
-        }
-    }
-    
-    .navbar-nav {
-        width: 100%; 
-        justify-content: center;
-    }
-    
-    .navbar-brand {
-        margin: 0 0 0 2vw; 
-    }
-    
-    .divider {
-        font-weight: bold; 
-
-        @include lg-br {
-            display: none;  
-        }
-    }
-    
-    .show-collapse {
-        display: none; 
-
-        @include lg-br {
-            display: initial;
-        }
-    }
-    
-    .nav-item.account-burger {
-        margin-right: 5%; 
-        
-        @include lg-br {
-            display: none; 
-        }
-    }
-    
-    .account-burger > .dropdown > .dropdown-menu{
-        text-align: center; 
-        font-size: 12px;
-    }
-    
-
-    .animated {
-        -webkit-animation-duration: 0.5s;
-        animation-duration: 0.5s;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
-    }
-    
-    @-webkit-keyframes fadeInDown {
-        from {
-          opacity: 0;
-          -webkit-transform: translate3d(-45%, -20%, 0);
-          transform: translate3d(-45%, -20%, 0);
-        }
-      
-        to {
-          opacity: 1;
-          -webkit-transform: translate3d(-45%, 0, 0);
-          transform: translate3d(-45%, 0, 0);
-        }
-      }
-      
-      @keyframes fadeInDown {
-        from {
-          opacity: 0;
-          -webkit-transform: translate3d(-45%, -20%, 0);
-          transform: translate3d(-45%, -20%, 0);
-        }
-      
-        to {
-          opacity: 1;
-          -webkit-transform: translate3d(-45%, 0, 0);
-          transform: translate3d(-45%, 0, 0);
-        }
-      }
-      
-      .fadeInDown {
-        -webkit-animation-name: fadeInDown;
-        animation-name: fadeInDown;
-      }
-    
-    .collapsed-divider {
-        display: none; 
-
-        @include lg-br {
-            display: initial;
-        }
-    }
-} 
-
-
-table.table.table-bordered.dataTable.no-footer
-{
-    margin-bottom: 0;
+textarea:focus, 
+textarea.form-control:focus, 
+input.form-control:focus, 
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=number]:focus, 
+[type=text].form-control:focus, 
+[type=password].form-control:focus, 
+[type=email].form-control:focus, 
+[type=tel].form-control:focus, 
+[contenteditable].form-control:focus {
+  box-shadow: inset 0 -1px 0 #ddd;
 }
 
-div.dataTables_wrapper.dt-bootstrap4.no-footer:nth-child(2) {
-    .row {
-        margin: 20px 0px 20px 0px;
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn:active:focus, .btn:focus {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    outline-offset: -2px;
+  }
+
+h1.page-title {
+    font-family: 'Muli', sans-serif;
+    padding-left: 15px;
+
+    @include md-br {
+        padding-left: 0px;
+    }
+}
+
+.btn-lms {
+    background-color: none;
+    border: 1px solid #6e080f;
+    border-radius: 100px;
+}
+
+.btn-lms-solid {
+    background-color: #6e080f;
+    border: 1px solid #6e080f;
+    border-radius: 100px;
+    color: white;
+}
+
+.btn-lms-solid:hover {
+    color:#fecc59;
+}
+
+//Franchesca css for librarian
+//librarian homepage
+div#homepage {
+
+    html,body {
+        font-weight: 200;
+        height: 100vh;
+        margin: 10px;
+        text-decoration: none;
+    }
+
+    .searchbar {
+        margin-top: 10px;
+    }
+    
+    input[type=search], select {
+        width: 38%;
+        padding: 12px 20px;
+        display: inline-block;
+        border: 2px solid #fecc59;
+        border-radius: 40px;
+        box-sizing: border-box;
+    }
+    
+    input[type="submit"] {
+        margin-left: -50px;
+        height: 25px;
+        width: 50px;
+        background: transparent;
+        color: #fecc59;
+        border: 0;
+    }
+    
+    input[type="submit"]:hover {
+        margin-left: -50px;
+        height: 25px;
+        width: 50px;
+        background: transparent;
+        color: #ab893b;
+        border: 0;
+    }
+    
+    .caption {
+        display: block;
+        color: #222222;
+        text-align: center;
+        padding: 5px 8px;
+        text-decoration: none;
+        font-size: 13px;
+    }
+    
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+    
+    .thumbnail:hover{
+        border: 2px solid #fecc59;
+    }
+    
+    .thumbnail{
+        width: auto;
+        padding-top: 35px;
+        height:220px;
+        background-color:#dedfdf;
+    }
+    
+    .caption a {
+        display: block;
+        color: #222222;
+        text-align: center;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    .caption .adjust {
+        padding-top: 21px;
+    }
+    
+    .tab {
+        position:absolute;
+        left:350px; 
+    }
+
+    .searchbar{
+        text-align: center;
+    }
+    
+    img {
+        width: 20%;
+    }
+}
+
+//librarian managelibrary
+div#manageLibrary {
+
+    .navbooks {  
+        overflow: hidden;
+        background-color: transparent; 
+    }
+      
+    .navbooks a {
+        float: left;
+        display: block;
+        color: #222222;
+        text-align: center;
+        padding: 5px 8px;
+        text-decoration: none;
+        font-size: 14px;
+        border-bottom: 2px solid gray;
+    }
+      
+    .navbooks a:hover {
+        border-bottom: 2px solid #fecc59;
+    }
+    
+    .navbooks a.active {
+        border-bottom: 2px solid #fecc59;
+    }
+
+    .headcolor {
+        background-color: #92130f;
+        color: white;
+        text-align: center;
+    }
+
+    .btn dropdown-toggle{
+        font-size:12px;
+    }
+
+    input[type=search], select {
+        width: 70%;
+        padding: 12px 20px;
+        margin: 10px 0;
+        display: inline-block;
+        border: 2px solid #fecc59;
+        border-radius: 40px;
+        box-sizing: border-box;
+    }
+    
+    input[type="submit"] {
+        margin-left: -50px;
+        height: 25px;
+        width: 50px;
+        background: transparent;
+        color: #fecc59;
+        border: 0;
+    }
+    
+    input[type="submit"]:hover {
+        margin-left: -50px;
+        height: 25px;
+        width: 50px;
+        background: transparent;
+        color: #ab893b;
+        border: 0;
+    }
+
+    body{
+        background: #f2f2f2;
+    }
+    
+    .dropdown {
+        position: relative;
+        display:inline-block;
+    }
+
+    tbody#body {
+        text-align: center;
+    }
+
+    .options {
+        text-align: right;
+        padding-top:20px;
+    }
+
+    .filter {
+        margin-bottom: 10px;
+    }
+
+    #filterChoices {
+        margin-left: 10px;
+        text-align: center;
+    }
+
+    .sort {
+        text-align: right;
+    }
+}
+//librarian create book
+div#create {
+    body{
+        font-size:20pt;
+        background-color:#f0f0f0;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    #title {
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+
+    #back {
+        text-align: right;
+    }
+}
+//librarian update book
+div#update {
+    body{
+        font-size:20pt;
+        background-color:#f0f0f0;
+    }
+
+    #title {
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    #back {
+        text-align: right;
     }
 }

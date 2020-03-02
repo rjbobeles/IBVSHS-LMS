@@ -17763,5 +17763,225 @@ table.table.table-bordered.dataTable.no-footer {
 
 div.dataTables_wrapper.dt-bootstrap4.no-footer:nth-child(2) .row {
   margin: 20px 0px 20px 0px;
+div#homepage html,
+div#homepage body {
+  font-weight: 200;
+  height: 100vh;
+  margin: 10px;
+  text-decoration: none;
+}
+
+div#homepage .searchbar {
+  margin-top: 10px;
+}
+
+div#homepage input[type=search],
+div#homepage select {
+  width: 38%;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 2px solid #fecc59;
+  border-radius: 40px;
+  box-sizing: border-box;
+}
+
+div#homepage input[type=submit] {
+  margin-left: -50px;
+  height: 25px;
+  width: 50px;
+  background: transparent;
+  color: #fecc59;
+  border: 0;
+}
+
+div#homepage input[type=submit]:hover {
+  margin-left: -50px;
+  height: 25px;
+  width: 50px;
+  background: transparent;
+  color: #ab893b;
+  border: 0;
+}
+
+div#homepage .caption {
+  display: block;
+  color: #222222;
+  text-align: center;
+  padding: 5px 8px;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+div#homepage .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+div#homepage .thumbnail:hover {
+  border: 2px solid #fecc59;
+}
+
+div#homepage .thumbnail {
+  width: auto;
+  padding-top: 35px;
+  height: 220px;
+  background-color: #dedfdf;
+}
+
+div#homepage .caption a {
+  display: block;
+  color: #222222;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+div#homepage .caption .adjust {
+  padding-top: 21px;
+}
+
+div#homepage .tab {
+  position: absolute;
+  left: 350px;
+}
+
+div#homepage .searchbar {
+  text-align: center;
+}
+
+div#homepage img {
+  width: 20%;
+}
+
+div#manageLibrary .navbooks {
+  overflow: hidden;
+  background-color: transparent;
+}
+
+div#manageLibrary .navbooks a {
+  float: left;
+  display: block;
+  color: #222222;
+  text-align: center;
+  padding: 5px 8px;
+  text-decoration: none;
+  font-size: 14px;
+  border-bottom: 2px solid gray;
+}
+
+div#manageLibrary .navbooks a:hover {
+  border-bottom: 2px solid #fecc59;
+}
+
+div#manageLibrary .navbooks a.active {
+  border-bottom: 2px solid #fecc59;
+}
+
+div#manageLibrary .headcolor {
+  background-color: #92130f;
+  color: white;
+  text-align: center;
+}
+
+div#manageLibrary .btn dropdown-toggle {
+  font-size: 12px;
+}
+
+div#manageLibrary input[type=search],
+div#manageLibrary select {
+  width: 70%;
+  padding: 12px 20px;
+  margin: 10px 0;
+  display: inline-block;
+  border: 2px solid #fecc59;
+  border-radius: 40px;
+  box-sizing: border-box;
+}
+
+div#manageLibrary input[type=submit] {
+  margin-left: -50px;
+  height: 25px;
+  width: 50px;
+  background: transparent;
+  color: #fecc59;
+  border: 0;
+}
+
+div#manageLibrary input[type=submit]:hover {
+  margin-left: -50px;
+  height: 25px;
+  width: 50px;
+  background: transparent;
+  color: #ab893b;
+  border: 0;
+}
+
+div#manageLibrary body {
+  background: #f2f2f2;
+}
+
+div#manageLibrary .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+div#manageLibrary tbody#body {
+  text-align: center;
+}
+
+div#manageLibrary .options {
+  text-align: right;
+  padding-top: 20px;
+}
+
+div#manageLibrary .filter {
+  margin-bottom: 10px;
+}
+
+div#manageLibrary #filterChoices {
+  margin-left: 10px;
+  text-align: center;
+}
+
+div#manageLibrary .sort {
+  text-align: right;
+}
+
+div#create body {
+  font-size: 20pt;
+  background-color: #f0f0f0;
+}
+
+div#create label {
+  font-weight: bold;
+}
+
+div#create #title {
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+div#create #back {
+  text-align: right;
+}
+
+div#update body {
+  font-size: 20pt;
+  background-color: #f0f0f0;
+}
+
+div#update #title {
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+div#update label {
+  font-weight: bold;
+}
+
+div#update #back {
+  text-align: right;
 }
 

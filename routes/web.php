@@ -65,6 +65,9 @@ Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function
     //Librarian Route
     Route::prefix('librarian')->group(function () {
 
+        //Librarian Homepage
+        Route::get('/', 'HomeController@Librarian')->name('librarian');
+
         //Patrons
         Route::resource('patrons', 'PatronController');
 
@@ -75,7 +78,12 @@ Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function
         //Book Controller
         Route::resource('books', 'BookController');
 
-        Route::get('/', 'BookController@Index')->name('librarian.books.index');
+        Route::prefix('books')->group(function(){
+            Route::get('/', 'BookController@Index')->name('librarian.books.index');
+            Route::get('/create', 'BookController@create')->name('librarian.books.create');
+            Route::get('/{id}/edit', 'BookController@edit')->name('librarian.books.edit');
+            Route::put('/{id}', 'BookController@update')->name('librarian.books.update');
+        });
 
     });
 });
