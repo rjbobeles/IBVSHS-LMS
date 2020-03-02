@@ -96,7 +96,7 @@ Route::middleware('auth', 'verified', 'isAdmin', 'isActive')->group(function() {
     Route::prefix('admin')->group(function () {
 
          //Admin Homepage
-         Route::get('/', 'HomeController@Admin')->name('Admin');
+         Route::get('/', 'HomeController@Admin')->name('admin');
 
         //Patron Controller
         Route::get('/patrons/', 'PatronController@index')->name('admin.patrons.index');
