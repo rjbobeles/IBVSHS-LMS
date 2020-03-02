@@ -18092,3 +18092,18 @@ div#update #back {
   text-align: right;
 }
 
+.gallery {
+  background-color: #fecc59;
+  margin-left: 100px;
+  border: 10px solid #fecc59;
+  width: 50%;
+  box-shadow: 0 0.5rem 1rem black;
+}
+
+.card.barcode {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  width: 65%;
+  text-align: center;
+  border-color: #6e080f;
+}
+
