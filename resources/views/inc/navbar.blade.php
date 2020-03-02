@@ -40,11 +40,8 @@
 
                 @if(!Auth::guest() && Auth::user()->role == "Librarian")
                     <li class="nav-item" id="item-admin">
-                        <a href="#">LIBRARIAN</a>
+                        <a href="{{ route('librarian') }}">LIBRARIAN</a>
                     </li><span class="divider">|</span>
-                    <li class="nav-item">
-                        <a href="#">HOMEPAGE</a>
-                    </li>
                     <li class="nav-item">
                         <a href="#">MANAGE LIBRARY</a>
                     </li>
@@ -58,7 +55,7 @@
 
                 @if(!Auth::guest() && Auth::user()->role == "Admin")
                     <li class="nav-item" id="item-admin">
-                        <a href="#">ADMIN</a>
+                        <a href="{{ route('admin') }}">ADMIN</a>
                     </li><span class="divider">|</span>
                     <li class="nav-item">
                         <a href="{{ route('users.index')}}">MANAGE USERS</a>
@@ -108,9 +105,11 @@
                             @auth Howdy, {{ Auth::user()->username }}! @endauth 
                         </span>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">View All Books</a>
-                        <a class="dropdown-item" href="#">My Borrowed Books</a>
-                        <div class="dropdown-divider"></div>
+                        @guest
+                            <a class="dropdown-item" href="#">View Library Books</a>
+                            <a class="dropdown-item" href="#">My Borrowed Books</a>
+                            <div class="dropdown-divider"></div>
+                        @endguest
                         @guest
                             <a class="dropdown-item" href="{{ route('login') }}">Login</a>
                         @endguest
