@@ -17757,12 +17757,119 @@ div#nav .collapsed-divider {
   }
 }
 
-table.table.table-bordered.dataTable.no-footer {
+div.dataTables_wrapper .row {
+  margin: 20px 0px 20px 0px;
+}
+
+div.dataTables_wrapper .dataTables_length select,
+div.dataTables_wrapper .dataTables_filter select {
+  border-color: #6e080f;
+}
+
+div.dataTables_wrapper .dataTables_length select:focus,
+div.dataTables_wrapper .dataTables_filter select:focus {
+  border-color: #6e080f;
+  outline-color: none;
+}
+
+div.dataTables_wrapper .dataTables_length input,
+div.dataTables_wrapper .dataTables_filter input {
+  border-color: #6e080f;
+}
+
+div.dataTables_wrapper .dataTables_length input:focus,
+div.dataTables_wrapper .dataTables_filter input:focus {
+  border-color: #6e080f;
+  outline-color: none;
+}
+
+div.dataTables_wrapper ul.pagination li .page-link {
+  background-color: #6e080f;
+  color: white;
+}
+
+div.dataTables_wrapper ul.pagination li .page-link {
+  color: #fecc59;
+}
+
+div.dataTables_wrapper ul.pagination li.active .page-link {
+  color: #fecc59;
+  border-color: #fecc59;
+}
+
+div.dataTables_wrapper ul.pagination li.disabled .page-link {
+  color: #afaa9e;
+}
+
+div.dataTables_wrapper table {
   margin-bottom: 0;
 }
 
-div.dataTables_wrapper.dt-bootstrap4.no-footer:nth-child(2) .row {
-  margin: 20px 0px 20px 0px;
+div.dataTables_wrapper table thead {
+  background-color: #6e080f;
+  color: white;
+}
+
+div.dataTables_wrapper table tbody {
+  background-color: #f2f2f2;
+}
+
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+[type=text].form-control:focus,
+[type=password].form-control:focus,
+[type=email].form-control:focus,
+[type=tel].form-control:focus,
+[contenteditable].form-control:focus {
+  box-shadow: inset 0 -1px 0 #ddd;
+}
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn.focus:active,
+.btn:active:focus,
+.btn:focus {
+  background-image: none;
+  outline: 0;
+  box-shadow: none;
+  outline: none;
+  outline-offset: -2px;
+}
+
+h1.page-title {
+  font-family: "Muli", sans-serif;
+  padding-left: 15px;
+}
+
+@media (max-width: 767px) {
+  h1.page-title {
+    padding-left: 0px;
+  }
+}
+
+.btn-lms {
+  background-color: none;
+  border: 1px solid #6e080f;
+  border-radius: 100px;
+}
+
+.btn-lms-solid {
+  background-color: #6e080f;
+  border: 1px solid #6e080f;
+  border-radius: 100px;
+  color: white;
+}
+
+.btn-lms-solid:hover {
+  color: #fecc59;
+}
+
 div#homepage html,
 div#homepage body {
   font-weight: 200;

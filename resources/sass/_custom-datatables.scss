@@ -1,0 +1,63 @@
+div.dataTables_wrapper
+{
+    .row {
+        margin: 20px 0px 20px 0px;
+    }
+    
+    .dataTables_length, .dataTables_filter {
+        select {
+            border-color: #6e080f;
+        }
+    
+        select:focus{
+            border-color: #6e080f;
+            outline-color :  none;
+        }
+    
+        input {
+            border-color: #6e080f;
+        }
+    
+        input:focus{
+            border-color: #6e080f;
+            outline-color :  none;
+        }
+    }
+
+    ul.pagination li{
+        .page-link {        
+            background-color: #6e080f;
+            color: white;
+        }
+
+        .page-link {
+            color:#fecc59
+        }
+    }
+
+    ul.pagination li.active {
+        .page-link {
+            color:#fecc59;
+            border-color: #fecc59;
+        }
+    }
+
+    ul.pagination li.disabled {
+        .page-link {
+            color:#afaa9e;
+        }
+    }
+
+    table
+    {
+        margin-bottom: 0;
+        thead {
+            background-color: #6e080f;
+            color:white;
+        }
+
+        tbody {
+            background-color: #f2f2f2;
+        } 
+    }
+}
