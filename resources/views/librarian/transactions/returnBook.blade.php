@@ -44,6 +44,42 @@
                 <input type="text" name="patron_id" id="patron_id" value="{{ $transactions->patron_id }}" hidden/>
                 <!--book_id hidden field-->
                 <input type="text" name="book_id" id="book_id" value="{{ $transactions->book_id }}" hidden/>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <!--Condition Label and Text Input-->
+                        <div class="form-group">
+                            <label for="condition" class="form-label">{{ __('Book Condition') }}</label>
+                            <select id="condition" name="condition" class="form-control">
+                                <option value="Fine">Fine</option>
+                                <option value="Very Good">Very Good</option>
+                                <option value="Good">Good</option>
+                                <option value="Fair">Fair</option>
+                                <option value="Poor">Poor</option>
+                            </select>
+                            @error('condition')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <!--Status Label and Text Input-->
+                        <div class="form-group">
+                            <label for="status" class="form-label">{{ __('Book Status') }}</label>
+                            <select id="status" name="status" class="form-control">
+                                <option value="Available">Returned</option>
+                                <option value="Missing">Missing</option>
+                            </select>
+                            @error('status')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
                 <!--Submit hidden field-->
                 <input type="submit" id="submit_form" hidden/>
             </form>

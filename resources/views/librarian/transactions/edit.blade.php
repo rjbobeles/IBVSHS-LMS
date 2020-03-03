@@ -21,9 +21,9 @@
             <div class="col-3">
                 <!--Book Label and Text Input-->
                 <div class="form-group">
-                    <label for="book_title" class="form-label">{{ __('Book') }}</label>
-                    <input type="text" name="book_title" id="book_title" class="form-control @error('book_title') is-invalid @enderror" value="{{ $transactions->bookTransaction->title }}" required placeholder="Enter Book Title" />
-                    @error('book_title')
+                    <label for="book" class="form-label">{{ __('Book') }}</label>
+                    <input type="text" name="book" id="book" class="form-control @error('book') is-invalid @enderror" value="{{ $transactions->bookTransaction->title }}" required placeholder="Enter Book Title" />
+                    @error('book')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

@@ -62,7 +62,7 @@ class TransactionController extends Controller
     {
         $validate = $request->validate([
             'borrower_name' => ['required'],
-            'book_title' => ['required'],
+            'book' => ['required'],
             'date_issued' => ['required'],
             'date_due' => ['required']
         ]);
@@ -79,9 +79,15 @@ class TransactionController extends Controller
         $lastname = implode($lastname_arr);
         $patron_arr = DB::table('patrons')->where('lastname', '=', $lastname)->first(array('id', 'lastname'));
 
-        $book_title = $request->input('book_title');
-        $book_arr = DB::table('books')->where('title', '=', $book_title)->first(array('id', 'title'));
+        $book = $request->input('book');
+        $input_format_arr = str_split($book);
 
+        if ($input_format_arr[0] == '2') {
+            $book_arr = DB::table('books')->where('barcodeno', '=', $book)->first(array('id', 'title'));
+        } else {
+            $book_arr = DB::table('books')->where('title', '=', $book)->first(array('id', 'title'));
+        }
+        
         $transactions = new Transaction();
         $transactions->patron_id = $patron_arr->id;
         $transactions->book_id = $book_arr->id;
@@ -89,6 +95,11 @@ class TransactionController extends Controller
         $transactions->date_due = $request->input('date_due');
         $transactions->date_returned = NULL;
         $transactions->save();
+
+        $book_id = $book_arr->id;
+        $books = Book::find($book_id);
+        $books->status = "Borrowed";
+        $books->update();
 
         return redirect()->route('transactions.create')->with('success', 'New Transaction Created!');        
     }
@@ -103,7 +114,7 @@ class TransactionController extends Controller
     {
         $validate = $request->validate([
             'borrower_name' => ['required'],
-            'book_title' => ['required'],
+            'book' => ['required'],
             'date_issued' => ['required'],
             'date_due' => ['required']
         ]);
@@ -120,8 +131,14 @@ class TransactionController extends Controller
         $lastname = implode($lastname_arr);
         $patron_arr = DB::table('patrons')->where('lastname', '=', $lastname)->first(array('id', 'lastname'));
 
-        $book_title = $request->input('book_title');
-        $book_arr = DB::table('books')->where('title', '=', $book_title)->first(array('id', 'title'));
+        $book = $request->input('book');
+        $input_format_arr = str_split($book);
+
+        if ($input_format_arr[0] == '2') {
+            $book_arr = DB::table('books')->where('barcodeno', '=', $book)->first(array('id', 'title'));
+        } else {
+            $book_arr = DB::table('books')->where('title', '=', $book)->first(array('id', 'title'));
+        }
 
         $transactions = Transaction::find($id);
         $transactions->patron_id = $patron_arr->id;
@@ -143,18 +160,38 @@ class TransactionController extends Controller
     public function returnBookStore(Request $request, $id)
     {
         $validate = $request->validate([
-            'date_returned' => ['required']
+            'date_returned' => ['required'],
+            'condition' => ['required'],
+            'status' => ['required']
         ]);
-
+        
+        //Update Transactions Table
         $transactions = Transaction::find($id);
         $transactions->date_returned = $request->input('date_returned');
         $transactions->save();
 
+        //Update Books Table
+        $book_id = $request->input('book_id');
+        $book = Book::find($book_id);
+        $book->condition = $request->input('condition');
+        $status = $request->input('status');
+        if ($status == 'Returned') {
+            $book->status = "Available";
+        } else {
+            $book->status = $status;
+        }
+        $book->update();
+
+        //Insert into Damage Report Table
         $dmg_report = new DamageReport();
         $dmg_report->patron_id = $request->input('patron_id');
         $dmg_report->book_id = $request->input('book_id');
         $dmg_report->actor_id = auth()->user()->id;
-        $dmg_report->comment = $request->input('comment');
+        if ($request->input('comment')) {
+            $dmg_report->comment = $request->input('comment');
+        } else {
+            $dmg_report->comment = 'Book has no damages';
+        }
         $dmg_report->save();
 
         return redirect()->route('transactions.create')->with('success', 'Book returned successfully!');
