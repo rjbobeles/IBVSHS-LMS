@@ -36,7 +36,7 @@
                         <div class="col-5 col-md-6">{{ $user->role }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-5 col-md-4 text-right">Deactivated:</div>
+                        <div class="col-5 col-md-4 text-right">Status:</div>
                         <div class="col-5 col-md-6">
                             @if($user->deactivated == 1)
                                 Deactivated
