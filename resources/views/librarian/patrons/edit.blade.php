@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Edit a Patron') }}</div>
+                <div class="card-header">{{ __('Edit Patron') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('patrons.update', $patron->id) }}">

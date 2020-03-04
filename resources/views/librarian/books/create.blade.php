@@ -2,13 +2,10 @@
 
 @section('content')
 <div id="create">
-    <h1 class="text-center" id="title">Add Book Record</h1>
     <div class="container">
         <div class="col-12 mx-auto">
             <div class="card shadow">
-                <div class="card-header" id="card-header">
-                    <h3 class="text-center">Book Details</h3>
-                </div>
+                <div class="card-header" id="card-header"> {{ __('Add Book') }} </div>
                 <div class="card-body">
                 <br/>
                     <form method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data">
