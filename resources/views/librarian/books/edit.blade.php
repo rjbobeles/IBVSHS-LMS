@@ -2,12 +2,11 @@
 
 @section('content')
 <div id="update">
-    <h1 class="text-center" id="title">Update Book Record</h1>
     <div class="container">
         <div class="col-12 mx-auto">
             <div class="card shadow">
                 <div class="card-header" id="card-header">
-                    <h3 class="text-center">Book Details</h3>
+                    <div class="card-header">{{ __('Edit Book Record') }}</div>
                 </div>
                 <div class="card-body">
                 <br/>
