@@ -5,7 +5,11 @@
     <div class="container">
         <div class="col-12 mx-auto">
             <div class="card shadow">
+<<<<<<< HEAD
                 <div class="card-header" id="card-header"> {{ __('Add Book') }} </div>
+=======
+                <div class="card-header">{{ __('Add Book Record') }}</div>
+>>>>>>> c5881725ac0177d208c8d7c84f80d6d8d1db39dc
                 <div class="card-body">
                 <br/>
                     <form method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data">

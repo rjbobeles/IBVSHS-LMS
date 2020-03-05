@@ -5,7 +5,13 @@
     <div class="container">
         <div class="col-12 mx-auto">
             <div class="card shadow">
+<<<<<<< HEAD
                 <div class="card-header" id="card-header"> {{ __('Edit Book') }} </div>
+=======
+                <div class="card-header" id="card-header">
+                    <div class="card-header">{{ __('Edit Book Record') }}</div>
+                </div>
+>>>>>>> c5881725ac0177d208c8d7c84f80d6d8d1db39dc
                 <div class="card-body">
                     <br/>
                     <form method="POST" action="{{ route('books.update', $books->id) }}" enctype="multipart/form-data">

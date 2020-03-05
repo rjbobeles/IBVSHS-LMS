@@ -14,7 +14,6 @@ use Yajra\Datatables\Datatables;
 
 class BookController extends Controller
 {
-
      /**
      * Displays all books.
      * 
