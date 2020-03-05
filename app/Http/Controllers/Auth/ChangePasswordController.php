@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Rules\MatchOldPassword;
+use App\Rules\IsOldPassword;
 use App\User;
 use App\LogUser;
 use App\Providers\RouteServiceProvider;
@@ -48,8 +49,8 @@ class ChangePasswordController extends Controller
     public function update(Request $request)
     {
         $validate = $request->validate([
-            'old-password'  => ['required', new MatchOldPassword],
-            'password'      => ['required', 'string', 'min:8', 'confirmed']
+            'old-password'      => ['required', new MatchOldPassword],
+            'password'          => ['required', 'string', 'min:8', 'confirmed', new IsOldPassword],
         ]);
 
         $user = User::find(auth()->user()->id);
