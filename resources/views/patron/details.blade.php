@@ -9,8 +9,7 @@
             <td>Publisher</td>
             <td>Year Published</td>
             </tr>
-            @if (count($books) > 0)
-            @foreach ($books as $book)
+            @if (count($getbook) > 0)
             <tr>
             <td>{{ $book->title }}</td>
             <td>{{ $book->author }}</td>
@@ -19,7 +18,6 @@
             <td>{{ $book->publisher }}</td>
             <td>{{ $book->year_published }}</td>
             </tr>
-            @endforeach
             @endif
     </table>
 @endsection

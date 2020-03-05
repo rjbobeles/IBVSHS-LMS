@@ -18,9 +18,9 @@ class BookController extends Controller
      * Displays details of a book.
      * 
      */
-    public function details($id)
+    public function details()
     {
-        $get1book = Book::get(1)
+        $getbook = Book::get(1)
                         ->where('id', $id)
                         ->first();
         return view('patron.details');
