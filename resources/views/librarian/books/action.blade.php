@@ -4,6 +4,6 @@
     </a>
 
     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="bookDetails">
-        <a class="dropdown-item" href="#">View Details</a>
+        <a class="dropdown-item" href="{{ route('books.show', $id) }}">View Details</a>
     </div>
 </div>

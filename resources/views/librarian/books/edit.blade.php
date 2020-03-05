@@ -56,7 +56,7 @@
                                 <!--Volume Label and Text Input-->
                                 <div class="form-group">
                                     <label for="volume" class="form-label">{{ __('Volume') }}</label>
-                                    <input id="volume" type="text" class="form-control @error('volume') is-invalid @enderror" name="volume" value="{{ $books->volume }}" required autocomplete="volume" placeholder="Volume">
+                                    <input id="volume" type="text" class="form-control @error('volume') is-invalid @enderror" name="volume" value="{{ $books->volume }}" autocomplete="volume" placeholder="Volume">
                                     @error('volume')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -66,7 +66,7 @@
                                 <!--Edition Label and Text Input-->
                                 <div class="form-group">
                                     <label for="edition" class="form-label">{{ __('Edition') }}</label>
-                                    <input id="edition" type="text" class="form-control @error('edition') is-invalid @enderror" name="edition" value="{{ $books->edition }}" required autocomplete="edition" placeholder="Edition">
+                                    <input id="edition" type="text" class="form-control @error('edition') is-invalid @enderror" name="edition" value="{{ $books->edition }}" autocomplete="edition" placeholder="Edition">
                                     @error('edition')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
