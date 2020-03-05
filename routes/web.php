@@ -27,6 +27,9 @@ Route::middleware('guest')->group(function() {
 
 });
 
+Route::get('/viewBooks', 'BookController@view');
+Route::get('/search', 'BookController@search');
+
 /*
 |--------------------------------------------------------------------------
 | User Route

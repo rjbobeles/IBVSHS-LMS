@@ -14,6 +14,41 @@ use Yajra\Datatables\Datatables;
 
 class BookController extends Controller
 {
+
+     /**
+     * Displays all books.
+     * 
+     */
+    public function view()
+    {
+        $books = Book::orderBy('title', 'asc') ->paginate(10);
+        return view('patron.viewBooks')->with('books', $books);
+    }
+
+    /**
+     * Search books.
+     * 
+     */
+    public function search()
+    {
+        $search = Book::find('search');
+        if ($search != '') 
+        {
+            $books = Book::where('title', 'LIKE', '%' .$search. '%')
+                            ->orWhere('author', 'LIKE', '%' .$search. '%')
+                            ->orWhere('genre', 'LIKE', '%' .$search. '%')
+                            ->orWhere('isbn', 'LIKE', '%' .$search. '%')
+                            ->orWhere('barcode', 'LIKE', '%' .$search. '%')
+                            ->get()
+                            ->paginate(10);
+            if (count($books) > 0)
+            {
+                return view('patron.search')->withDetails($books)->withQuery($search);
+            }
+        }
+         return view('patron.search')->withMessage('No books found, try something else!');
+    }
+
     /**
      * Display a listing of the resource.
      *
