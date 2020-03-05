@@ -50,6 +50,37 @@ class BookController extends Controller
     }
 
     /**
+     * Displays details of a book.
+     * 
+     */
+    public function details($id)
+    {
+        $get1book = Book::get(1)
+                        ->where('id', $id)
+                        ->first();
+        return view('patron.details');
+    }
+
+    /**
+     * Displays library record.
+     * 
+     */
+    public function record()
+    {
+        $record = DB::table('transactions') 
+                        ->join ('books', 'books.id', '=', 'transactions.book_id')
+                        ->join ('patrons', 'patrons.id', '=', 'transactions.patron_id')
+                        ->select ('books.title', 'books.author', 
+                                'patron.firstname', 'patron.lastname',
+                                'transactions.dateissued', 'transactions.datedue')
+                        ->get()
+                        ->paginate(10);
+        return view('patron.record');
+
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

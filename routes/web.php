@@ -30,6 +30,9 @@ Route::middleware('guest')->group(function() {
 Route::get('/viewBooks', 'BookController@view');
 Route::get('/search', 'BookController@search');
 
+Route::get('/details', 'BookController@details');
+Route::get('/record', 'BookController@record');
+
 /*
 |--------------------------------------------------------------------------
 | User Route
