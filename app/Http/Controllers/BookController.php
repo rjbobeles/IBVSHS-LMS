@@ -28,24 +28,27 @@ class BookController extends Controller
      * Search books.
      * 
      */
-    public function search()
+    public function search(Request $request)
     {
-        $search = Book::find('search');
-        if ($search != '') 
+        $search = $request->get('search');
+
+        $books = Book::where('title', 'LIKE', '%' .$search. '%')
+        ->orWhere('author', 'LIKE', '%' .$search. '%')
+        ->orWhere('genre', 'LIKE', '%' .$search. '%')
+        ->orWhere('isbn', 'LIKE', '%' .$search. '%')
+        ->orWhere('barcode', 'LIKE', '%' .$search. '%')
+        ->get()
+        ->paginate(10);
+
+        if ($search > 0) 
         {
-            $books = Book::where('title', 'LIKE', '%' .$search. '%')
-                            ->orWhere('author', 'LIKE', '%' .$search. '%')
-                            ->orWhere('genre', 'LIKE', '%' .$search. '%')
-                            ->orWhere('isbn', 'LIKE', '%' .$search. '%')
-                            ->orWhere('barcode', 'LIKE', '%' .$search. '%')
-                            ->get()
-                            ->paginate(10);
-            if (count($books) > 0)
-            {
-                return view('patron.search')->withDetails($books)->withQuery($search);
-            }
+            // return view('patron.search')->withDetails($books)->withQuery($search);
+            return view('patron.search')->with('books', $books);
         }
-         return view('patron.search')->withMessage('No books found, try something else!');
+        else
+        {
+            return view('patron.search')->withMessage('No books found, try something else!');
+        }
     }
 
     /**
