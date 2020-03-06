@@ -17518,3 +17518,37 @@ div#nav .collapsed-divider {
   }
 }
 
+.navbooks {
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.navbooks a {
+  float: left;
+  display: block;
+  color: #222222;
+  text-align: center;
+  padding: 5px 8px;
+  text-decoration: none;
+  font-size: 13px;
+  border-bottom: 1.5px solid gray;
+}
+
+.navbooks a:hover {
+  border-bottom: 1.5px solid #fecc59;
+}
+
+.navbooks a.active {
+  border-bottom: 1.5px solid #fecc59;
+}
+
+.book-input-box {
+  border-color: black;
+  border-radius: 5px;
+}
+
+.confirm {
+  -webkit-text-decoration-color: blanchedalmond;
+          text-decoration-color: blanchedalmond;
+}
+

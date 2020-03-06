@@ -6,8 +6,8 @@
             <div class="col-3">
                 <!--Borrower Label and Text Input-->
                 <div class="form-group">
-                    <label for="borrower_name" class="form-label">{{ __('Borrower') }}</label>
-                    <input type="text" name="borrower_name" id="borrower_name" class="form-control @error('borrower_name') is-invalid @enderror" value="{{ old('borrower_name') }}" required placeholder="Enter Borrower's Name" />
+                    <label for="borrower_name" class="form-label">{{ __('Borrower:') }}</label>
+                    <input type="text" name="borrower_name" id="borrower_name" class="form-control book-input-box @error('borrower_name') is-invalid @enderror" value="{{ old('borrower_name') }}" required placeholder="Enter Borrower's Name" />
                     @error('borrower_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -20,8 +20,8 @@
             <div class="col-3">
                 <!--Book Label and Text Input-->
                 <div class="form-group">
-                    <label for="book" class="form-label">{{ __('Book') }}</label>
-                    <input type="text" name="book" id="book" class="form-control @error('book') is-invalid @enderror" value="{{ old('book') }}" required placeholder="Enter Book Title" />
+                    <label for="book" class="form-label">{{ __('Book:') }}</label>
+                    <input type="text" name="book" id="book" class="form-control book-input-box @error('book') is-invalid @enderror" value="{{ old('book') }}" required placeholder="Enter Book Title" />
                     @error('book')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -33,8 +33,8 @@
             <div class="col-3">
                 <!--Borrow Date Label and Text Input-->
                 <div class="form-group">
-                    <label for="date_issued" class="form-label">{{ __('Borrow Date') }}</label>
-                    <input type="date" name="date_issued" id="date_issued" class="form-control @error('date_issued') is-invalid @enderror" value="{{ old('date_issued') }}" required placeholder="mm/dd/yyyy" />
+                    <label for="date_issued" class="form-label book-input-box">{{ __('Borrow Date:') }}</label>
+                    <input type="date" name="date_issued" id="date_issued" class="form-control book-input-box @error('date_issued') is-invalid @enderror" value="{{ old('date_issued') }}" required placeholder="mm/dd/yyyy" />
                     @error('date_issued')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -45,8 +45,8 @@
             <div class="col-3">
                 <!--Date Due Label and Text Input-->
                 <div class="form-group">
-                    <label for="date_due" class="form-label">{{ __('Return Date') }}</label>
-                    <input type="date" name="date_due" id="date_due" class="form-control @error('date_due') is-invalid @enderror" value="{{ old('date_due') }}" required placeholder="mm/dd/yyyy" />
+                    <label for="date_due" class="form-label">{{ __('Return Date:') }}</label>
+                    <input type="date" name="date_due" id="date_due" class="form-control book-input-box @error('date_due') is-invalid @enderror" value="{{ old('date_due') }}" required placeholder="mm/dd/yyyy" />
                     @error('date_due')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -55,8 +55,8 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">
-            {{ __('Submit') }}
+        <button type="submit" class="btn btn-danger confirm">
+            {{ __('Issue Books') }}
         </button>
     </form>
 @endsection
