@@ -24,8 +24,8 @@ class CreateLogBooksTable extends Migration
             $table->string('title', 300);
             $table->string('author', 300);
             $table->string('isbn', 30);
-            $table->string('volume', 300);
-            $table->string('edition', 300);
+            $table->string('volume', 300)->nullable();
+            $table->string('edition', 300)->nullable();
             $table->integer('year_published');
             $table->string('publisher', 300);
             $table->string('genre', 300);
