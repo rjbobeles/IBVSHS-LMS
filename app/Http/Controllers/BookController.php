@@ -18,9 +18,9 @@ class BookController extends Controller
      * Displays details of a book.
      * 
      */
-    public function details()
+    public function details($id)
     {
-        $getbook = Book::get(1)
+        $getbook = Book::table('books')
                         ->where('id', $id)
                         ->first();
         return view('patron.details');
@@ -33,9 +33,9 @@ class BookController extends Controller
     public function record()
     {
         $record = DB::table('transactions') 
-                        ->join ('books', 'books.id', '=', 'transactions.book_id')
-                        ->join ('patrons', 'patrons.id', '=', 'transactions.patron_id')
-                        ->select ('books.title', 'books.author', 
+                        ->join ('books', 'transactions.book_id', '=', 'books.id')
+                        ->join ('patrons', 'transactions.patron_id', '=', 'patrons.id')
+                        ->select ('books.title', 'books.author', 'books.status',
                                 'patron.firstname', 'patron.lastname',
                                 'transactions.dateissued', 'transactions.datedue')
                         ->get()

@@ -11,12 +11,12 @@
             </tr>
             @if (count($getbook) > 0)
             <tr>
-            <td>{{ $book->title }}</td>
-            <td>{{ $book->author }}</td>
-            <td>{{ $book->isbn }}</td>
-            <td>{{ $book->genre }}</td>
-            <td>{{ $book->publisher }}</td>
-            <td>{{ $book->year_published }}</td>
+            <td>{{ $getbook->title }}</td>
+            <td>{{ $getbook->author }}</td>
+            <td>{{ $getbook->isbn }}</td>
+            <td>{{ $getbook->genre }}</td>
+            <td>{{ $getbook->publisher }}</td>
+            <td>{{ $getbook->year_published }}</td>
             </tr>
             @endif
     </table>
