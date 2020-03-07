@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<form action="{{ url('search') }}" method="GET" role="search">
+<form action="search.blade.php" method="GET" role="search">
         <input type="text" class="form-control" name="search" placeholder="Search...">
             <button class="btn btn-default-sm" type="submit">
                 <i class="fa fa-search">search</i>

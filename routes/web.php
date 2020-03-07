@@ -25,6 +25,8 @@ Route::get('/', function () {
 
 Route::middleware('guest')->group(function() {
 
+    
+
 });
 
 Route::get('/viewBooks', 'BookController@view');
