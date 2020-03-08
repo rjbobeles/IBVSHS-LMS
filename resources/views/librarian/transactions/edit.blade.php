@@ -1,15 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('inc.messages')
     <form method="POST" action="{{ route('transactions.update', $transactions->id) }}">
         @method('PUT')
         <div class=row>
             <div class="col-3">
                 <!--Borrower Label and Text Input-->
                 <div class="form-group">
-                    <label for="borrower_name" class="form-label">{{ __('Borrower:') }}</label>
-                    <input type="text" name="borrower_name" id="borrower_name" class="form-control book-input-box @error('borrower_name') is-invalid @enderror" value="{{ $transactions->patronTransaction->lastname }}, {{ $transactions->patronTransaction->firstname }} {{ $transactions->patronTransaction->middlename }}" required placeholder="Enter Borrower's Name" />
-                    @error('borrower_name')
+                    <label for="borrower" class="form-label">{{ __('Borrower:') }}</label>
+                    <input type="text" name="borrower" id="borrower" class="form-control book-input-box @error('borrower') is-invalid @enderror" value="{{ $transactions->patronTransaction->lastname }}, {{ $transactions->patronTransaction->firstname }} {{ $transactions->patronTransaction->middlename }}" required placeholder="Enter Borrower's Name" />
+                    @error('borrower')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

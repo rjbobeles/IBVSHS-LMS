@@ -245,3 +245,12 @@ div#nav {
 .confirm {
     text-decoration-color: blanchedalmond;
 }
+
+.autocomplete li:hover {
+    background-color: #f0f0f0;
+}
+
+.autocomplete-pos {
+    display:block;
+    position:absolute
+}
