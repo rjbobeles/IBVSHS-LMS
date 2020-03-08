@@ -6,7 +6,7 @@
                 <i class="fa fa-search">search</i>
             </button>
     </form>
-    @if(isset($search))
+    {{-- @if(isset($search)) --}}
         <table>
             <tr>
                 <td>Title</td>
@@ -29,6 +29,6 @@
                 @endforeach
                 @endif
         </table>
-    @elseif(isset($message))
-    @endif
+    {{-- @elseif(isset($message)) --}}
+    {{-- @endif --}}
 @endsection
