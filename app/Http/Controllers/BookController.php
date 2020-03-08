@@ -25,25 +25,6 @@ class BookController extends Controller
     }
 
     /**
-     * Displays library record.
-     * 
-     */
-    public function record()
-    {
-        $record = Book::getTable('transactions') 
-                        ->join ('books', 'transactions.book_id', '=', 'books.id')
-                        ->join ('patrons', 'transactions.patron_id', '=', 'patrons.id')
-                        ->select ('books.title', 'books.author', 'books.status',
-                                'patron.firstname', 'patron.lastname',
-                                'transactions.dateissued', 'transactions.datedue')
-                        ->find($id)
-                        ->paginate(10);
-        return view('patron.record');
-
-    }
-
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
