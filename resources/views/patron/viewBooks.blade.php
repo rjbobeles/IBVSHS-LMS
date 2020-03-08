@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    {{-- <form action="/viewBooks" method="get"> --}}
     <form action="{{URL::to('/viewBooks')}}" method="get">
         <div class="form-group">
             <input type="search" class="form-control" name="search" placeholder="Search...">
