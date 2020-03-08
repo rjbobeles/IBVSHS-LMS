@@ -20,10 +20,8 @@ class BookController extends Controller
      */
     public function details($id)
     {
-        $getbook = Book::table('books')
-                        ->where('id', $id)
-                        ->first();
-        return view('patron.details');
+        $book = Book::find($id);
+        return view('patron.details')->with('books', $book);
     }
 
     /**
@@ -32,13 +30,13 @@ class BookController extends Controller
      */
     public function record()
     {
-        $record = DB::table('transactions') 
+        $record = Book::getTable('transactions') 
                         ->join ('books', 'transactions.book_id', '=', 'books.id')
                         ->join ('patrons', 'transactions.patron_id', '=', 'patrons.id')
                         ->select ('books.title', 'books.author', 'books.status',
                                 'patron.firstname', 'patron.lastname',
                                 'transactions.dateissued', 'transactions.datedue')
-                        ->get()
+                        ->find($id)
                         ->paginate(10);
         return view('patron.record');
 

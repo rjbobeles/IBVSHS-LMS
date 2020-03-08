@@ -9,15 +9,13 @@
             <td>Publisher</td>
             <td>Year Published</td>
             </tr>
-            @if (count($getbook) > 0)
             <tr>
-            <td>{{ $getbook->title }}</td>
-            <td>{{ $getbook->author }}</td>
-            <td>{{ $getbook->isbn }}</td>
-            <td>{{ $getbook->genre }}</td>
-            <td>{{ $getbook->publisher }}</td>
-            <td>{{ $getbook->year_published }}</td>
+            <td>{{ $books->title }}</td>
+            <td>{{ $books->author }}</td>
+            <td>{{ $books->isbn }}</td>
+            <td>{{ $books->genre }}</td>
+            <td>{{ $books->publisher }}</td>
+            <td>{{ $books->year_published }}</td>
             </tr>
-            @endif
     </table>
 @endsection
