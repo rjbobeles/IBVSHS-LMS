@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use App\Transaction;
 
 class TransactionController extends Controller
 {
@@ -15,13 +15,12 @@ class TransactionController extends Controller
     {
         $search = $request->get('search');
 
-        $record = DB::table('transactions')
-                        ->join ('books', 'transactions.book_id', '=', 'books.id')
+        $record = Transaction::join ('books', 'transactions.book_id', '=', 'books.id')
                         ->join ('patrons', 'transactions.patron_id', '=', 'patrons.id')
                         ->select ('books.title', 'books.status',
-                                'patron.firstname', 'patron.lastname',
-                                'transactions.date_issued', 'transactions.date_due', 'transaction.date_returned')                       
-                        ->where('patron.lrn', 'LIKE', '%' .$search. '%')
+                                'patrons.firstname', 'patrons.lastname', 'patrons.lrn',
+                                'transactions.date_issued', 'transactions.date_due', 'transactions.date_returned')                       
+                        ->where('patrons.lrn', 'LIKE', '%' .$search. '%')
                         ->get();
 
         if (count($record) > 0)

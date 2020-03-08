@@ -9,20 +9,21 @@
         </div>
     </form>
     <table>
-        {{-- @if (isset($record)) --}}
+        @if (isset($record))
             @if (count($record) > 0)
                 <tr>
-                    <td>Title</td>
-                    <td>Author</td>
-                    <td>ISBN</td>
-                    <td>Genre</td>
-                    <td>Publisher</td>
-                    <td>Year Published</td>
+                    <td>LRN</td>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>Book</td>
+                    <td>Date Issued</td>
+                    <td>Date Due</td>
+                    <td>Date Returned</td>
+                    <td>Status</td>
                 </tr>
                 @foreach ($record as $row)
                     <tr>
-                        <td>{{ $row->patron_id }}</td>
-                        <td>{{ $row->book_id }}</td>
+                        <td>{{ $row->lrn }}</td>
                         <td>{{ $row->firstname }}</td>
                         <td>{{ $row->lastname }}</td>
                         <td>{{ $row->title }}</td>
@@ -32,8 +33,8 @@
                         <td>{{ $row->status }}</td>
                     </tr>
                 @endforeach
-            {{-- @else <p>{{$message}}</p>
-            @endif --}}
+            @else <p>{{$message}}</p>
+            @endif
         @endif
     </table>
 @endsection
