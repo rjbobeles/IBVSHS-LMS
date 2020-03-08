@@ -35,16 +35,17 @@ class BookController extends Controller
         $books = Book::where('title', 'LIKE', '%' .$search. '%')
                         ->orWhere('author', 'LIKE', '%' .$search. '%')
                         ->orWhere('genre', 'LIKE', '%' .$search. '%')
+                        ->orWhere('publisher', 'LIKE', '%' .$search. '%')
+                        ->orWhere('isbn', 'LIKE', '%' .$search. '%')
                         ->get();
 
-        if ($search > 0) 
+        if (count($books) > 0) 
         {
-            return view('patron.search')->withDetails($books)->withQuery($search);
-            // return view('patron.search')->with('books', $books);
+            return view('patron.viewBooks')->with('books', $books);        
         }
         else
         {
-            return view('patron.search')->withMessage('No books found, try something else!');
+            return view('patron.viewBooks')->with('books', $books)->withMessage('No books found, try something else!');
         }
     }
 
