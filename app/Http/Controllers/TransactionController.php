@@ -23,12 +23,12 @@ class TransactionController extends Controller
         if($request->get('query'))
         {
             $query = $request->get('query');
-            $data = DB::table('patrons')->where('lastname', 'LIKE', "%{$query}%")->get();
-            $output = '<ul class="dropdown-menu" style="display:block; position:absolute">';
+            $data = DB::table('patrons')->where('lastname', 'LIKE', "%{$query}%")->orWhere('firstname', 'LIKE', "%{$query}%")->get();
+            $output = '<ul class="dropdown-menu autocomplete autocomplete-pos">';
             $sugg_ctr = 0;
             foreach($data as $row)
             {
-                $output .= '<li class="p-1"><a href="#" class="p-1" style="text-decoration:none">'.$row->lastname.', '.$row->firstname.' '.$row->middlename.'</a></li>';
+                $output .= '<li class="p-1"><a href="#" style="text-decoration:none;color:black">'.$row->lastname.', '.$row->firstname.' '.$row->middlename.'</a></li>';
                 $sugg_ctr++;
                 if ($sugg_ctr == 6)
                     break;
@@ -43,12 +43,17 @@ class TransactionController extends Controller
         if($request->get('query'))
         {
             $query = $request->get('query');
-            $data = DB::table('books')->where('title', 'LIKE', "%{$query}%")->get();
-            $output = '<ul class="dropdown-menu" style="display:block; position:absolute">';
+            $data = DB::table('books')
+                    ->where('title', 'LIKE', "%{$query}%")
+                    ->where('status', '!=', 'borrowed')
+                    ->where('status', '!=', 'reserved')
+                    ->where('status', '!=', 'archived')
+                    ->where('status', '!=', 'missing')->get();
+            $output = '<ul class="dropdown-menu autocomplete autocomplete-pos">';
             $sugg_ctr = 0;
             foreach($data as $row)
             {
-                $output .= '<li class="p-1"><a class="p-1" style="text-decoration:none" href="#">'.$row->title.'</a></li>';
+                $output .= '<li class="p-1"><a class="p-1" style="text-decoration:none;color:black" href="#">'.$row->title.'</a></li>';
                 $sugg_ctr++;
                 if ($sugg_ctr == 6)
                     break;
@@ -61,23 +66,66 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'borrower_name' => ['required'],
+            'borrower' => ['required'],
             'book' => ['required'],
             'date_issued' => ['required'],
             'date_due' => ['required']
         ]);
         
-        $borrower_name = $request->input('borrower_name');
-        $brw_name_arr = str_split($borrower_name);
+        $borrower = $request->input('borrower');
+        $brw_arr = str_split($borrower);
+        $numbers_arr = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
         $lastname_arr = array();
+        $temp_firstname_arr = array();
+        $firstname_arr = array();
+        $space_ctr = 0;
+        $comma_ctr = 0;
+        $isNum = '';
 
-        foreach ($brw_name_arr as $value) {
-            if ($value != ',') array_push($lastname_arr, $value);
-            else if ($value == ',') break;
+        foreach ($numbers_arr as $num) {
+            if ($num == $brw_arr[0]) {
+                $isNum = True;
+                break;
+            } else {
+                $isNum = False;
+            }
         }
 
-        $lastname = implode($lastname_arr);
-        $patron_arr = DB::table('patrons')->where('lastname', '=', $lastname)->first(array('id', 'lastname'));
+        if ($isNum == True) {
+            $patron_arr = DB::table('patrons')->where('lrn', '=', $borrower)->first(array('id', 'lastname'));
+        } else {
+            //Get {lastname}
+            foreach ($brw_arr as $x) {
+                if ($x != ',') {
+                    array_push($lastname_arr, $x);
+                } else if ($x == ',') {
+                    break;
+                } 
+            }
+
+            //Get {lastname}, {firstname}
+            foreach ($brw_arr as $y) {
+                if ($y == ' ') {
+                    $space_ctr += 1;
+                } else if ($space_ctr != 2) {
+                    array_push($temp_firstname_arr, $y);
+                } else if ($space_ctr == 2) {
+                    break;
+                }
+            }
+
+            //Get {firstname}
+            foreach ($temp_firstname_arr as $z) {
+                if ($z == ',') {
+                    $comma_ctr += 1;
+                } else if ($comma_ctr == 1) {
+                    array_push($firstname_arr, $z);
+                }
+            }
+            $lastname = implode($lastname_arr);
+            $firstname = implode($firstname_arr);
+            $patron_arr = DB::table('patrons')->where('lastname', '=', $lastname)->where('firstname', '=', $firstname)->first(array('id', 'lastname'));
+        }
 
         $book = $request->input('book');
         $input_format_arr = str_split($book);
@@ -88,13 +136,17 @@ class TransactionController extends Controller
             $book_arr = DB::table('books')->where('title', '=', $book)->first(array('id', 'title'));
         }
         
-        $transactions = new Transaction();
-        $transactions->patron_id = $patron_arr->id;
-        $transactions->book_id = $book_arr->id;
-        $transactions->date_issued = $request->input('date_issued');
-        $transactions->date_due = $request->input('date_due');
-        $transactions->date_returned = NULL;
-        $transactions->save();
+        try {
+            $transactions = new Transaction();
+            $transactions->patron_id = $patron_arr->id;
+            $transactions->book_id = $book_arr->id;
+            $transactions->date_issued = $request->input('date_issued');
+            $transactions->date_due = $request->input('date_due');
+            $transactions->date_returned = NULL;
+            $transactions->save();
+        } catch (\ErrorException $exception) {
+            return back()->withError("User / Book not found. Make sure to choose from the suggestions given by the dropdown list.")->withInput();
+        }
 
         $book_id = $book_arr->id;
         $books = Book::find($book_id);
@@ -113,23 +165,66 @@ class TransactionController extends Controller
     public function update(Request $request, $id)
     {
         $validate = $request->validate([
-            'borrower_name' => ['required'],
+            'borrower' => ['required'],
             'book' => ['required'],
             'date_issued' => ['required'],
             'date_due' => ['required']
         ]);
 
-        $borrower_name = $request->input('borrower_name');
-        $brw_name_arr = str_split($borrower_name);
+        $borrower = $request->input('borrower');
+        $brw_arr = str_split($borrower);
+        $numbers_arr = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
         $lastname_arr = array();
+        $temp_firstname_arr = array();
+        $firstname_arr = array();
+        $space_ctr = 0;
+        $comma_ctr = 0;
+        $isNum = '';
 
-        foreach ($brw_name_arr as $value) {
-            if ($value != ',') array_push($lastname_arr, $value);
-            else if ($value == ',') break;
+        foreach ($numbers_arr as $num) {
+            if ($num == $brw_arr[0]) {
+                $isNum = True;
+                break;
+            } else {
+                $isNum = False;
+            }
         }
+        
+        if ($isNum == True) {
+            $patron_arr = DB::table('patrons')->where('lrn', '=', $borrower)->first(array('id', 'lastname'));
+        } else {
+            //Get {lastname}
+            foreach ($brw_arr as $x) {
+                if ($x != ',') {
+                    array_push($lastname_arr, $x);
+                } else if ($x == ',') {
+                    break;
+                } 
+            }
 
-        $lastname = implode($lastname_arr);
-        $patron_arr = DB::table('patrons')->where('lastname', '=', $lastname)->first(array('id', 'lastname'));
+            //Get {lastname}, {firstname}
+            foreach ($brw_arr as $y) {
+                if ($y == ' ') {
+                    $space_ctr += 1;
+                } else if ($space_ctr != 2) {
+                    array_push($temp_firstname_arr, $y);
+                } else if ($space_ctr == 2) {
+                    break;
+                }
+            }
+
+            //Get {firstname}
+            foreach ($temp_firstname_arr as $z) {
+                if ($z == ',') {
+                    $comma_ctr += 1;
+                } else if ($comma_ctr == 1) {
+                    array_push($firstname_arr, $z);
+                }
+            }
+            $lastname = implode($lastname_arr);
+            $firstname = implode($firstname_arr);
+            $patron_arr = DB::table('patrons')->where('lastname', '=', $lastname)->where('firstname', '=', $firstname)->first(array('id', 'lastname'));
+        }
 
         $book = $request->input('book');
         $input_format_arr = str_split($book);
@@ -140,13 +235,17 @@ class TransactionController extends Controller
             $book_arr = DB::table('books')->where('title', '=', $book)->first(array('id', 'title'));
         }
 
-        $transactions = Transaction::find($id);
-        $transactions->patron_id = $patron_arr->id;
-        $transactions->book_id = $book_arr->id;
-        $transactions->date_issued = $request->input('date_issued');
-        $transactions->date_due = $request->input('date_due');
-        $transactions->date_returned = NULL;
-        $transactions->save();
+        try {
+            $transactions = Transaction::find($id);
+            $transactions->patron_id = $patron_arr->id;
+            $transactions->book_id = $book_arr->id;
+            $transactions->date_issued = $request->input('date_issued');
+            $transactions->date_due = $request->input('date_due');
+            $transactions->date_returned = NULL;
+            $transactions->save();
+        } catch (\ErrorException $exception) {
+            return back()->withError("User / Book not found. Make sure to choose from the suggestions given by the dropdown list.")->withInput();
+        }
         
         return redirect()->route('transactions.create')->with('success', 'Transaction has been successfully updated!');
     }

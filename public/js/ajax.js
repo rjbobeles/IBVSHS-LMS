@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -95,7 +95,7 @@
 
 //Autocomplete ajax for searching borrower name in librarian.transactions.create
 $(document).ready(function () {
-  $('#borrower_name').keyup(function () {
+  $('#borrower').keyup(function () {
     var query = $(this).val();
 
     if (query != '') {
@@ -123,7 +123,7 @@ $(document).ready(function () {
   });
 });
 $(document).on('click', '#patronList li', function () {
-  $('#borrower_name').val($(this).text());
+  $('#borrower').val($(this).text());
   $('#patronList').fadeOut();
 }); //Autocomplete ajax for searching book to be borrowed in librarian.transactions.create
 
@@ -161,7 +161,7 @@ $(document).on('click', '#bookList li', function () {
 }); //Autocomplete ajax for searching borrower name in librarian.transactions.edit
 
 $(document).ready(function () {
-  $('#borrower_name').keyup(function () {
+  $('#borrower').keyup(function () {
     var query = $(this).val();
 
     if (query != '') {
@@ -189,7 +189,7 @@ $(document).ready(function () {
   });
 });
 $(document).on('click', '#patronList li', function () {
-  $('#borrower_name').val($(this).text());
+  $('#borrower').val($(this).text());
   $('#patronList').fadeOut();
 }); //Autocomplete ajax for searching book to be borrowed in librarian.transactions.create
 
@@ -228,14 +228,14 @@ $(document).on('click', '#bookList li', function () {
 
 /***/ }),
 
-/***/ 1:
+/***/ 3:
 /*!************************************!*\
   !*** multi ./resources/js/ajax.js ***!
   \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Jairus Macatangay\Desktop\IBVSHS-LMS\resources\js\ajax.js */"./resources/js/ajax.js");
+module.exports = __webpack_require__(/*! /Users/rjbobeles/Sites/Phoenix/resources/js/ajax.js */"./resources/js/ajax.js");
 
 
 /***/ })
