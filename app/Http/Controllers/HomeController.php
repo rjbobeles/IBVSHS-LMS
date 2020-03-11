@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -23,11 +24,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if(Auth()->User()->role == "Librarian")
+            return redirect()->route('librarian');
+        else if(Auth()->User()->role == "Admin")
+            return redirect()->route('admin');
+        else
+            return abort(403);
     }
 
     /**
-     * Show the application dashboard.
+     * Show the librarian dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -37,7 +43,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the admin dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */

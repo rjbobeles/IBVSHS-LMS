@@ -61,13 +61,13 @@
                         <a href="{{ route('users.index')}}">MANAGE USERS</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">VIEW TRANSACTIONS</a>
+                        <a href="{{ route('logs.user.index') }}">USER LOGS</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">BOOK AUDIT LOGS</a>
+                        <a href="{{ route('logs.book.index') }}">BOOK AUDIT LOGS</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">PATRON AUDIT LOGS</a>
+                        <a href="{{ route('logs.patron.index') }}">PATRON LOGS</a>
                     </li>
                 @endif
 
