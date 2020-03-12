@@ -235,7 +235,7 @@ $(document).on('click', '#bookList li', function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/rjbobeles/Sites/Phoenix/resources/js/ajax.js */"./resources/js/ajax.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\IBVSHS-LMS\resources\js\ajax.js */"./resources/js/ajax.js");
 
 
 /***/ })
