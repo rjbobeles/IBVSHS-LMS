@@ -15,23 +15,11 @@
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
 // Components
-//@import '';
 @import 'navbar';
 @import 'custom-datatables';
 
-textarea:focus, 
-textarea.form-control:focus, 
-input.form-control:focus, 
-input[type=text]:focus, 
-input[type=password]:focus, 
-input[type=email]:focus, 
-input[type=number]:focus, 
-[type=text].form-control:focus, 
-[type=password].form-control:focus, 
-[type=email].form-control:focus, 
-[type=tel].form-control:focus, 
-[contenteditable].form-control:focus {
-  box-shadow: inset 0 -1px 0 #ddd;
+textarea:focus, textarea.form-control:focus, input.form-control:focus, input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=number]:focus, [type=text].form-control:focus, [type=password].form-control:focus, [type=email].form-control:focus, [type=tel].form-control:focus, [contenteditable].form-control:focus, select:focus {
+    box-shadow: none !important;
 }
 
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn:active:focus, .btn:focus {
@@ -41,12 +29,15 @@ input[type=number]:focus,
     box-shadow: none;
     outline: none;
     outline-offset: -2px;
-  }
+}
+
+.form-control:focus, .form-control:active {
+    border-color: $burger;
+}
 
 h1.page-title {
     font-family: 'Muli', sans-serif;
     padding-left: 15px;
-
     @include md-br {
         padding-left: 0px;
     }
@@ -54,13 +45,13 @@ h1.page-title {
 
 .btn-lms {
     background-color: none;
-    border: 1px solid #6e080f;
+    border: 1px solid $burger;
     border-radius: 100px;
 }
 
 .btn-lms-solid {
-    background-color: #6e080f;
-    border: 1px solid #6e080f;
+    background-color: $burger;
+    border: 1px solid $burger;
     border-radius: 100px;
     color: white;
 }
@@ -72,13 +63,6 @@ h1.page-title {
 //Franchesca css for librarian
 //librarian homepage
 div#homepage {
-
-    html,body {
-        font-weight: 200;
-        height: 100vh;
-        margin: 10px;
-        text-decoration: none;
-    }
 
     .searchbar {
         margin-top: 10px;
@@ -315,7 +299,7 @@ div#update {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     width:65%;
     text-align: center;
-    border-color:#6e080f;
+    border-color:$burger;
 }
 
 .navbooks {  
@@ -366,7 +350,7 @@ div#update {
 //Kenneth's CSS
 .input-header-red {
     color: white;
-    background-color: #6e080f;
+    background-color: $burger;
 }
 
 .page-heading {
@@ -375,8 +359,8 @@ div#update {
 
 .input-btn-red {
     background-color:transparent;
-    border-color:#6e080f;
-    color:#6e080f;
+    border-color:$burger;
+    color:$burger;
     border-radius:100px;
 }
 
@@ -432,7 +416,7 @@ div#update {
 @media only screen and (min-width:1200px) {
     #login-img {
         width: 50%;
-        height: 100vh;
+        height: calc(100vh - 120.5px);
         position: absolute; 
         left: -10px;
         display: block;
