@@ -2,13 +2,13 @@
     <div id="infobar">
         <div class="row">
             <div id="contact" class="col bar-left">
-                <i class="fa fa-phone"></i> +63 123 456 7890
+                <i class="fa fa-phone"></i> {{ env('IBVSHS_NUMBER') }}
                 <b class="border"></b>
-                <i class="email fa fa-envelope"></i> ibvillamorshs@gmail.com
+                <i class="email fa fa-envelope"></i> {{ env('IBVSHS_EMAIL') }}
             </div>
             <div id="socmed" class="col bar-right">
-                <a href="https://www.facebook.com/ibvshs/"><i class="fab fa-facebook-square"></i></a>
-                <a href="https://twitter.com/ibvshs"><i class="fab fa-twitter-square"></i></a>
+                <a href="{{ env('IBVSHS_FACEBOOK') }}"><i class="fab fa-facebook-square"></i></a>
+                <a href="{{ env('IBVSHS_TWITTER') }}"><i class="fab fa-twitter-square"></i></a>
             </div>
         </div>
     </div>
