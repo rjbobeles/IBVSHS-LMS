@@ -45,6 +45,7 @@
                 { data: 'role', name: 'role', searchable: false, sortable : true, visible: true},
                 { data: 'deactivated', name: 'deactivated', searchable: false, sortable : true, visible: true },
                 { data: 'actions', name: 'actions', searchable: false, sortable : false, visible: true },
+                { data: 'lrn', name: 'lrn', searchable: true, sortable : false, visible: false },
                 { data: 'firstname', name: 'firstname', searchable: true, sortable : true, visible: false },
                 { data: 'middlename', name: 'middlename', searchable: true, sortable : true, visible: false },
                 { data: 'lastname', name: 'lastname', searchable: true, sortable : true, visible: false }, 

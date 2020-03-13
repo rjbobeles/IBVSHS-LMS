@@ -10,8 +10,6 @@
 |
 */
 
-Route::get('/', function () { return view('patron');})->name('patron');
-
 /*
 |--------------------------------------------------------------------------
 | Patron Route
@@ -22,6 +20,7 @@ Route::get('/', function () { return view('patron');})->name('patron');
 */
 
 Route::middleware('guest')->group(function() {
+    Route::get('/', function () { return view('patron');})->name('patron');
 
 });
 

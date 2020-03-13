@@ -22,7 +22,7 @@ class CreatePatronsTable extends Migration
             $table->string('email', 250);
             $table->string('contactno', 20);
             $table->boolean('deactivated');
-            $table->string('lrn', 100)->nullable();
+            $table->string('lrn', 12)->unique();
             $table->timestamps();
         });
     }

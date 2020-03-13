@@ -33,7 +33,7 @@ class PatronController extends Controller
      */
     public function indexData()
     {
-        return Datatables::of(Patron::select(['id', 'firstname', 'middlename', 'lastname', 'middlename', 'role', 'email', 'deactivated']))
+        return Datatables::of(Patron::select(['id', 'firstname', 'middlename', 'lastname', 'middlename', 'role', 'email', 'deactivated', 'lrn']))
         ->orderColumn('name', function ($query, $order) {
             $query->orderBy('lastname', $order)->orderBy('firstname', $order)->orderBy('middlename', $order);
         })
@@ -95,8 +95,15 @@ class PatronController extends Controller
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'contactno'     => ['required', 'string', 'max:16', new ValidPHNumber],
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:patrons'],
-            'lrn'           => ['required', 'string', 'max:255'],
         ]); 
+
+        $validate = sometimes('lrn', 'required|numeric|max:12', function($input) {
+            return $input->lrn == "Student";
+        });
+
+        $validate = sometimes('lrn', 'required|numeric|max:6', function($input) {
+            return $input->lrn == "Teacher";
+        });
 
         $patron = Patron::create([
             'role' => $request->input('role'),
