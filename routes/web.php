@@ -10,9 +10,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('patron');})->name('patron');
 
 /*
 |--------------------------------------------------------------------------
