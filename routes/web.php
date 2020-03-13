@@ -71,21 +71,25 @@ Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function
         //Datatable Routes
         Route::get('/dt/books', 'BookController@indexData')->name('books.index.data'); 
         Route::get('/dt/patrons', 'PatronController@indexData')->name('patrons.index.data');
+        Route::get('/dt/transactions', 'PatronController@indexData')->name('transactions.index.data');
         
         //Book Controller
         Route::resource('books', 'BookController');
 
         //Transaction Controller
-        Route::get('/transactions/create', 'TransactionController@create')->name('transactions.create');
-        Route::post('/transactions/create/fetchPatron', 'TransactionController@fetchPatron');
-        Route::post('/transactions/create/fetchBook', 'TransactionController@fetchBook');
-        Route::post('/transactions/create', 'TransactionController@store')->name('transactions.store');
-        Route::get('/transactions/{id}/edit', 'TransactionController@edit')->name('transactions.edit');
-        Route::post('/transactions/{id}/edit/fetchPatron', 'TransactionController@fetchPatron');
-        Route::post('/transactions/{id}/edit/fetchBook', 'TransactionController@fetchBook');
-        Route::put('/transactions/{id}/edit', 'TransactionController@update')->name('transactions.update');
-        Route::get('/transactions/{id}/returnBook', 'TransactionController@returnBook')->name('transactions.returnBook');
-        Route::post('/transactions/{id}/returnBook', 'TransactionController@returnBookStore')->name('transactions.returnBookStore');
+        Route::prefix('transactions')->group(function () {
+            Route::get('/', 'TransactionController@index')->name('transactions.index');
+            Route::get('/create', 'TransactionController@create')->name('transactions.create');
+            Route::post('/create/fetchPatron', 'TransactionController@fetchPatron');
+            Route::post('/create/fetchBook', 'TransactionController@fetchBook');
+            Route::post('/create', 'TransactionController@store')->name('transactions.store');
+            Route::get('/{id}/edit', 'TransactionController@edit')->name('transactions.edit');
+            Route::post('/{id}/edit/fetchPatron', 'TransactionController@fetchPatron');
+            Route::post('/{id}/edit/fetchBook', 'TransactionController@fetchBook');
+            Route::put('/{id}/edit', 'TransactionController@update')->name('transactions.update');
+            Route::get('/{id}/returnBook', 'TransactionController@returnBook')->name('transactions.returnBook');
+            Route::post('/{id}/returnBook', 'TransactionController@returnBookStore')->name('transactions.returnBookStore');
+        });
     });
 });
 

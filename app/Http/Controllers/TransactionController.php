@@ -13,6 +13,14 @@ use App\DamageReport;
 
 class TransactionController extends Controller
 {
+    public function index() {
+
+    }
+
+    public function indexData() {
+
+    }
+    
     public function create()
     {
         return view('librarian.transactions.create');
