@@ -28,7 +28,7 @@
             <ul class="navbar-nav">
                 @guest
                     <li class="nav-item">
-                        <a href="#">HOME</a>
+                        <a href="{{ route('patron')}}">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a href="#">VIEW BOOKS</a>
