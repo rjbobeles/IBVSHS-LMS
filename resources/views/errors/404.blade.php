@@ -1,5 +1,5 @@
-@extends('errors::minimal')
+@extends('errors::phoenix')
 
-@section('title', __('Not Found'))
+@section('title', __('- File not Found'))
 @section('code', '404')
-@section('message', __('Not Found'))
+@section('message', __($exception->getMessage() ?: 'File not Found'))

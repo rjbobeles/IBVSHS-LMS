@@ -1,0 +1,36 @@
+.error-row {
+    height: calc(90vh - 120.5px); 
+
+    .error-container {
+        background-image: url('/images/error/bg.png'); 
+        height: 60vh; 
+        width: 100%; 
+        background-position: center; 
+        background-repeat: no-repeat; 
+        background-size: contain;
+        font-family: 'Muli', sans-serif; 
+        font-size: 16px; 
+        
+        @include sm-br {
+            height: 70vh;
+        }
+
+        .error-image {
+            @include md-br {
+                width: 100%;
+            }
+        }
+
+        h1 {
+            font-family: 'Raleway', sans-serif; 
+            font-weight: 700;
+            @include sm-br {
+                font-size: 24px;
+            }
+        }
+        img {
+            max-width: 95%; 
+            max-height: 90%; 
+        }
+    }
+}
