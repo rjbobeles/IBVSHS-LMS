@@ -106,11 +106,6 @@
                         </span>
                         <div class="dropdown-divider"></div>
                         @guest
-                            <a class="dropdown-item" href="#">View Library Books</a>
-                            <a class="dropdown-item" href="#">My Borrowed Books</a>
-                            <div class="dropdown-divider"></div>
-                        @endguest
-                        @guest
                             <a class="dropdown-item" href="{{ route('login') }}">Login</a>
                         @endguest
                         @auth
