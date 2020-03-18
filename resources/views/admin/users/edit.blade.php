@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="firstname" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+                            <label for="firstname" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}<strong><p>Firstname</p></strong></label>
 
                             <div class="col-md-6">
                                 <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ $user->firstname }}" required autocomplete="firstname">
@@ -52,7 +52,7 @@
                         </div>
                         
                         <div class="form-group row">
-                            <label for="middlename" class="col-md-4 col-form-label text-md-right">{{ __('Middle Name') }}</label>
+                            <label for="middlename" class="col-md-4 col-form-label text-md-right">{{ __('Middle Name') }}<strong><p>Middlename</p></strong></label>
 
                             <div class="col-md-6">
                                 <input id="middlename" type="text" class="form-control @error('middlename') is-invalid @enderror" name="middlename" value="{{ $user->middlename }}" required autocomplete="middlename">
@@ -66,7 +66,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+                            <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}<strong><p>Lastname</p></strong></label>
 
                             <div class="col-md-6">
                                 <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ $user->lastname }}" required autocomplete="lastname">
@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}<strong><p>Username</p></strong></label>
 
                             <div class="col-md-6">
                                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ $user->username }}" required autocomplete="username">
@@ -94,7 +94,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="contactno" class="col-md-4 col-form-label text-md-right">{{ __('Contact Number') }}</label>
+                            <label for="contactno" class="col-md-4 col-form-label text-md-right">{{ __('Contact Number') }}<strong><p>Contact Number</p></strong></label>
 
                             <div class="col-md-6">
                                 <input id="contactno" type="text" class="form-control @error('contactno') is-invalid @enderror" name="contactno" value="{{ $user->contactno }}" required autocomplete="contactno">
@@ -108,7 +108,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}<strong><p>Email Address</p></strong></label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
@@ -124,7 +124,7 @@
                         <div class="form-group row mt-5">
                             <div class="col-md-6 offset-md-4 text-right">
                                 <button type="submit" class="btn input-btn-red">
-                                    {{ __('Update User') }}
+                                    {{ __('Update User') }} <strong><p>Update User</p></strong>
                                 </button>
                             </div>
                         </div>
