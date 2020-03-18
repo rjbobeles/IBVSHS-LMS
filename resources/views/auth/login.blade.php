@@ -14,7 +14,7 @@
         </div>
         <div class="col-xl-2"></div>
         <div class="col-xl-4 my-auto">
-            <div class="mx-5">
+            <div class="mx-lg-5">
                 <div class="card shadow-lg p-3">
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
@@ -22,7 +22,7 @@
                             <h2 class="mb-4 login-heading">Sign In</h2>
                             <div class="form-group row">
                                 <div class="col">
-                                    <input id="username" placeholder="   username" type="text" class="login-input mb-3 form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                    <input id="username" placeholder="username" type="text" class="mb-3 form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                                     @error('username')
                                         <span class="invalid-feedback" role="alert">
@@ -30,7 +30,7 @@
                                         </span>
                                     @enderror
 
-                                    <input id="password" placeholder="   password" type="password" class="login-input mt-3 form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <input id="password" placeholder="password" type="password" class="mt-3 form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
                                     </label>                                      
                                 </div>
                                 <div class="col text-lg-right">
-                                    <button type="submit" class="px-4 btn login-input">
+                                    <button type="submit" class="px-4 btn btn-lms-solid">
                                         {{ __('Login') }}
                                     </button>
                                 </div>
