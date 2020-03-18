@@ -18292,6 +18292,503 @@ div#update #back {
   .forgot-pass {
     font-size: 14px;
   }
+
+  #data-table {
+    font-size: 11px;
+    font-family: Muli;
+  }
+
+  #data-table-books {
+    font-size: 9px;
+    font-family: Muli;
+  }
+
+  .homepage-footer h6 {
+    font-size: 16px;
+  }
+
+  .homepage-body {
+    background-color: #262626;
+    height: 450px;
+    padding-top: 80px;
+    color: white;
+    font-family: Muli;
+  }
+
+  #login-card {
+    width: 400px;
+    position: absolute;
+    top: 24vh;
+    left: 19vh;
+    color: #fecc59;
+    font-family: Muli;
+  }
+
+  .nav-link {
+    color: #424242;
+    margin-left: 40px;
+    font-size: 12px;
+  }
+
+  #navbar-menu {
+    color: #424242;
+    font-size: 20px;
+    margin-left: 110px;
+    margin-top: -5px;
+    display: block;
+  }
+
+  #white-navbar {
+    padding: 20px;
+    font-family: Raleway;
+  }
+
+  #search-filter {
+    display: inline-block;
+    margin-top: 5px;
+    border: none;
+    width: 90px;
+  }
+
+  #thead-btn {
+    margin-top: 5px;
+    border-radius: 100px;
+    border-color: #6e080f;
+    color: #6e080f;
+    background-color: transparent;
+  }
+
+  #homepage-btn {
+    border-color: #fecc59;
+    color: #fecc59;
+    background-color: transparent;
+  }
+
+  thead {
+    background-color: #6e080f;
+    color: white;
+  }
+
+  .table-hover tbody tr:hover td {
+    background: #fecc59;
+  }
+
+  #add-edit-btn {
+    width: 140px;
+    margin-top: 5px;
+    border-radius: 100px;
+    border-color: #6e080f;
+    color: #6e080f;
+    background-color: transparent;
+  }
+
+  #card-header {
+    background-color: #6e080f;
+    color: white;
+    text-align: left;
+    font-family: Raleway;
+  }
+
+  #form-label-left {
+    text-align: right;
+  }
+
+  #form-input-right {
+    text-align: left;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (min-width: 0px) {
+  .navbar-brand {
+    display: none !important;
+  }
+
+  .nav-link {
+    color: white;
+  }
+
+  #white-navbar {
+    background-color: #6e080f;
+  }
+
+  .navbar-toggler {
+    color: white;
+  }
+
+  #navbar-menu {
+    display: none;
+  }
+
+  #admin-navbar {
+    margin-left: 0px;
+  }
+
+  #navbar-divider {
+    margin-top: 5px;
+    margin-top: 5px;
+    display: block;
+    border-color: white;
+    opacity: 0.2;
+  }
+
+  #search-field {
+    display: inline-block;
+    margin-top: 5px;
+    border-radius: 100px;
+    width: 250px;
+  }
+
+  #search-icon {
+    position: absolute;
+    top: 15px;
+    left: 230px;
+    opacity: 0.4;
+  }
+
+  #logout-btn {
+    display: block;
+  }
+
+  #thead-btn-icon {
+    display: block;
+  }
+
+  #thead-btn-txt {
+    display: none;
+  }
+
+  h3 {
+    font-family: Raleway;
+  }
+
+  #form-btn-left {
+    text-align: center;
+  }
+
+  #form-btn-right {
+    text-align: center;
+  }
+
+  #form-btn-mid {
+    text-align: center;
+  }
+
+  .homepage-body p {
+    font-size: 11px;
+  }
+
+  .homepage-body a {
+    font-size: 11px;
+  }
+
+  .homepage-body h1 {
+    font-size: 60px;
+  }
+
+  .homepage-body {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .homepage-footer {
+    margin-top: 45px;
+    font-family: Muli;
+    color: #424242;
+    font-size: 12px;
+  }
+
+  .homepage-footer .col-lg {
+    text-align: center;
+  }
+
+  .homepage-footer .col-lg hr {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #footer-br {
+    display: none;
+  }
+
+  #footer-text {
+    color: #424242;
+  }
+
+  #login-img {
+    display: none;
+  }
+
+  .col-xl-5 h1 {
+    color: white;
+    font-size: 60px;
+  }
+
+  .col-xl-5 h3 {
+    color: #fecc59;
+    font-size: 15px;
+  }
+
+  .col-xl-5 p {
+    display: none;
+  }
+
+  #login-img-2 {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0px;
+    display: block;
+  }
+
+  .card-body h5 {
+    font-size: 15px;
+    color: #fecc59;
+    font-family: Raleway;
+  }
+
+  #login-input {
+    border-radius: 100px;
+    border: none;
+    font-size: 9px;
+    background-color: #ebebeb;
+  }
+
+  #login-btn {
+    background-color: #ebebeb;
+    border-radius: 100px;
+    width: 100px;
+    font-size: 9px;
+  }
+
+  .col-xl-2 {
+    display: none;
+  }
+
+  p br {
+    display: none;
+  }
+
+  #thead-btn-panel {
+    text-align: left;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (min-width: 449px) {
+  #thead-btn-panel {
+    text-align: right;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (min-width: 992px) {
+  .homepage-footer .col-lg {
+    text-align: left;
+  }
+
+  .homepage-footer .col-lg hr {
+    display: none;
+  }
+
+  #footer-br {
+    display: block;
+  }
+
+  #footer-text {
+    color: #424242;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (min-width: 1000px) {
+  p br {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (min-width: 1200px) {
+  #admin-navbar {
+    margin-left: 120px;
+  }
+
+  #logout-btn {
+    display: none;
+  }
+
+  .navbar-brand {
+    display: block !important;
+  }
+
+  #white-navbar {
+    background-color: white;
+  }
+
+  #navbar-menu {
+    display: block;
+  }
+
+  #navbar-divider {
+    display: none;
+  }
+
+  .nav-link {
+    font-size: 12px;
+    margin-left: 50px;
+    color: #424242;
+  }
+
+  .navbar-brand {
+    display: block;
+  }
+
+  #search-field {
+    display: inline-block;
+    margin-top: 5px;
+    border-radius: 100px;
+    width: 300px;
+  }
+
+  #search-icon {
+    position: absolute;
+    top: 15px;
+    left: 275px;
+    opacity: 0.4;
+  }
+
+  #thead-btn-icon {
+    display: none;
+  }
+
+  #thead-btn-txt {
+    display: inline;
+  }
+
+  #form-btn-left {
+    text-align: right;
+  }
+
+  #form-btn-right {
+    text-align: left;
+  }
+
+  #form-btn-mid {
+    text-align: center;
+  }
+
+  .homepage-body p {
+    font-size: 14px;
+  }
+
+  .homepage-body a {
+    font-size: 14px;
+  }
+
+  .homepage-body h1 {
+    font-size: 90px;
+  }
+
+  .homepage-body {
+    padding-left: 150px;
+  }
+
+  #login-img {
+    width: 50%;
+    height: 100vh;
+    position: absolute;
+    left: -10px;
+    display: block;
+  }
+
+  #login-img-2 {
+    display: none;
+  }
+
+  .col-xl-5 h1 {
+    color: white;
+    font-size: 100px;
+  }
+
+  .col-xl-5 h3 {
+    color: #fecc59;
+    font-size: 35px;
+  }
+
+  .col-xl-5 p {
+    display: block;
+    color: white;
+  }
+
+  .card-body h5 {
+    font-size: 40px;
+    color: #fecc59;
+    font-family: Raleway;
+  }
+
+  #login-input {
+    border-radius: 100px;
+    border: none;
+    background-color: #ebebeb;
+    font-size: 14px;
+  }
+
+  #login-btn {
+    background-color: #ebebeb;
+    border-radius: 100px;
+    width: 100px;
+    font-size: 14px;
+  }
+
+  .col-xl-2 {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (min-width: 1500px) {
+  .nav-link {
+    font-size: 17px;
+    margin-left: 70px;
+    color: #424242;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (min-width: 1920px) {
+  #navbar-menu {
+    color: #424242;
+    font-size: 30px;
+    margin-left: 200px;
+    margin-top: -5px;
+  }
+
+  .nav-link {
+    font-size: 19px;
+    color: #424242;
+    margin-left: 60px;
+    margin-top: 4px;
+  }
+
+  .homepage-body h1 {
+    font-size: 90px;
+  }
+
+  .homepage-body p {
+    font-size: 14px;
+  }
+
+  .homepage-body a {
+    font-size: 14px;
+  }
+
+  .homepage-footer h6 {
+    font-size: 22px;
+  }
+
+  #data-table {
+    font-size: 13px;
+    font-family: Muli;
+  }
+
+  #data-table-books {
+    font-size: 10px;
+    font-family: Muli;
+  }
 }
 
 #data-table {
