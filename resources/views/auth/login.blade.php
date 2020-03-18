@@ -20,6 +20,7 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <h2 class="mb-4 login-heading">Sign In</h2>
+                            
                             <div class="form-group row">
                                 <div class="col">
                                     <input id="username" placeholder="username" type="text" class="mb-3 form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
