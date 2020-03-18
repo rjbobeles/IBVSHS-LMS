@@ -44,7 +44,7 @@ class PatronController extends Controller
         })
         ->addColumn('actions', 'librarian.patrons.action')
         ->rawColumns(['link', 'actions'])
-        ->setRowId(function ($user) { return $user->id; })
+        ->setRowId(function ($patron) { return $patron->id; })
         ->make(true);
     }
     
