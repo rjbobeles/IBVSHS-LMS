@@ -17,29 +17,17 @@ class TransactionController extends Controller
         return view('librarian.transactions.index');
     }
 
-    //patronTransaction
-    //bookTransaction
     public function indexData() {
         return DataTables::of(Transactions::select(['id', 'patron_id', 'book_id', 'date_issued', 'date_due', 'date_returned']))
+            ->addColumn('patron', function($row) {
+                return $row->patronTransaction->id . ' | ' . $row->$patronTransaction->lastname . ', ' . $row->$patronTransaction->firstname;
+            })
+            ->addColumn('book', function($row) {
+                return $row->bookTransaction->id . ' | ' . $row->$bookTransaction->title;
+            })
             ->addColumn('actions', 'librarian.transactions.action')
             ->make(true);
     }
-
-    /*
-    return Datatables::of(User::select(['id', 'firstname', 'middlename', 'lastname', 'middlename', 'role', 'email', 'deactivated']))
-        ->orderColumn('name', function ($query, $order) {
-            $query->orderBy('lastname', $order)->orderBy('firstname', $order)->orderBy('middlename', $order);
-        })
-        ->addColumn('name', function($row) { return $row->lastname . ', ' . $row->firstname . ' ' . $row->middlename; })
-        ->editColumn('deactivated', function($row) { 
-            if($row->deactivated == 1) return "Deactivated";
-            else return "Active";
-        })
-        
-        ->rawColumns(['link', 'actions'])
-        ->setRowId(function ($user) { return $user->id; })
-        ->make(true);
-    */
 
     public function show($id)
     {
