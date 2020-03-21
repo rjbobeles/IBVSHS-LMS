@@ -79,6 +79,7 @@ Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function
         //Transaction Controller
         Route::prefix('transactions')->group(function () {
             Route::get('/', 'TransactionController@index')->name('transactions.index');
+            Route::get('/{id}', 'TransactionController@show')->name('transactions.show');
             Route::get('/create', 'TransactionController@create')->name('transactions.create');
             Route::post('/create/fetchPatron', 'TransactionController@fetchPatron');
             Route::post('/create/fetchBook', 'TransactionController@fetchBook');
