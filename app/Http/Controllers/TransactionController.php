@@ -44,7 +44,7 @@ class TransactionController extends Controller
     public function show($id)
     {
         $transaction = Transaction::find($id);
-        return view('librarian.transactions.single')->with('transaction', $transaction)
+        return view('librarian.transactions.single')->with('transaction', $transaction);
     }
 
     public function create()
