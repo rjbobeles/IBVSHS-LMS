@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\LogUser;
+use App\Mailer\AppMailer;
 use App\Rules\AlphaSpace;
 use App\Rules\ValidPHNumber;
 use Illuminate\Http\Request;
@@ -86,6 +87,9 @@ class UserController extends Controller
             'role' => $request->input('role'),
             'deactivated' => false
         ]);
+
+        $mailer = new AppMailer();
+        $mailer->sendEmailConfirmationTo($user);
 
         LogUser::create([
             'actor_id' => auth()->user()->id,
