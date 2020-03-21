@@ -13,24 +13,6 @@
                         @method('PUT')
 
                         <div class="form-group row">
-                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
-
-                            <div class="col-md-6">
-                                <select id="role" name="role" class="form-control @error('role') is-invalid @enderror" required autofocus>
-                                    <option value="">Select Role...</option>
-                                    <option value="Student" @if($patron->role == "Student") {{'selected'}} @endif>Student</option>
-                                    <option value="Teacher" @if($patron->role == "Teacher") {{'selected'}} @endif>Teacher</option>
-                                </select>
-
-                                @error('role')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="firstname" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
 
                             <div class="col-md-6">
