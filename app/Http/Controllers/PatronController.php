@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Validator;
 use Yajra\Datatables\Datatables;
 
 class PatronController extends Controller
@@ -87,50 +88,54 @@ class PatronController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
-        $validate = $request->validate([
+    public function store(Request $request){  
+        $validator = Validator::make($request->all(), [
             'role'          => ['required', 'in:Student,Teacher'],
             'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
             'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'contactno'     => ['required', 'string', 'max:16', new ValidPHNumber],
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:patrons'],
-        ]); 
+            'id'            => ['required']
+        ]);
 
-        $validate = sometimes('lrn', 'required|numeric|max:12', function($input) {
-            return $input->lrn == "Student";
+        $validator->sometimes('id', 'digits:12', function($input) {
+            return $input->role == "Student";
         });
 
-        $validate = sometimes('lrn', 'required|numeric|max:6', function($input) {
+        $validator->sometimes('id', 'digits:6', function($input) {
             return $input->lrn == "Teacher";
         });
 
-        $patron = Patron::create([
-            'role' => $request->input('role'),
-            'firstname' => $request->input('firstname'),
-            'middlename' => $request->input('middlename'),
-            'lastname' => $request->input('lastname'),
-            'contactno' => $request->input('contactno'),
-            'email' => $request->input('email'),
-            'deactivated' => false,
-            'lrn'=> $request->input('lrn'),
-        ]);
-        
-        LogPatron::create([
-            'actor_id' => auth()->user()->id,
-            'action' => "Create Patron",
-            'patron_id'=> $patron->id,
-            'role' => $patron->role,
-            'firstname' => $patron->firstname,
-            'middlename' => $patron->middlename,
-            'lastname' => $patron->lastname,
-            'email' => $patron->email,
-            'contactno' => $patron->contactno,
-            'deactivated' => $patron->deactivated
-        ]);
+        if(!$validator->fails())
+        {
+            $patron = Patron::create([
+                'role' => $request->input('role'),
+                'firstname' => $request->input('firstname'),
+                'middlename' => $request->input('middlename'),
+                'lastname' => $request->input('lastname'),
+                'contactno' => $request->input('contactno'),
+                'email' => $request->input('email'),
+                'deactivated' => false,
+                'lrn'=> $request->input('id'),
+            ]);
+            
+            LogPatron::create([
+                'actor_id' => auth()->user()->id,
+                'action' => "Create Patron",
+                'patron_id'=> $patron->id,
+                'role' => $patron->role,
+                'firstname' => $patron->firstname,
+                'middlename' => $patron->middlename,
+                'lastname' => $patron->lastname,
+                'email' => $patron->email,
+                'contactno' => $patron->contactno,
+                'deactivated' => $patron->deactivated
+            ]);
 
-        if(auth()->user()->role == "Librarian") return redirect()->route('patrons.index')->with('success', 'Patron has been successfully added!');
-        else return redirect()->route('admin.patrons.index')->with('success', 'Patron has been successfully added!');
+            if(auth()->user()->role == "Librarian") return redirect()->route('patrons.index')->with('success', 'Patron has been successfully added!');
+            else return redirect()->route('admin.patrons.index')->with('success', 'Patron has been successfully added!');
+        } else return redirect()->back()->withErrors($validator)->withInput();
     }
 
     /**
@@ -172,7 +177,6 @@ class PatronController extends Controller
     {
         $patron = Patron::find($id);
         $validate = $request->validate([
-            'role'          => ['required', 'in:Student,Teacher'],
             'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
             'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
@@ -180,7 +184,7 @@ class PatronController extends Controller
             'contactno'     => ['required', 'string', 'max:16', new ValidPHNumber],
             
         ]);
-
+        
         $patron = Patron::find($id); 
         $patron->role = $request->input('role');
         $patron->firstname = $request->input('firstname');
