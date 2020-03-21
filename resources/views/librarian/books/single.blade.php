@@ -4,7 +4,7 @@
 
 <div class="container">
     <h4>
-        <strong>Harry Potter and the Philosophers Stone</strong>
+        <strong>{{ $book->title}}</strong>
     </h4>
     
     <hr/><br/>
@@ -13,21 +13,21 @@
         <div class="col-lg-6 center">
             <div class="gallery">
                 <div class="gallery" style="border: 10px solid #6e080f; width:107%; margin-left:3px; background-color:#6e080f;">
-                <img class="img-fluid" src=" {{ asset('images/no-image.png') }}" alt="HP books" style="margin-left:3px;">
+                <img class="img-fluid" src="@if($book->book_image == 'no-image.png') {{ asset('images/no-image.png') }}  @else {{ asset('storage/book_images/' . $book->book_image) }} @endif " alt="Book Picture" style="margin-left:3px;">
                 </div>
             </div>
         </div>
         <div class="col-lg-6" style="text-align:center">
             <br/><br/>
-            
-            <h6>
-                <b>Author:</b> J.K. Rowling
+
+            <h6>    
+                <b>Author:</b> {{ $book->author }}
             </h6>
             
             <br/>
             
-            <h6>
-                <b>ISBN:</b> 118VBSHS123
+            <h6>   
+                <b>ISBN:</b> {{ $book->isbn }} 
             </h6>
             
             <br/>
@@ -49,12 +49,12 @@
             <center>
                 <div class="card">
                     <div class="card-body">
-                        <?php echo DNS1D::getBarcodeSVG("4445", "EAN13") ?>
+                        <?php echo DNS1D::getBarcodeSVG($book->barcodeno, "EAN13") ?>
                     </div>
                 </div>
 
                 <br/>
-                <a href="#" class="btn btn-lms-solid">Back to books list</a>
+                <a href="{{ route('books.index') }}" class="btn btn-lms-solid">Back to books list</a>
             </center>
         </div>
     </div>
