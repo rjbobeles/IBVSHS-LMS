@@ -43,13 +43,16 @@
                         <a href="{{ route('librarian') }}">LIBRARIAN</a>
                     </li><span class="divider">|</span>
                     <li class="nav-item">
-                        <a href="#">MANAGE LIBRARY</a>
+                        <a href="{{ route('books.index')}}">MANAGE BOOKS</a>
                     </li>
                     <li class="nav-item">
                         <a href="#">BOOKS ISSUANCE</a>
                     </li>
                     <li class="nav-item">
                         <a href="#">BORROWED BOOKS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('patrons.index') }}">MANAGE PATRONS</a>
                     </li>
                 @endif
 
