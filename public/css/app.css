@@ -17914,6 +17914,16 @@ h1.page-title {
   border-radius: 100px;
 }
 
+.btn-lms2 {
+  background-color: #6e080f;
+  border: 1px solid #6e080f;
+  color: white;
+}
+
+.btn-lms2:hover {
+  color: #fecc59;
+}
+
 .btn-lms-solid {
   background-color: #6e080f;
   border: 1px solid #6e080f;

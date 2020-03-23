@@ -58,6 +58,17 @@ h1.page-title {
     border-radius: 100px;
 }
 
+.btn-lms2 {
+    background-color: $burger;
+    border: 1px solid $burger;
+    color: white;
+}
+
+
+.btn-lms2:hover {
+    color: #fecc59;
+}
+
 .btn-lms-solid {
     background-color: $burger;
     border: 1px solid $burger;
