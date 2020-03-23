@@ -257,13 +257,13 @@ class PatronController extends Controller
         return redirect()->route('admin.patrons.index')->With('success', 'Patron has been successfully updated!');
     }
 
-    public function libraryRecords(Request $request) {
+    public function Records(Request $request) {
             $records = NULL;
-            return view('patrons.libraryRecords')->with('records', $records);
+            return view('patron.booksRecord')->with('records', $records);
     }
 
     
-    public function viewLibraryRecords(Request $request) {
+    public function ViewRecords(Request $request) {
         $validate = $request->validate([
             'lastName' => ['required'],
             'firstName' => ['required'],
@@ -275,22 +275,18 @@ class PatronController extends Controller
         $email = $request->input('email');
 
         try {
-
             $patron = DB::table('patrons')
                     ->where('lastname', '=', $lastName)
                     ->where('firstname', '=', $firstName)
                     ->where('email', '=', $email)->first();
 
             $records = Transaction::where('patron_id', '=', $patron->id)->get();
-
-            //Variable to allow me to get patron's name
             $recordsName = Transaction::where('patron_id', '=', $patron->id)->first();
-
         } catch (\ErrorException $exception) {
             return back()->withError("User does not exist")->withInput();
         }            
         
-        return view('patrons.libraryRecords')->with('records', $records)->with('recordsName', $recordsName);
+        return view('patron.booksRecord')->with('records', $records)->with('recordsName', $recordsName);
     }
     
 }

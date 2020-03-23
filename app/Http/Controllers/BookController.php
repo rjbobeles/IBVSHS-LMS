@@ -280,6 +280,6 @@ class BookController extends Controller
     public function PatronBook($id)
     {
         $book = Book::find($id);
-        return view('patron.books.single')->with('book', $book);
+        return view('patron.booksSingle')->with('book', $book);
     }
 }
