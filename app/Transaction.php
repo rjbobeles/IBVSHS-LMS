@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+    protected $fillable = [
+        'patron_id', 'book_id', 'date_issued', 'date_due', 'date_returned'
+    ];
+
     //Transaction <- Patron
     public function patronTransaction() {
         return $this->belongsTo('App\Patron', 'patron_id', 'id');
