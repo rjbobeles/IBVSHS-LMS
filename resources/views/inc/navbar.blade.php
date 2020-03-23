@@ -46,10 +46,10 @@
                         <a href="{{ route('books.index')}}">MANAGE BOOKS</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">BOOKS ISSUANCE</a>
+                        <a href="{{ route('transactions.create') }}">BOOKS ISSUANCE</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">BORROWED BOOKS</a>
+                        <a href="{{ route('transactions.index') }}">BORROWED BOOKS</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('patrons.index') }}">MANAGE PATRONS</a>
