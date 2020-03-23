@@ -96,7 +96,7 @@ class PatronController extends Controller
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'contactno'     => ['required', 'string', 'max:16', new ValidPHNumber],
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:patrons'],
-            'id'            => ['required']
+            'id'            => ['required', 'unique:patrons'] //VALIDATION
         ]);
 
         $validator->sometimes('id', 'digits:12', function($input) {
@@ -182,7 +182,6 @@ class PatronController extends Controller
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('patrons')->ignore($patron->id)],
             'contactno'     => ['required', 'string', 'max:16', new ValidPHNumber],
-            
         ]);
         
         $patron = Patron::find($id); 
