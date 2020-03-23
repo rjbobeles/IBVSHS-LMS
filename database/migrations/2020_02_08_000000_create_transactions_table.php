@@ -20,7 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->bigInteger('book_id')->unsigned();
             $table->foreign('book_id')->references('id')->on('books');
             $table->date('date_issued');
-            $table->date('date_due')->nullable();
+            $table->date('date_due');
             $table->date('date_returned')->nullable();
             $table->timestamps();
         });
