@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Viewing User: '. $logPatron->id )}}</div>
+                <div class="card-header">{{ __('Viewing Patron: '. $logPatron->id )}}</div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-5 col-md-4 text-right">Issued By:</div>
@@ -38,7 +38,7 @@
                     <div class="row">
                         <div class="col-5 col-md-4 text-right">Status:</div>
                         <div class="col-5 col-md-6">
-                            @if($patron->deactivated == 1)
+                            @if($logPatron->deactivated == 1)
                                 Deactivated
                             @else
                                 Active
