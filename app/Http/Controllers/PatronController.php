@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Book;
 use App\Patron;
+use App\Transaction;
 use App\LogPatron;
 use App\Rules\AlphaSpace;
 use App\Rules\ValidPHNumber;
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Validator;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\DB;
 
 class PatronController extends Controller
 {
@@ -253,4 +256,41 @@ class PatronController extends Controller
         if(auth()->user()->role == "Librarian") return redirect()->route('patrons.index')->With('success', $message);
         return redirect()->route('admin.patrons.index')->With('success', 'Patron has been successfully updated!');
     }
+
+    public function libraryRecords(Request $request) {
+            $records = NULL;
+            return view('patrons.libraryRecords')->with('records', $records);
+    }
+
+    
+    public function viewLibraryRecords(Request $request) {
+        $validate = $request->validate([
+            'lastName' => ['required'],
+            'firstName' => ['required'],
+            'email' => ['required']
+        ]);
+
+        $lastName = $request->input('lastName');
+        $firstName = $request->input('firstName');
+        $email = $request->input('email');
+
+        try {
+
+            $patron = DB::table('patrons')
+                    ->where('lastname', '=', $lastName)
+                    ->where('firstname', '=', $firstName)
+                    ->where('email', '=', $email)->first();
+
+            $records = Transaction::where('patron_id', '=', $patron->id)->get();
+
+            //Variable to allow me to get patron's name
+            $recordsName = Transaction::where('patron_id', '=', $patron->id)->first();
+
+        } catch (\ErrorException $exception) {
+            return back()->withError("User does not exist")->withInput();
+        }            
+        
+        return view('patrons.libraryRecords')->with('records', $records)->with('recordsName', $recordsName);
+    }
+    
 }
