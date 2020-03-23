@@ -31,10 +31,10 @@
                         <a href="{{ route('patron')}}">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">VIEW BOOKS</a>
+                        <a href="{{ route('patron.book.index') }}">VIEW BOOKS</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">MY BORROWED BOOKS</a>
+                        <a href="{{ route('patron.book.records') }}">MY BORROWED BOOKS</a>
                     </li>
                 @endguest
 
