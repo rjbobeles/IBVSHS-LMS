@@ -20,7 +20,9 @@
 */
 
 Route::middleware('guest')->group(function() {
-    Route::get('/', function () { return view('patron');})->name('patron');
+    Route::get('/', 'HomeController@patron')->name('patron');
+    Route::get('/books', 'BookController@PatronBooks')->name('patron.book.index');
+    Route::get('/books/{id}', 'BookController@PatronBook')->name('patron.book.single');
 
 });
 
