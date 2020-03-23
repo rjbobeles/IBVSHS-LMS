@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class DamageReport extends Model
 {
+    protected $fillable = [
+        'patron_id', 'book_id', 'actor_id', 'comment'
+    ];
+
     ///DamageReport <- User
     public function userDamageReport() {
         return $this->belongsTo('App\User', 'actor_id', 'id');
