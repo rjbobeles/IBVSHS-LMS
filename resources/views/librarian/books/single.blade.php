@@ -33,17 +33,20 @@
             <br/>
             
             <div class="row">
-                <div class="col-lg-6 center"><h6><b>Edition:</b> Standard</h6></div>
-                <div class="col-lg-6 center"><h6><b>Volume:</b> 1</h6></div>
+                <div class="col-lg-6 center"><h6><b>Edition:</b> {{ $book->edition }}</h6></div>
+                <div class="col-lg-6 center"><h6><b>Volume:</b> {{ $book->volume }} </h6></div>
             </div>
-            
-            <br/>
+        
+            <div class="row">
+                <div class="col-lg-6 center"><h6><b>Publishing Year:</b> {{ $book->year_published }}</h6></div>
+                <div class="col-lg-6 center"><h6><b>Publisher:</b> {{ $book->publisher }} </h6></div>
+            </div>
 
             <div class="row">
-                <div class="col-lg-6 center"><h6><b>Publishing Year:</b> 2010</h6></div>
-                <div class="col-lg-6 center"><h6><b>Publisher:</b> Scholastic</h6></div>
+                <div class="col-lg-6 center"><h6><b>Condition:</b> {{ $book->condition }}</h6></div>
+                <div class="col-lg-6 center"><h6><b>Status:</b>  {{ $book->status }} </h6></div>
             </div>
-
+            
             <br/><br/>
 
             <center>
@@ -58,5 +61,42 @@
             </center>
         </div>
     </div>
+    <br><br><br>
+    <hr>
+    <h4>Borrowing Log</h4> 
+                    
+    <table id="books-table" class="table table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Patron</th>
+                <th>Date Issued</th>
+                <th>Date Due</th>
+                <th>Date Returned</th>
+            </tr>
+        </thead>
+    </table>
 </div>
+@endsection
+
+
+@section('scripts')
+<script defer>
+    $(function() {
+        $('#books-table').DataTable({
+            processing: true,
+            serverside: true,
+            responsive: true,
+            "scrollX": true,
+            ajax: '{!! route('books.show.data', $book->id) !!}',
+            columns: [
+                { data: 'id', name: 'id', searchable: false, sortable : true, visible: true },
+                { data: 'patron', name: 'patron', searchable: true, sortable : true, visible: true },
+                { data: 'date_issued', name: 'date_issued', searchable: true, sortable : true, visible: true },
+                { data: 'date_due', name: 'date_due', searchable: true, sortable : false, visible: true },
+                { data: 'date_returned', name: 'date_due', searchable: true, sortable : false, visible: true },
+            ]
+        });
+    });
+</script>
 @endsection
