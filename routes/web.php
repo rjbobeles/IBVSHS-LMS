@@ -25,8 +25,8 @@ Route::middleware('guest')->group(function() {
     Route::get('/books/{id}', 'BookController@PatronBook')->name('patron.book.single');
 
     //Patrons
-    Route::get('/libraryRecords', 'PatronController@libraryRecords')->name('libraryRecords');
-    Route::post('/libraryRecords', 'PatronController@viewLibraryRecords')->name('libraryRecords');
+    Route::get('/records', 'PatronController@Records')->name('patron.book.records');
+    Route::post('/records', 'PatronController@ViewRecords')->name('patron.book.records');
 
 });
 

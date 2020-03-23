@@ -183,17 +183,15 @@ class TransactionController extends Controller
         }
         $book->update();
 
-        //Insert into Damage Report Table
-       /* $dmg_report = new DamageReport();
-        $dmg_report->patron_id = $request->input('patron_id');
-        $dmg_report->book_id = $request->input('book_id');
-        $dmg_report->actor_id = auth()->user()->id;
-        if ($request->input('comment')) {
-            $dmg_report->comment = $request->input('comment');
-        } else {
-            $dmg_report->comment = 'Book has no damages';
+        if ($request->input('comment') != null || $request->input('comment') != "")
+        {
+            DamageReport::create([
+                'patron_id' => $transactions->patron_id,
+                'book_id' => $transactions->book_id,
+                'actor_id' => auth()->user()->id,
+                'comment' => $request->input('comment')
+            ]);
         }
-        $dmg_report->save(); */
 
         return redirect()->route('transactions.create')->with('success', 'Book returned successfully!');
     }
