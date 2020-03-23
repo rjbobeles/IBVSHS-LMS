@@ -22,6 +22,10 @@
 Route::middleware('guest')->group(function() {
     Route::get('/', function () { return view('patron');})->name('patron');
 
+    //Patrons
+    Route::get('/libraryRecords', 'PatronController@libraryRecords')->name('libraryRecords');
+    Route::post('/libraryRecords', 'PatronController@viewLibraryRecords')->name('libraryRecords');
+
 });
 
 /*
