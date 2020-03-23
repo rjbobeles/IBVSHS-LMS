@@ -52,4 +52,13 @@ class HomeController extends Controller
         return view('admin');
     }
 
+    /**
+     * Show the patron dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function patron() 
+    {
+        return view('patron');
+    }
 }
