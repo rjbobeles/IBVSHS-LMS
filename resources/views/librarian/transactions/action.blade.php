@@ -5,5 +5,6 @@
 
     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="action-{{ $id }}">
         <a class="dropdown-item" href="{{ route('transactions.show', $id) }}">View Details</a>
+        <a class="dropdown-item" href="{{ route('transactions.returnBook', $id) }}">Return Book</a>
     </div>
 </div>

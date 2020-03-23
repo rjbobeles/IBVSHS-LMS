@@ -2,10 +2,6 @@
 
 @section('content')
     <h4><b>Return Book</b></h4>
-    <div class="navbooks">
-        <a class="#" href="Onborrowedbooks.html">On-Borrowed Books</a></li>
-        <a class="active" href="returnbooks.html">Return A Book</a></li>
-    </div>
     <br>
     <div class="row">
         <div class="col-6">
@@ -33,18 +29,6 @@
                         <input type="date" name="borrow_date" id="borrow_date" class="form-control book-input-box" 
                             value="{{ $transactions->date_issued }}" readonly />
                     </div>
-                    <div class="col-6">
-                        <!--Date Returned Label and Date Input-->
-                        <label for="date_returned" class="form-label">{{ __('Date Returned:') }}</label>
-                        <input type="date" name="date_returned" id="date_returned" 
-                            class="form-control book-input-box @error('date_returned') is-invalid @enderror" 
-                            value="{{ old('date_returned') }}" required placeholder="mm/dd/yyyy"/>
-                        @error('date_returned')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
                 </div>
                 <!--patron_id hidden field-->
                 <input type="text" name="patron_id" id="patron_id" value="{{ $transactions->patron_id }}" hidden/>
@@ -57,11 +41,11 @@
                         <div class="form-group">
                             <label for="condition" class="form-label">{{ __('Book Condition:') }}</label>
                             <select id="condition" name="condition" class="form-control book-input-box">
-                                <option value="Fine">Fine</option>
-                                <option value="Very Good">Very Good</option>
-                                <option value="Good">Good</option>
-                                <option value="Fair">Fair</option>
-                                <option value="Poor">Poor</option>
+                                <option @if($transactions->bookTransaction->condition == "Fine") checked @endif value="Fine">Fine</option>
+                                <option @if($transactions->bookTransaction->condition == "Very Good") checked @endif value="Very Good">Very Good</option>
+                                <option @if($transactions->bookTransaction->condition == "Good") checked @endif value="Good">Good</option>
+                                <option @if($transactions->bookTransaction->condition == "Fair") checked @endif value="Fair">Fair</option>
+                                <option @if($transactions->bookTransaction->condition == "Poor") checked @endif value="Poor">Poor</option>
                             </select>
                             @error('condition')
                                 <span class="invalid-feedback" role="alert">

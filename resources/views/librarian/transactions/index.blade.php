@@ -8,7 +8,7 @@
                 <div class="card-body">
                     @include('inc.messages')
 
-                    <h1 class="page-title"> Transactions </h1>
+                    <h1 class="page-title"> Borrowed Books </h1>
                     
                     <table id="transactions-table" class="table table-bordered" style="width:100%">
                         <thead>
@@ -16,6 +16,7 @@
                                 <th>ID</th>
                                 <th>Patron</th>
                                 <th>Book</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -40,9 +41,10 @@
                 { data: 'id', name: 'id', searchable: true, sortable : true, visible: true },
                 { data: 'patron', name: 'patron', searchable: true, sortable : true, visible: true },
                 { data: 'book', name: 'book', searchable: true, sortable : true, visible: true },
+                { data: 'status', name: 'status', searchable: false, sortable: true, visible: true},
+                { data: 'actions', name: 'actions', searchable: false, sortable : false, visible: true },
                 { data: 'patron_id', name: 'patron_id', searchable: true, sortable : false, visible: false },
                 { data: 'book_id', name: 'book_id', searchable: true, sortable : false, visible: false },
-                { data: 'actions', name: 'actions', searchable: false, sortable : false, visible: true },
             ]
         });
     });

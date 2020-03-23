@@ -7,8 +7,11 @@ use Illuminate\Support\Facades\DB;
 use App\Book;
 use App\LogBook;
 use App\User;
+use App\Patron;
 use App\Transaction;
+use App\LogTransaction;
 use App\DamageReport;
+use App\Rules\ValidDate;
 use Yajra\Datatables\Datatables;
 
 class TransactionController extends Controller
@@ -18,14 +21,21 @@ class TransactionController extends Controller
     }
 
     public function indexData() {
-        return DataTables::of(Transactions::select(['id', 'patron_id', 'book_id', 'date_issued', 'date_due', 'date_returned']))
+        return DataTables::of(Transaction::select(['id', 'patron_id', 'book_id', 'date_issued', 'date_due', 'date_returned']))
             ->addColumn('patron', function($row) {
-                return $row->patronTransaction->id . ' | ' . $row->$patronTransaction->lastname . ', ' . $row->$patronTransaction->firstname;
+                $patron = Patron::find($row->patron_id);
+                return $patron->lrn . ' | ' . $patron->lastname . ', ' . $patron->firstname . ' ' . $patron->middlename;
             })
             ->addColumn('book', function($row) {
-                return $row->bookTransaction->id . ' | ' . $row->$bookTransaction->title;
+                $book = Book::find($row->book_id);
+                return $book->barcodeno . ' | ' . $book->title;
+            })
+            ->addColumn('status', function($row) {
+                if($row->date_returned == null) return "Not Returned";
+                else return "Returned";
             })
             ->addColumn('actions', 'librarian.transactions.action')
+            ->rawColumns(['link', 'actions'])
             ->make(true);
     }
 
@@ -45,16 +55,22 @@ class TransactionController extends Controller
         if($request->get('query'))
         {
             $query = $request->get('query');
-            $data = DB::table('patrons')->where('lastname', 'LIKE', "%{$query}%")->orWhere('firstname', 'LIKE', "%{$query}%")->get();
+            $data = DB::table('patrons')
+                    ->where('lastname', 'LIKE', "%{$query}%")
+                    ->orWhere('firstname', 'LIKE', "%{$query}%")
+                    ->orWhere('lrn', 'LIKE', "%{$query}%")
+                    ->orderBy('lastname', 'ASC')
+                    ->orderBy('firstname', 'ASC')
+                    ->take(6)
+                    ->get();
+            
             $output = '<ul class="dropdown-menu autocomplete autocomplete-pos">';
-            $sugg_ctr = 0;
-            foreach($data as $row)
-            {
-                $output .= '<li class="p-1"><a href="#" style="text-decoration:none;color:black">'.$row->lastname.', '.$row->firstname.' '.$row->middlename.'</a></li>';
-                $sugg_ctr++;
-                if ($sugg_ctr == 6)
-                    break;
-            }
+            if(count($data) > 0) {
+                foreach($data as $row)
+                {
+                    $output .= '<li class="p-1">' . $row->lastname . ', ' . $row->firstname .', ' . $row->middlename . '</li>';
+                }
+            } else $output .= '<li class="p-1">NO RESULT FOUND</li>';
             $output .= '</ul>';
             return response()->json($output);
         }
@@ -66,20 +82,21 @@ class TransactionController extends Controller
         {
             $query = $request->get('query');
             $data = DB::table('books')
-                    ->where('title', 'LIKE', "%{$query}%")
-                    ->where('status', '!=', 'borrowed')
-                    ->where('status', '!=', 'reserved')
-                    ->where('status', '!=', 'archived')
-                    ->where('status', '!=', 'missing')->get();
+                    ->where(function($query) {
+                        where('title', 'LIKE', "%{$query}%") 
+                        ->orwhere('barcodeno', 'LIKE', "%{$query}%");
+                    })
+                    ->where('status', '==', 'available')
+                    ->take(6)
+                    ->get();
+
             $output = '<ul class="dropdown-menu autocomplete autocomplete-pos">';
-            $sugg_ctr = 0;
-            foreach($data as $row)
-            {
-                $output .= '<li class="p-1"><a class="p-1" style="text-decoration:none;color:black" href="#">'.$row->title.'</a></li>';
-                $sugg_ctr++;
-                if ($sugg_ctr == 6)
-                    break;
-            }
+            if(count($data)) {
+                foreach($data as $row)
+                {
+                    $output .= '<li class="p-1"><a class="p-1" style="text-decoration:none;color:black" href="#">' . $row->barcodeno . ' | ' . $row->title.'</a></li>';
+                }
+            } else $output .= '<li class="p-1">NO RESULT FOUND</li>';
             $output .= '</ul>';
             return response()->json($output);
         }
@@ -90,186 +107,50 @@ class TransactionController extends Controller
         $validate = $request->validate([
             'borrower' => ['required'],
             'book' => ['required'],
-            'date_issued' => ['required'],
-            'date_due' => ['required']
+            'date_due' => ['required', 'after:today', new ValidDate()]
         ]);
-        
+    
         $borrower = $request->input('borrower');
-        $brw_arr = str_split($borrower);
-        $numbers_arr = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-        $lastname_arr = array();
-        $temp_firstname_arr = array();
-        $firstname_arr = array();
-        $space_ctr = 0;
-        $comma_ctr = 0;
-        $isNum = '';
-
-        foreach ($numbers_arr as $num) {
-            if ($num == $brw_arr[0]) {
-                $isNum = True;
-                break;
-            } else {
-                $isNum = False;
-            }
-        }
-
-        if ($isNum == True) {
-            $patron_arr = DB::table('patrons')->where('lrn', '=', $borrower)->first(array('id', 'lastname'));
-        } else {
-            //Get {lastname}
-            foreach ($brw_arr as $x) {
-                if ($x != ',') {
-                    array_push($lastname_arr, $x);
-                } else if ($x == ',') {
-                    break;
-                } 
-            }
-
-            //Get {lastname}, {firstname}
-            foreach ($brw_arr as $y) {
-                if ($y == ' ') {
-                    $space_ctr += 1;
-                } else if ($space_ctr != 2) {
-                    array_push($temp_firstname_arr, $y);
-                } else if ($space_ctr == 2) {
-                    break;
-                }
-            }
-
-            //Get {firstname}
-            foreach ($temp_firstname_arr as $z) {
-                if ($z == ',') {
-                    $comma_ctr += 1;
-                } else if ($comma_ctr == 1) {
-                    array_push($firstname_arr, $z);
-                }
-            }
-            $lastname = implode($lastname_arr);
-            $firstname = implode($firstname_arr);
-            $patron_arr = DB::table('patrons')->where('lastname', '=', $lastname)->where('firstname', '=', $firstname)->first(array('id', 'lastname'));
-        }
-
-        $book = $request->input('book');
-        $input_format_arr = str_split($book);
-
-        if ($input_format_arr[0] == '2') {
-            $book_arr = DB::table('books')->where('barcodeno', '=', $book)->first(array('id', 'title'));
-        } else {
-            $book_arr = DB::table('books')->where('title', '=', $book)->first(array('id', 'title'));
-        }
+        $borrower_n = explode(', ', $borrower);
+        if(count($borrower_n) <= 2) return redirect()->back()->withError("User not found. Make sure to choose from the suggestions listed below.")->withInput(); 
         
-        try {
-            $transactions = new Transaction();
-            $transactions->patron_id = $patron_arr->id;
-            $transactions->book_id = $book_arr->id;
-            $transactions->date_issued = $request->input('date_issued');
-            $transactions->date_due = $request->input('date_due');
-            $transactions->date_returned = NULL;
-            $transactions->save();
-        } catch (\ErrorException $exception) {
-            return back()->withError("User / Book not found. Make sure to choose from the suggestions given by the dropdown list.")->withInput();
-        }
+        if(is_numeric($borrower)) $patron_arr = DB::table('patrons')->where('lrn', '=', $borrower)->first(array('id', 'lastname'));
+        else $patron_arr = DB::table('patrons')->where('lastname', '=', $borrower_n[0])->where('firstname', '=', $borrower_n[1])->where('middlename', '=', $borrower_n[2])->first(array('id'));
+         
+        $book = $request->input('book');
+        $book_n = explode(' | ', $book);
+        if(count($book_n) <= 1) return redirect()->back()->withError("Book not found. Make sure to choose from the suggestions listed below.")->withInput(); 
+
+        $book_arr = DB::table('books')->where('barcodeno', '=', $book_n[0])->where('title', '=', $book_n[1])->first(array('id'));
+        
+        if($book_arr == null)  return redirect()->back()->withError("Book not found. Make sure to choose from the suggestions listed below.")->withInput();
+        if($patron_arr == null) return redirect()->back()->withError("User not found. Make sure to choose from the suggestions listed below.")->withInput();
+            
+        $transaction = Transaction::create([
+            'patron_id' => $patron_arr->id,
+            'book_id' => $book_arr->id,
+            'date_issued' => date('o-m-d'),
+            'due_date' => $request->input('date_due'),
+            'date_returned' => null
+        ]);       
+
+        LogTransaction::create([
+            'actor_id' => auth()->user()->id,
+            'action' => 'Create Transaction',
+            'transaction_id' => $transaction->id,
+            'patron_id' => $transaction->patron_id,
+            'book_id' => $transaction->book_id,
+            'date_issued' => $transaction->date_issued,
+            'date_due' => $transaction->date_due,
+            'date_returned' => $transaction->date_returned
+        ]);
 
         $book_id = $book_arr->id;
         $books = Book::find($book_id);
         $books->status = "Borrowed";
-        $books->update();
+        $books->save(); 
 
-        return redirect()->route('transactions.create')->with('success', 'New Transaction Created!');        
-    }
-
-    public function edit($id)
-    {
-        $transactions = Transaction::find($id);
-        return view('librarian.transactions.edit')->with('transactions', $transactions);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $validate = $request->validate([
-            'borrower' => ['required'],
-            'book' => ['required'],
-            'date_issued' => ['required'],
-            'date_due' => ['required']
-        ]);
-
-        $borrower = $request->input('borrower');
-        $brw_arr = str_split($borrower);
-        $numbers_arr = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-        $lastname_arr = array();
-        $temp_firstname_arr = array();
-        $firstname_arr = array();
-        $space_ctr = 0;
-        $comma_ctr = 0;
-        $isNum = '';
-
-        foreach ($numbers_arr as $num) {
-            if ($num == $brw_arr[0]) {
-                $isNum = True;
-                break;
-            } else {
-                $isNum = False;
-            }
-        }
-        
-        if ($isNum == True) {
-            $patron_arr = DB::table('patrons')->where('lrn', '=', $borrower)->first(array('id', 'lastname'));
-        } else {
-            //Get {lastname}
-            foreach ($brw_arr as $x) {
-                if ($x != ',') {
-                    array_push($lastname_arr, $x);
-                } else if ($x == ',') {
-                    break;
-                } 
-            }
-
-            //Get {lastname}, {firstname}
-            foreach ($brw_arr as $y) {
-                if ($y == ' ') {
-                    $space_ctr += 1;
-                } else if ($space_ctr != 2) {
-                    array_push($temp_firstname_arr, $y);
-                } else if ($space_ctr == 2) {
-                    break;
-                }
-            }
-
-            //Get {firstname}
-            foreach ($temp_firstname_arr as $z) {
-                if ($z == ',') {
-                    $comma_ctr += 1;
-                } else if ($comma_ctr == 1) {
-                    array_push($firstname_arr, $z);
-                }
-            }
-            $lastname = implode($lastname_arr);
-            $firstname = implode($firstname_arr);
-            $patron_arr = DB::table('patrons')->where('lastname', '=', $lastname)->where('firstname', '=', $firstname)->first(array('id', 'lastname'));
-        }
-
-        $book = $request->input('book');
-        $input_format_arr = str_split($book);
-
-        if ($input_format_arr[0] == '2') {
-            $book_arr = DB::table('books')->where('barcodeno', '=', $book)->first(array('id', 'title'));
-        } else {
-            $book_arr = DB::table('books')->where('title', '=', $book)->first(array('id', 'title'));
-        }
-
-        try {
-            $transactions = Transaction::find($id);
-            $transactions->patron_id = $patron_arr->id;
-            $transactions->book_id = $book_arr->id;
-            $transactions->date_issued = $request->input('date_issued');
-            $transactions->date_due = $request->input('date_due');
-            $transactions->date_returned = NULL;
-            $transactions->save();
-        } catch (\ErrorException $exception) {
-            return back()->withError("User / Book not found. Make sure to choose from the suggestions given by the dropdown list.")->withInput();
-        }
-        
-        return redirect()->route('transactions.create')->with('success', 'Transaction has been successfully updated!');
+        return redirect()->route('transactions.index')->with('success', 'A new transaction has been created!');     
     }
 
     public function returnBook($id)
@@ -281,30 +162,29 @@ class TransactionController extends Controller
     public function returnBookStore(Request $request, $id)
     {
         $validate = $request->validate([
-            'date_returned' => ['required'],
             'condition' => ['required'],
             'status' => ['required']
         ]);
         
         //Update Transactions Table
         $transactions = Transaction::find($id);
-        $transactions->date_returned = $request->input('date_returned');
+        $transactions->date_returned = date('o-m-d');
         $transactions->save();
 
         //Update Books Table
-        $book_id = $request->input('book_id');
-        $book = Book::find($book_id);
+        $book = Book::find($transactions->book_id);
         $book->condition = $request->input('condition');
+        
         $status = $request->input('status');
         if ($status == 'Returned') {
             $book->status = "Available";
         } else {
-            $book->status = $status;
+            $book->status = "Missing";
         }
         $book->update();
 
         //Insert into Damage Report Table
-        $dmg_report = new DamageReport();
+       /* $dmg_report = new DamageReport();
         $dmg_report->patron_id = $request->input('patron_id');
         $dmg_report->book_id = $request->input('book_id');
         $dmg_report->actor_id = auth()->user()->id;
@@ -313,7 +193,7 @@ class TransactionController extends Controller
         } else {
             $dmg_report->comment = 'Book has no damages';
         }
-        $dmg_report->save();
+        $dmg_report->save(); */
 
         return redirect()->route('transactions.create')->with('success', 'Book returned successfully!');
     }
