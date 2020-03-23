@@ -15,7 +15,7 @@ use App\Rules\ISBN;
 use Yajra\Datatables\Datatables;
 
 class BookController extends Controller
-{
+{    
     /**
      * Display a listing of the resource.
      *
@@ -240,5 +240,46 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Search for a book based on user input
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function PatronBooks(Request $request)
+    {
+        $message = null;
+        if(isset($request->s))
+        {
+            $input = htmlspecialchars($request->s);
+            $input = strip_tags($input, '');
+
+            $books = Book::where('title', 'LIKE', "%{$input}%")
+                ->orWhere('author', 'LIKE', "%{$input}%")
+                ->orWhere('genre', 'LIKE', "%{$input}%")
+                ->orWhere('publisher', 'LIKE', "%{$input}%")
+                ->orWhere('isbn', 'LIKE', "%{$input}%")
+                ->get();
+
+            if(count($books) > 1) return view('patron.books')->with('book', $books);
+            $message = 'No results came from your search. Try again.';
+        }
+      
+        $books = Book::orderBy('title', 'asc')->paginate(10);
+        return view('patron.books')->with('books', $books)->with('message', $message);
+    }
+
+    /**
+     * Show book information to Patron 
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function PatronBook($id)
+    {
+        $book = Book::find($id);
+        return view('patron.books.single')->with('book', $book);
     }
 }
