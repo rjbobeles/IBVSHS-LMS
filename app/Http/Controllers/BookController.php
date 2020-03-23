@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Book;
 use App\LogBook;
+use App\Patron;
+use App\Transaction;
 use App\User;
 use App\Rules\AlphaSpace;
 use App\Rules\ISBN;
@@ -25,7 +27,7 @@ class BookController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a datatable of the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -128,6 +130,21 @@ class BookController extends Controller
     {
         $book = Book::find($id);
         return view('librarian.books.single')->with('book', $book);
+    }
+
+    /**
+     * Display a datatable of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showData($id) 
+    {
+        return Datatables::of(Transaction::get(['id', 'patron_id', 'book_id', 'date_issued', 'date_due', 'date_returned'])->where('book_id', "==", $id))
+            ->addColumn('patron', function($row) {
+                $patron = Patron::find($row->patron_id);
+                return $patron->lrn . ' | ' . $patron->lastname . ', ' . $patron->firstname . ' ' . $patron->middlename;
+            })
+            ->make(true);   
     }
 
     /**
