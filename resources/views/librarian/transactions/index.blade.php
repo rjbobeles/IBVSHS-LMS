@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="col-md-12">
 		@include('inc.messages')
-        <h3><strong >Borrowed Books</strong></h3>
+        <h1 class="page-title"><strong>Borrowed Books</strong></h1>
         <hr/>
         <div class="row mt-4">
             <div class="table-responsive">
