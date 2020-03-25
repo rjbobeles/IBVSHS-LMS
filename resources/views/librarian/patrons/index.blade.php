@@ -1,28 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col">        
-            <div class="card">
-                <div class="card-body">
-                    @include('inc.messages')
-
-                    <h1 class="page-title"> Patrons <a href="{{route('patrons.create') }}" class="btn btn-lms btn-sm">Add Patron</a> </h1>
-                    
-                    <table id="patrons-table" class="table table-bordered" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                    </table> 
-                </div>
+<div class="container mt-5">
+    <div class="col-md-12">
+		@include('inc.messages')
+        <h1 class="page-title"><strong>Patrons</strong><a href="{{route('patrons.create') }}" class="btn btn-lms btn-sm">Add Patron</a></h1>
+        <hr/>
+        <div class="row mt-4">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover shadow" id="data-table">
+                    <thead>
+                        <tr>
+							<th>ID</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Role</th>
+							<th>Status</th>
+							<th>Actions</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
