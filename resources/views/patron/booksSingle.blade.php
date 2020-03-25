@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<<<<<<< HEAD
     <div class="container">
+=======
+<div class="card">
+>>>>>>> frontendwork
     <h4>
         <strong>{{ $book->title}}</strong>
     </h4>
