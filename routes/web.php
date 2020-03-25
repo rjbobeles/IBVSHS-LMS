@@ -20,7 +20,7 @@
 */
 
 Route::middleware('guest')->group(function() {
-    Route::get('/', 'HomeController@patron')->name('patron');
+    Route::get('/', function() {return view('patron'); })->name('patron');
     Route::get('/books', 'BookController@PatronBooks')->name('patron.book.index');
     Route::get('/books/{id}', 'BookController@PatronBook')->name('patron.book.single');
 
@@ -113,7 +113,7 @@ Route::middleware('auth', 'verified', 'isAdmin', 'isActive')->group(function() {
     Route::prefix('admin')->group(function () {
 
          //Admin Homepage
-         Route::get('/', 'HomeController@Admin')->name('admin');
+         Route::get('/', 'HomeController@Admin')->name('patron');
 
         //Patron Controller
         Route::get('/patrons/', 'PatronController@index')->name('admin.patrons.index');
