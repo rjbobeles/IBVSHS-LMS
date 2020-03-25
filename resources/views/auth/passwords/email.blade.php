@@ -37,7 +37,7 @@
                                 <a href="user.html" class="btn shadow" id="add-edit-btn">Back</a>
                             </div>
                             <div class="col" id="form-left">
-                                <button type="submit" class="btn shadow" id="add-edit-btn" >Send Password Reset Link</button>
+                                <button type="submit" class="btn shadow" id="add-edit-btn" >Send Link</button>
                             </div>
                             <br/><br/><br/>
                         </div>
