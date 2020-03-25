@@ -1,27 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col">        
-            <div class="card">
-                <div class="card-body">
-                    @include('inc.messages')
-
-                    <h1 class="page-title"> Borrowed Books </h1>
-                    
-                    <table id="transactions-table" class="table table-bordered" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Patron</th>
-                                <th>Book</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                    </table> 
-                </div>
+<div class="container mt-5">
+    <div class="col-md-12">
+		@include('inc.messages')
+        <h3><strong >Borrowed Books</strong></h3>
+        <hr/>
+        <div class="row mt-4">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover shadow" id="data-table">
+                    <thead>
+                        <tr>
+							<th>ID</th>
+							<th>Patron</th>
+							<th>Book</th>
+							<th>Status</th>
+							<th>Actions</th>
+							<th>Patron ID</th>
+							<th>Book ID</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
