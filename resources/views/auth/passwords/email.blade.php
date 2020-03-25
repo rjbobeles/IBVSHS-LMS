@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-
-    <h3><strong style="font-family: Raleway;">Reset Password</strong></h3>
+<div class="mt-5 text-center">
+    <h3><strong style="font-family: Raleway;">{{ __('Reset Password') }}</strong></h3>
     <br/><br/><hr/><br/>
     <div class="container">
         <div class="col-12 mx-auto"></div>
