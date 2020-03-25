@@ -11,13 +11,11 @@
                 <table class="table table-striped table-hover shadow" id="data-table">
                     <thead>
                         <tr>
-							<th>ID</th>
-							<th>Patron</th>
-							<th>Book</th>
-							<th>Status</th>
-							<th>Actions</th>
-							<th>Patron ID</th>
-							<th>Book ID</th>
+                            <th>ID</th>
+                            <th>Patron</th>
+                            <th>Book</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                 </table>
