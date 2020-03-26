@@ -29,7 +29,7 @@ $rabbit: #c3c3c3;
 
 textarea:focus, textarea.form-control:focus, input.form-control:focus, input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=number]:focus, [type=text].form-control:focus, [type=password].form-control:focus, [type=email].form-control:focus, [type=tel].form-control:focus, [contenteditable].form-control:focus, select:focus {
     box-shadow: none !important;
-}
+} 
 
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn:active:focus, .btn:focus {
     background-image: none;
@@ -52,10 +52,22 @@ h1.page-title {
     }
 }
 
+h1.page-title + .btn-lms {
+    margin-bottom: 0.5rem !important; 
+    margin-left: 0.5rem !important; 
+}
+
 .btn-lms {
     background-color: none;
     border: 1px solid $burger;
-    border-radius: 100px;
+    border-radius: 5px;
+    color: $burger; 
+}
+
+.btn-lms:hover {
+    background-color: $burger; 
+    color: white;
+    box-shadow: 0 0 5px rgba(150, 12, 21, 0.425) !important;
 }
 
 .btn-lms2 {
@@ -518,7 +530,7 @@ div#update {
         border:none;
         width:90px;
     }
-
+    
     #thead-btn {
         margin-top:5px;
         border-radius: 100px; 
@@ -526,21 +538,13 @@ div#update {
         color: #6e080f; 
         background-color: transparent;
     }
-
+    
     #homepage-btn {
         border-color: #fecc59; 
         color: #fecc59; 
         background-color: transparent;
     }
-
-    thead {
-        background-color: #6e080f;
-        color: white;
-    }
-
-    .table-hover tbody tr:hover td {
-        background: #fecc59;
-    }
+   
 
     #add-edit-btn {
         width:140px;
@@ -944,3 +948,4 @@ div#update {
     }
 }
 }
+

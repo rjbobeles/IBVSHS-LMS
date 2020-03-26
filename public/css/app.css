@@ -273,7 +273,7 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Nunito", sans-serif;
+  --font-family-sans-serif: "Muli", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -305,7 +305,7 @@ section {
 
 body {
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Muli", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.5;
@@ -6953,7 +6953,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Muli", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -7078,7 +7078,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Muli", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -17547,7 +17547,7 @@ div#nav {
 }
 
 div#nav nav#colnav {
-  box-shadow: 0px 2px 10px rgba(150, 150, 150, 0.5);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
   padding: 5px;
   font-family: "Raleway", "Times New Roman";
   font-size: 14px;
@@ -17767,40 +17767,48 @@ div.dataTables_wrapper .row {
   margin: 20px 0px 20px 0px;
 }
 
+div.dataTables_wrapper .row:nth-child(2) {
+  padding-bottom: 3.4vw;
+  overflow-x: auto;
+}
+
+div.dataTables_wrapper .row:nth-child(2) .dataTables_scrollHead,
+div.dataTables_wrapper .row:nth-child(2) .dataTables_scrollBody {
+  overflow: visible !important;
+}
+
 div.dataTables_wrapper .dataTables_length select,
 div.dataTables_wrapper .dataTables_filter select {
-  border-color: #6e080f;
+  border-color: #cfcfcf;
 }
 
 div.dataTables_wrapper .dataTables_length select:focus,
 div.dataTables_wrapper .dataTables_filter select:focus {
-  border-color: #6e080f;
+  border-color: rgba(110, 8, 15, 0.5);
+  box-shadow: 0 0 5px rgba(192, 16, 28, 0.336) !important;
   outline-color: none;
 }
 
 div.dataTables_wrapper .dataTables_length input,
 div.dataTables_wrapper .dataTables_filter input {
-  border-color: #6e080f;
+  border-color: #cfcfcf;
 }
 
 div.dataTables_wrapper .dataTables_length input:focus,
 div.dataTables_wrapper .dataTables_filter input:focus {
-  border-color: #6e080f;
+  border-color: rgba(110, 8, 15, 0.5);
+  box-shadow: 0 0 5px rgba(192, 16, 28, 0.336) !important;
   outline-color: none;
 }
 
 div.dataTables_wrapper ul.pagination li .page-link {
-  background-color: #6e080f;
-  color: white;
-}
-
-div.dataTables_wrapper ul.pagination li .page-link {
-  color: #fecc59;
+  color: #6e080f;
 }
 
 div.dataTables_wrapper ul.pagination li.active .page-link {
-  color: #fecc59;
+  color: white;
   border-color: #fecc59;
+  background-color: #6e080f;
 }
 
 div.dataTables_wrapper ul.pagination li.disabled .page-link {
@@ -17814,10 +17822,40 @@ div.dataTables_wrapper table {
 div.dataTables_wrapper table thead {
   background-color: #6e080f;
   color: white;
+  font-family: "Raleway";
+}
+
+div.dataTables_wrapper table thead th {
+  font-weight: normal !important;
 }
 
 div.dataTables_wrapper table tbody {
-  background-color: #f2f2f2;
+  background-color: #fcfcfc;
+}
+
+div.dataTables_wrapper .table-hover tbody tr:hover td {
+  background: #f3eded;
+}
+
+div.dataTables_wrapper .table-bordered th,
+div.dataTables_wrapper .table-bordered td {
+  border: none;
+}
+
+.dropdown-toggle::before {
+  content: none !important;
+}
+
+.table-action-menu:hover .dropdown-menu {
+  display: block;
+  -webkit-transform: translate(27px);
+          transform: translate(27px);
+}
+
+.table-action-menu .dropleft .dropdown-menu {
+  -webkit-transform: translateX(-142px) !important;
+          transform: translateX(-142px) !important;
+  left: 0;
 }
 
 .error-row {
@@ -17908,10 +17946,22 @@ h1.page-title {
   }
 }
 
+h1.page-title + .btn-lms {
+  margin-bottom: 0.5rem !important;
+  margin-left: 0.5rem !important;
+}
+
 .btn-lms {
   background-color: none;
   border: 1px solid #6e080f;
-  border-radius: 100px;
+  border-radius: 5px;
+  color: #6e080f;
+}
+
+.btn-lms:hover {
+  background-color: #6e080f;
+  color: white;
+  box-shadow: 0 0 5px rgba(150, 12, 21, 0.425) !important;
 }
 
 .btn-lms2 {
@@ -18367,15 +18417,6 @@ div#update #back {
     border-color: #fecc59;
     color: #fecc59;
     background-color: transparent;
-  }
-
-  thead {
-    background-color: #6e080f;
-    color: white;
-  }
-
-  .table-hover tbody tr:hover td {
-    background: #fecc59;
   }
 
   #add-edit-btn {

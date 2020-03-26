@@ -3,42 +3,49 @@ div.dataTables_wrapper
     .row {
         margin: 20px 0px 20px 0px;
     }
+
+    .row:nth-child(2) {
+        padding-bottom: 3.4vw; 
+        overflow-x: auto; 
+        .dataTables_scrollHead, .dataTables_scrollBody {
+            overflow: visible !important; 
+        }
+    }
     
     .dataTables_length, .dataTables_filter {
         select {
-            border-color: #6e080f;
+            border-color: #cfcfcf;
         }
     
         select:focus{
-            border-color: #6e080f;
+            border-color: rgba(110, 8, 15, 0.5);
+            box-shadow: 0 0 5px rgba(192, 16, 28, 0.336) !important; 
             outline-color :  none;
         }
     
         input {
-            border-color: #6e080f;
+            border-color: #cfcfcf;
         }
     
         input:focus{
-            border-color: #6e080f;
+            border-color: rgba(110, 8, 15, 0.5);
+            box-shadow: 0 0 5px rgba(192, 16, 28, 0.336) !important; 
             outline-color :  none;
         }
     }
 
     ul.pagination li{
         .page-link {        
-            background-color: #6e080f;
-            color: white;
+            color: #6e080f;
         }
 
-        .page-link {
-            color:#fecc59
-        }
     }
 
     ul.pagination li.active {
         .page-link {
-            color:#fecc59;
+            color:white;
             border-color: #fecc59;
+            background-color: #6e080f; 
         }
     }
 
@@ -53,11 +60,50 @@ div.dataTables_wrapper
         margin-bottom: 0;
         thead {
             background-color: #6e080f;
-            color:white;
+            color: white;
+            font-family: 'Raleway';  
+            th {
+                font-weight: normal !important; 
+            }
         }
 
         tbody {
-            background-color: #f2f2f2;
+            background-color: #fcfcfc;
         } 
+        
+    }
+
+    .table-hover tbody tr:hover td {
+        background: #f3eded;
+    }
+
+    .table-bordered {
+        th, td {
+            border: none; 
+        }
+    }
+
+}
+
+//Drop down options
+
+.dropdown-toggle::before { 
+    content: none !important; 
+} 
+
+
+
+.table-action-menu:hover {
+    .dropdown-menu{
+        display: block; 
+        transform: translate(27px); 
+    }  
+}
+
+.table-action-menu {
+    .dropleft .dropdown-menu {
+        transform: translateX(-142px) !important; 
+        left: 0; 
     }
 }
+
