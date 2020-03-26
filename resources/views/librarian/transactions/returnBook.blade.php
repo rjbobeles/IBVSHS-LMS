@@ -1,15 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-    <h4><b>Return Book</b></h4>
+    <div class="row text-center page-heading">
+        <div class="col">
+            <h1 class="mt-4 ">Return a Book</h1>
+            <p class="mb-5">Mark a borrowed book as returned. <br /> 
+                If a book is being returned in a damaged state, fill in the necessary details to create a Damage Report. 
+            </p>
+            <hr class="mb-5"/>
+        </div>
+    </div>
     <br>
     <div class="row">
         <div class="col-6">
             <!--Borrowed Book Label with image, title, and author-->
-            <h6>Borrowed Book/s:</h6>
             <div class="card book-input-box">
                 <div class="card-body text-center">
-                    <img class="pb-4" style="width:50%" src="/storage/book_images/{{ $transactions->bookTransaction->book_image }}"/>
+                    <img class="pb-4" style="width:50%;" src="/storage/book_images/{{ $transactions->bookTransaction->book_image }}"/>
                     <h6><b>{{ $transactions->bookTransaction->title }}</b></h6>
                     <small>by {{ $transactions->bookTransaction->author }}</small>
                 </div>
@@ -19,7 +26,7 @@
             <form method="POST" id="return_book_store" action="{{ route('transactions.returnBookStore', $transactions->id) }}">
                 @csrf
                 <!--Borrowing User Label and Read Only Text Input-->
-                <label for="borrowing_user" class="form-label">Borrowing User:</label>
+                <label for="borrowing_user" class="form-label">Borrower:</label>
                 <input type="text" name="borrowing_user" id="borrowing_user" class="form-control book-input-box" 
                     value="{{ $transactions->patronTransaction->lastname }}, {{ $transactions->patronTransaction->firstname }} {{ $transactions->patronTransaction->middlename }}" readonly/><br>
                 <div class="row">
@@ -77,72 +84,56 @@
             <!--Damage Report Textarea Input-->
             {{-- <textarea name="comment" rows="7" class="form-control book-input-box" form="return_book_store" placeholder="Damage Report...">
             </textarea> --}}
-             <div class="mt-5 text-center">
-          <h3><strong style="font-family: Raleway;">Report Damage</strong></h3>
-          Add new damaged book report
-          <br/><br/><hr/><br/>
-          <div class="container">
-              <div class="col-12 mx-auto"></div>
-                  <div class="card shadow">
-                      <div class="card-header" id="card-header">
-                          <h5>Book Details</h5>
-                      </div>
-                      <div class="card-body">
-                          <br/>
-                          <form action="{{ route('transactions.returnBookStore', $transactions->id) }}" method="POST">
-                              <div class="row mb-2">
-                                  <div class="col my-auto" id="form-label-left">
-                                      <strong>
-                                          <p>Book Title&nbsp;</p>
-                                      </strong>
-                                  </div>
-                                  <div class="col mr-lg-5 my-auto" id="form-input-right" >
-                                    <input type="text" name="booktitle" class="form-control" value="{{ $transactions->bookTransaction->title }}" readonly>
-                                  </div>
-                              </div>
-                              <div class="row mb-2">
-                                  <div class="col my-auto" id="form-label-left" >
-                                      <strong>
-                                          <p>Date Damaged:&nbsp;</p>
-                                      </strong>
-                                  </div>
-                                  <div class="col mr-lg-5 my-auto" id="form-input-right">
-                                      <input type="date" name="date_returned" id="date_returned" 
-                                        class="form-control book-input-box @error('date_returned') is-invalid @enderror" 
-                                        value="{{ $transactions->date_issued }}" readonly />
-                                  </div>
-                              </div>
-                              <div class="row mb-2">
-                                  <div class="col my-auto" id="form-label-left" >
-                                      <strong>
-                                          <p >Borrower:&nbsp;</p>
-                                      </strong>
-                                  </div>
-                                  <div class="col mr-lg-5" id="form-input-right">
-                                      <input type="text" name="borrower" class="form-control" 
-                                      value="{{ $transactions->patronTransaction->lastname }}, {{ $transactions->patronTransaction->firstname }} {{ $transactions->patronTransaction->middlename }}" readonly>
-                                  </div>
-                              </div>
-                              <div class="row mb-2">
-                                  <div class="col my-auto" id="form-label-left" >
-                                      <strong>
-                                          <p >Comment:&nbsp;</p>
-                                      </strong>
-                                  </div>
-                                  <div class="col mr-lg-5 my-auto" id="form-input-right">
-                                      <input type="text" name="comment" class="form-control book-input-box" form="return_book_store">
-                                  </div>
-                              </div>
-                              <br/>
-                          </form>
-                      </div>
-                  </div>  
-              </div>
-              <br/><br/><br/>
-          </div>
-            <br>
-            <!--Submit label linked to submit hidden field-->
-            <label for="submit_form" class="btn btn-danger confirm" tabindex="0">{{ __('Confirm Returned Books') }}</label>
         </div>
     </div>
+    <hr class="mt-5"/> 
+    <div class="row">
+        <div class="container pt-3">
+            <h3 class="d-block"><strong>Damage Report</strong></h3>
+            Fill in the details below only if the book is being returned in <strong> a damaged state</strong> compared to when it was issued. 
+            <div class="col-12 mx-auto pt-4"></div>
+                <div class="card shadow ">
+                    <div class="card-body">
+                        <form action="{{ route('transactions.returnBookStore', $transactions->id) }}" method="POST">
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <div class="form-row mb-3">
+                                        <label for="booktitle">Book Title</label>
+                                        <input type="text" name="booktitle" id="booktitle" class="form-control" value="{{ $transactions->bookTransaction->title }}" readonly>
+                                    </div> 
+                                    <div class="form-row mb-3">
+                                        <label for="date_damaged">Date Damage was Discovered</label>
+                                        <input type="date" name="date_returned" id="date_damaged" 
+                                        class="form-control book-input-box @error('date_returned') is-invalid @enderror" 
+                                        value="{{ $transactions->date_issued }}" readonly />
+                                    </div>
+                                    <div class="form-row mb-3">
+                                        <label for="borrower_dr">Borrower</label>
+                                        <input type="text" name="borrower" class="form-control" id="borrower_dr"
+                                        value="{{ $transactions->patronTransaction->lastname }}, {{ $transactions->patronTransaction->firstname }} {{ $transactions->patronTransaction->middlename }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-row mb-3">
+                                        <label for="comment_dr">Comment</label>
+                                        <textarea name="comment" id="comment_dr" class="form-control" placeholder="Describe the damage..." form="return_book_store"></textarea>
+                                    </div>
+                                </div>
+                            </div> 
+                            <br/>
+                        </form>
+                    </div>
+                </div>  
+            </div>
+            <br/><br/><br/>
+
+        <br>
+        <!--Submit label linked to submit hidden field-->
+    </div>
+        <div class="row mt-5">
+            <div class="col-md-12 justify-content-end d-flex mt-3">
+            <label for="submit_form" class="btn btn-lms-solid confirm" tabindex="0">{{ __('Confirm Returned Book') }}</label>
+            </div>
+            
+        </div>
 @endsection

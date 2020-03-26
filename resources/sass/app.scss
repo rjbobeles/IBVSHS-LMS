@@ -33,6 +33,14 @@ textarea:focus, textarea.form-control:focus, input.form-control:focus, input[typ
     text-decoration: none;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', 'sans-serif'; 
+}
+
+label {
+    font-family: 'Raleway', sans-serif; 
+    font-weight: bold; 
+}
 
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn:active:focus, .btn:focus {
     background-image: none;
@@ -135,11 +143,9 @@ div#homepage {
     
     .caption {
         display: block;
-        color: #222222;
         text-align: center;
         padding: 5px 8px;
         text-decoration: none;
-        font-size: 13px;
     }
     
     .center {
@@ -147,6 +153,7 @@ div#homepage {
         margin-left: auto;
         margin-right: auto;
         width: 50%;
+        max-width: 150px; 
     }
     
     .thumbnail:hover{
@@ -158,11 +165,10 @@ div#homepage {
         padding-top: 35px;
         height:220px;
         background-color:#dedfdf;
-    }
+    } 
     
     .caption a {
         display: block;
-        color: #222222;
         text-align: center;
         text-decoration: none;
         font-size: 18px;
@@ -290,13 +296,11 @@ div#create {
         background-color:#f0f0f0;
     }
 
+    /* 
     label {
         font-weight: bold;
-    }
+    } */  
 
-    #back {
-        text-align: right;
-    }
 }
 
 //librarian update book
@@ -305,11 +309,11 @@ div#update {
         font-size:20pt;
         background-color:#f0f0f0;
     }
-
+    /*
     #title {
         margin-top: 15px;
         margin-bottom: 30px;
-    }
+    } */
 
     label {
         font-weight: bold;
@@ -358,12 +362,12 @@ div#update {
 .navbooks a.active {
     border-bottom: 1.5px solid #fecc59;
 }
-
+/*
 .book-input-box {
     border-color: black;
     border-radius: 5px;
 }
-
+*/
 .confirm {
     text-decoration-color: blanchedalmond;
 }
@@ -767,6 +771,10 @@ div#update {
         color: #424242;
         font-size: 14px;
     }
+
+    .thb-div {
+        border-right: 1px solid rgba(184, 184, 184, 0.329)
+    }
 }
 
 @media only screen and (min-width: 1000px) {
@@ -958,6 +966,7 @@ div#update {
 
 
 //patron homepage css
+/*
 body.patronIndex{
     color: #222222;;
     font-family: 'Raleway', FontAwesome;
@@ -966,6 +975,7 @@ body.patronIndex{
     margin: 0;
     text-decoration: none;
 }
+
 
 input[type=text].patronIndex, select {
     width: 38%;
@@ -976,7 +986,7 @@ input[type=text].patronIndex, select {
     border-radius: 40px;
     box-sizing: border-box;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
+} 
 
 input[type="submit"].patronIndex {
     margin-left: -50px;
@@ -996,13 +1006,15 @@ input[type="submit"].patronIndex:hover {
     border: 0;
 }
 
+*/ 
+
 .caption {
     display: block;
-    color: #222222;
     text-align: center;
     padding: 5px 8px;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .center.patronIndex {
@@ -1020,15 +1032,6 @@ input[type="submit"].patronIndex:hover {
     margin-bottom:25px;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.55);
     background-color:#dedfdf;
-}
-
-.caption a {
-    display: block;
-    color: #222222;
-    text-align: center;
-    padding: 5px 8px;
-    text-decoration: none;
-    font-size: 20px;
 }
 
 .tab {
@@ -1068,7 +1071,7 @@ input[type="submit"].patronIndex:hover {
 
 table {
     font-size: 13px;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); */
 }
 
 .card {
@@ -1088,43 +1091,6 @@ a.details:hover {
     color: white;
 }
 
-input[type=text].viewBooks, select {
-    width: 19%;
-    padding: 2px 14px;
-    margin: 5px 0;
-    display: inline-block;
-    border: 1px solid #222222;
-    border-radius: 40px;
-    box-sizing: border-box;
-    font-size: 13px;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-input[type=number], select {
-    width: 50%;
-    padding: 8px 21px;
-    margin: 5px 0;
-    display: inline-block;
-    border: 1px solid #222222;
-    border-radius: 40px;
-    box-sizing: border-box;
-    font-size: 14px;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-form{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.btn{
-    background-color: transparent;
-    color: #6e080f; 
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
-    border-color:#6e080f;
-    border-radius: 6px;
-    margin-right: 10px;
-}
 
 
 /* The Modal (background) */
@@ -1198,3 +1164,32 @@ form{
     background-color: #5cb85c;
     color: white;
 }
+
+.home-icon-link {
+    color: #222222; 
+    img {
+        transition: 0.5s ease;
+    }
+    .caption {
+        font-size: 18px; 
+        transition: 0.5s ease; 
+    }
+}
+
+a.home-icon-link:hover {
+    text-decoration: none; 
+    .caption {
+        color: #b82332; 
+    }
+    img {
+        transform: translateY(-20px) scale(1.2); 
+    }
+
+}
+
+.get-started {
+    font-size: 32px; 
+    font-family: 'Raleway', 'sans-serif'; 
+}
+
+

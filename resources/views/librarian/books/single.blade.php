@@ -57,7 +57,7 @@
                 </div>
 
                 <br/>
-                <a href="{{ route('books.index') }}" class="btn btn-lms-solid">Back to books list</a>
+                <a href="{{ route('books.index') }}" class="btn btn-secondary">Back to books list</a>
             </center>
         </div>
     </div>

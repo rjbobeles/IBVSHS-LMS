@@ -2,59 +2,57 @@
 
 @section('content')
 <div class="container" id="homepage">
-    <form action="#" class="searchbar">
+    <!-- <form action="#" class="searchbar">
         <input type="search" name="search" id="search" placeholder="Search Books...">
         <input type="submit" value="&#xf002;" style="display:none;">
-    </form>
-    <br/>
-    <div class="container center">
-        <div class="row">
-            <div class="col-sm-6">
-                <br/>
-                <div class="thumbnail">
-                    <a href="{{ route('books.index') }}"> 
-                        <img src="{{ asset('images/library/managelibicon.png') }}" title="ManageLibrary" alt="managelib" class="center">
-                        <div class="caption">
-                            <h6><a href="{{ route('books.index') }}">Manage Library</a></h6>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <br/>
-                <div class="thumbnail">
-                    <a href="Book Issuance.html">
-                        <img src="{{ asset('images/library/bookissuance.png') }}" title="BookIssuance" alt="bookIssuance" class="center">
-                        <div class="caption">
-                            <h6 class="adjust"><a href=''>Book Issuance<br/> (Borrow Book)</a></h6>
-                        </div>
-                    </a>
-                </div>
-            </div>
+    </form> -->
+    <div class="row text-center page-heading">
+        <div class="col">
+            <h1 class="mt-4 ">Ignacio B. Villamor - Senior High School</h1>
+            <h4 class="mb-5">Library Management System</h3>
+            <hr class="mb-2"/>
         </div>
-        <div class="row"> 
-            <div class="col-sm-6">
-                <br/>
-                <div class="thumbnail">
-                    <a href="returnbooks.html">
-                        <img src="{{ asset('images/library/returnabook.png') }}" title="ReturnBooks" alt="returnBooks" class="center">
-                        <div class="caption">
-                            <h6 class="adjust"><a href='returnbooks.html'>Return A Book</a></h6>
+    </div>
+    <br/>
+    <div class="card">
+        <div class="get-started text-center mt-3">
+            Get Started
+        </div>
+        <div class="card-body px-5 py-4">
+            <div class="row">
+                <div class="col-lg-3 pb-4 thb-div">
+                    <a href="{{ route('books.index') }}" class="home-icon-link">
+                        <img src="{{ asset('images/icons/030-book-25.png') }}" alt="managelib" class="center mt-4">
+                        <div class="caption mt-4">
+                            Manage Library
                         </div>
                     </a>
                 </div>
-            </div> 
-            <div class="col-sm-6">
-                <br/>
-                <div class="thumbnail">
-                    <a href="Fines.html">
-                        <img src="{{ asset('images/library/penalities.png') }}" title="OverduePenalties" alt="overduePenalities" class="center">
-                        <div class="caption">
-                            <h6><a href='Fines.html'>Fines</a></h6>
+                <div class="col-lg-3 pb-4 thb-div">
+                    <a href="{{ route('transactions.create') }}" class="home-icon-link">
+                        <img src="{{ asset('images/icons/010-shopping-cart.png') }}" alt="bookissuance" class="center mt-4">
+                        <div class="caption mt-4">
+                            Issue a Book
                         </div>
                     </a>
                 </div>
-            </div> 
+                <div class="col-lg-3 pb-4 thb-div">
+                    <a href="{{ route('transactions.index') }}" class="home-icon-link">
+                        <img src="{{ asset('images/icons/014-book-11.png') }}" alt="bookissuance" class="center mt-4">
+                        <div class="caption mt-4">
+                            Return a Book
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 pb-4">
+                    <a href="{{ route('patrons.index') }}" class="home-icon-link">
+                        <img src="{{ asset('images/icons/016-book-12.png') }}" alt="bookissuance" class="center mt-4">
+                        <div class="caption mt-4">
+                            Manage Library Patrons
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

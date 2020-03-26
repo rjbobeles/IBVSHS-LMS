@@ -47,7 +47,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-center" style="padding-top: 20px;">
-                            <a href="{{ route('transactions.index') }}" class="btn btn-primary">Back to Transactions List</a>
+                            <a href="{{ route('transactions.index') }}" class="btn btn-secondary                                                         ">Back to Transactions List</a>
                         </div>
                     </div>
                 </div>

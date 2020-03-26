@@ -1,12 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="row text-center page-heading">
+        <div class="col">
+            <h1 class="mt-4 ">Update a Book</h1>
+            <p class="mb-5">Update a book record</p>
+            <hr class="mb-5"/>
+        </div>
+    </div>
+<div id="create">
 <div id="update">
     <div class="container">
-        <div class="col-12 mx-auto">
+        <div class="col-11 mx-auto">
             <div class="card shadow">
-                <div class="card-header" id="card-header"> {{ __('Edit Book') }} </div>
-                <div class="card-body">
+                <div class="card-header" id="card-header"> {{ __('Book Details') }} </div>
+                <div class="card-body pb-5 pl-5 pr-5">
                     <br/>
                     <form method="POST" action="{{ route('books.update', $books->id) }}" enctype="multipart/form-data">
                         @csrf
@@ -139,7 +147,7 @@
                                 <!--Book Image Label and Text Input-->
                                 <div class="form-group">
                                     <label for="book_image" class="form-label">{{ __('Book Image') }}</label><br>
-                                    <input id="book_image" type="file" class="@error('book_image') is-invalid @enderror" name="book_image">
+                                    <input id="book_image" type="file" class="@error('book_image') is-invalid @enderror pt-1" name="book_image">
                                     @error('book_image')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -149,11 +157,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col" id="back">
+                            <div class="col text-right">
                                 <a href="{{ route('books.index')}}" class="btn shadow btn-secondary">Back</a>
-                            </div>
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-lms-solid">
                                     {{ __('Update') }}
                                 </button>
                             </div>

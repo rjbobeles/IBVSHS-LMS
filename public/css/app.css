@@ -17924,6 +17924,20 @@ select:focus {
   text-decoration: none;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Raleway", "sans-serif";
+}
+
+label {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+}
+
 .btn.active.focus,
 .btn.active:focus,
 .btn.focus,
@@ -18029,11 +18043,9 @@ div#homepage input[type=submit]:hover {
 
 div#homepage .caption {
   display: block;
-  color: #222222;
   text-align: center;
   padding: 5px 8px;
   text-decoration: none;
-  font-size: 13px;
 }
 
 div#homepage .center {
@@ -18041,6 +18053,7 @@ div#homepage .center {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  max-width: 150px;
 }
 
 div#homepage .thumbnail:hover {
@@ -18056,7 +18069,6 @@ div#homepage .thumbnail {
 
 div#homepage .caption a {
   display: block;
-  color: #222222;
   text-align: center;
   text-decoration: none;
   font-size: 18px;
@@ -18173,27 +18185,29 @@ div#manageLibrary .sort {
   text-align: right;
 }
 
+div#create {
+  /* 
+  label {
+      font-weight: bold;
+  } */
+}
+
 div#create body {
   font-size: 20pt;
   background-color: #f0f0f0;
 }
 
-div#create label {
-  font-weight: bold;
-}
-
-div#create #back {
-  text-align: right;
+div#update {
+  /*
+  #title {
+      margin-top: 15px;
+      margin-bottom: 30px;
+  } */
 }
 
 div#update body {
   font-size: 20pt;
   background-color: #f0f0f0;
-}
-
-div#update #title {
-  margin-top: 15px;
-  margin-bottom: 30px;
 }
 
 div#update label {
@@ -18243,10 +18257,12 @@ div#update #back {
   border-bottom: 1.5px solid #fecc59;
 }
 
+/*
 .book-input-box {
-  border-color: black;
-  border-radius: 5px;
+    border-color: black;
+    border-radius: 5px;
 }
+*/
 
 .confirm {
   -webkit-text-decoration-color: blanchedalmond;
@@ -18640,6 +18656,10 @@ div#update #back {
     color: #424242;
     font-size: 14px;
   }
+
+  .thb-div {
+    border-right: 1px solid rgba(184, 184, 184, 0.329);
+  }
 }
 
 @media only screen and (min-width: 1200px) and (min-width: 1000px) {
@@ -18823,52 +18843,55 @@ div#update #back {
   }
 }
 
-body.patronIndex {
-  color: #222222;
-  font-family: "Raleway", FontAwesome;
-  font-weight: 200;
-  height: 100vh;
-  margin: 0;
-  text-decoration: none;
+/*
+body.patronIndex{
+    color: #222222;;
+    font-family: 'Raleway', FontAwesome;
+    font-weight: 200;
+    height: 100vh;
+    margin: 0;
+    text-decoration: none;
 }
 
-input[type=text].patronIndex,
-select {
-  width: 38%;
-  padding: 12px 20px;
-  margin: 10px 0;
-  display: inline-block;
-  border: 2px solid #fecc59;
-  border-radius: 40px;
-  box-sizing: border-box;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+input[type=text].patronIndex, select {
+    width: 38%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 2px solid #fecc59;
+    border-radius: 40px;
+    box-sizing: border-box;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+} 
+
+input[type="submit"].patronIndex {
+    margin-left: -50px;
+    height: 25px;
+    width: 50px;
+    background: transparent;
+    color: #fecc59;
+    border: 0;
 }
 
-input[type=submit].patronIndex {
-  margin-left: -50px;
-  height: 25px;
-  width: 50px;
-  background: transparent;
-  color: #fecc59;
-  border: 0;
+input[type="submit"].patronIndex:hover {
+    margin-left: -50px;
+    height: 25px;
+    width: 50px;
+    background: transparent;
+    color: #ab893b;
+    border: 0;
 }
 
-input[type=submit].patronIndex:hover {
-  margin-left: -50px;
-  height: 25px;
-  width: 50px;
-  background: transparent;
-  color: #ab893b;
-  border: 0;
-}
+*/
 
 .caption {
   display: block;
-  color: #222222;
   text-align: center;
   padding: 5px 8px;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .center.patronIndex {
@@ -18886,15 +18909,6 @@ input[type=submit].patronIndex:hover {
   margin-bottom: 25px;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.55);
   background-color: #dedfdf;
-}
-
-.caption a {
-  display: block;
-  color: #222222;
-  text-align: center;
-  padding: 5px 8px;
-  text-decoration: none;
-  font-size: 20px;
 }
 
 .tab {
@@ -18932,7 +18946,7 @@ input[type=submit].patronIndex:hover {
 
 table {
   font-size: 13px;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); */
 }
 
 .card {
@@ -18950,46 +18964,6 @@ a.details:hover {
 .headcolor {
   background-color: #6e080f;
   color: white;
-}
-
-input[type=text].viewBooks,
-select {
-  width: 19%;
-  padding: 2px 14px;
-  margin: 5px 0;
-  display: inline-block;
-  border: 1px solid #222222;
-  border-radius: 40px;
-  box-sizing: border-box;
-  font-size: 13px;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-input[type=number],
-select {
-  width: 50%;
-  padding: 8px 21px;
-  margin: 5px 0;
-  display: inline-block;
-  border: 1px solid #222222;
-  border-radius: 40px;
-  box-sizing: border-box;
-  font-size: 14px;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-form {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.btn {
-  background-color: transparent;
-  color: #6e080f;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
-  border-color: #6e080f;
-  border-radius: 6px;
-  margin-right: 10px;
 }
 
 /* The Modal (background) */
@@ -19089,5 +19063,38 @@ form {
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white;
+}
+
+.home-icon-link {
+  color: #222222;
+}
+
+.home-icon-link img {
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.home-icon-link .caption {
+  font-size: 18px;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+a.home-icon-link:hover {
+  text-decoration: none;
+}
+
+a.home-icon-link:hover .caption {
+  color: #b82332;
+}
+
+a.home-icon-link:hover img {
+  -webkit-transform: translateY(-20px) scale(1.2);
+          transform: translateY(-20px) scale(1.2);
+}
+
+.get-started {
+  font-size: 32px;
+  font-family: "Raleway", "sans-serif";
 }
 

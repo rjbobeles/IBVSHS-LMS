@@ -2,12 +2,20 @@
 
 @section('content')
 <div class="container">
+    <div class="row text-center page-heading">
+        <div class="col">
+            <h1 class="mt-4 ">Create a Patron Record</h1>
+            <p class="mb-5">Add a Library Patron record to the system. <br/>
+                A person must have a Library Patron record in order to borrow books from the IBVSHS Library.</p>
+            <hr class="mb-5"/>
+        </div>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Create a Patron') }}</div>
+                <div class="card-header input-header-red ">{{ __('Library Patron Details') }}</div>
 
-                <div class="card-body">
+                <div class="card-body my-4">
                     <form method="POST" action="{{ route('patrons.store') }}">
                         @csrf
 
@@ -113,12 +121,12 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                        <div class="form-group row mb-0 mt-5">
+                            <div class="col-md-8 mx-auto d-flex justify-content-between">
+                                <a href="{{ route('patrons.index') }}" class="btn btn-secondary">Back to List</a>
+                                <button type="submit" class="btn btn-lms-solid">
                                     {{ __('Create Patron') }}
-                                </button>
-                                <a href="{{ route('patrons.index') }}" class="btn btn-primary">Back to List</a>
+                                </button> 
                             </div>
                         </div>
                     </form>
