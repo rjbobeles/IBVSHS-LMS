@@ -5,21 +5,28 @@
         <div class="card-body">
 		<?php $bookCountNum=0; ?>
         <div class="container">
-            <h4><b>View All Books</b></h4>
-            <div class="navbooks">
-                <a class="active" href="#">All Books</a></li>
-                <a href="#">Available Books</a></li>
-                <a href="#">Unavailable Books</a></li>
-			</div>
+            <h2><b>View All Books</b></h2>
 
-            <form action="{{ route('patron.book.index') }}" method="get">
-                <input class="viewBooks" type="text" name="s" id="search" placeholder="Search Books..." aria-describedby="button-addon2">
-                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" style="font-size:12px">Filter<span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Available</a></li>
-                    <li><a href="#">Author</a></li>
-                    <li><a href="#">Year</a></li>
-                </ul>
+            <form action="{{ route('patron.book.index') }}" method="get" class="my-3">
+				<div class="form-row d-flex justify-content-between">
+					<div class="col-md-4">
+						<div class="navbooks">
+							<a class="active" href="#">All Books</a></li>
+							<a href="#">Available Books</a></li>
+							<a href="#">Unavailable Books</a></li>
+						</div>
+					</div>
+					<div class="col-md-4">
+					<button class="btn dropdown-toggle" type="button" data-toggle="dropdown" style="font-size:12px">Filter<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+							<li><a href="#">Available</a></li>
+							<li><a href="#">Author</a></li>
+							<li><a href="#">Year</a></li>
+						</ul>
+						<input class="viewBooks form-control w-75 d-inline-block" type="text" name="s" id="search" placeholder="Search Books..." aria-describedby="button-addon2">
+					</div>
+				</div>
+                
                 @if($message != null)
                     <div class="alert alert-danger my-4">    
                         {{ $message }}
@@ -64,11 +71,11 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
 				@endforeach
             @else 
                 <h1 class="text-center m-5"> No books found! Contact your administrator.</h1>
-            @endif
+			@endif
+			</div>
+			</div>
         </div>
 @endsection

@@ -13,46 +13,49 @@
             <hr class="mb-2"/>
         </div>
     </div>
-    <br/>
-    <div class="card">
-        <div class="get-started text-center mt-3">
-            Get Started
+    <div class="row text-center">
+        <h5 class="d-inline-block w-100 mt-2 mb-3">Get Started</h5>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-xs-12">
+            <div class="thumbnail d-flex justify-content-center flex-column">
+                <a href="{{ route('books.index') }}"> 
+                    <img src="{{ asset('images/icons/030-book-25.png') }}" style="width:42%" class="center patronIndex img-responsive">
+                    <div class="caption mt-4">
+                        Manage Library
+                    </div>
+                </a>
+            </div> 
         </div>
-        <div class="card-body px-5 py-4">
-            <div class="row">
-                <div class="col-lg-3 pb-4 thb-div">
-                    <a href="{{ route('books.index') }}" class="home-icon-link">
-                        <img src="{{ asset('images/icons/030-book-25.png') }}" alt="managelib" class="center mt-4">
-                        <div class="caption mt-4">
-                            Manage Library
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 pb-4 thb-div">
-                    <a href="{{ route('transactions.create') }}" class="home-icon-link">
-                        <img src="{{ asset('images/icons/010-shopping-cart.png') }}" alt="bookissuance" class="center mt-4">
-                        <div class="caption mt-4">
-                            Issue a Book
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 pb-4 thb-div">
-                    <a href="{{ route('transactions.index') }}" class="home-icon-link">
-                        <img src="{{ asset('images/icons/014-book-11.png') }}" alt="bookissuance" class="center mt-4">
-                        <div class="caption mt-4">
-                            Return a Book
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 pb-4">
-                    <a href="{{ route('patrons.index') }}" class="home-icon-link">
-                        <img src="{{ asset('images/icons/016-book-12.png') }}" alt="bookissuance" class="center mt-4">
-                        <div class="caption mt-4">
-                            Manage Library Patrons
-                        </div>
-                    </a>
-                </div>
-            </div>
+        <div class="col-lg-3 col-xs-12">
+            <div class="thumbnail d-flex justify-content-center flex-column">
+                <a href="{{ route('transactions.create') }}"> 
+                    <img src="{{ asset('images/icons/010-shopping-cart.png') }}" style="width:42%" class="center patronIndex img-responsive">
+                    <div class="caption mt-4">
+                        Issue a Book
+                    </div>
+                </a>
+            </div> 
+        </div>
+        <div class="col-lg-3 col-xs-12">
+            <div class="thumbnail d-flex justify-content-center flex-column">
+                <a href="{{ route('transactions.index') }}"> 
+                    <img src="{{ asset('images/icons/014-book-11.png') }}" style="width:42%" class="center patronIndex img-responsive">
+                    <div class="caption mt-4">
+                        Return a Book
+                    </div>
+                </a>
+            </div> 
+        </div>
+        <div class="col-lg-3 col-xs-12">
+        <div class="thumbnail d-flex justify-content-center flex-column">
+                <a href="{{ route('patrons.index') }}"> 
+                    <img src="{{ asset('images/icons/016-book-12.png') }}" style="width:42%" class="center patronIndex img-responsive">
+                    <div class="caption mt-4">
+                        Manage Patrons
+                    </div>
+                </a>
+            </div> 
         </div>
     </div>
 </div>

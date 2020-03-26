@@ -155,7 +155,7 @@ div#homepage {
         width: 50%;
         max-width: 150px; 
     }
-    
+    /*
     .thumbnail:hover{
         border: 2px solid #fecc59;
     }
@@ -176,7 +176,7 @@ div#homepage {
 
     .caption .adjust {
         padding-top: 21px;
-    }
+    } */
     
     .tab {
         position:absolute;
@@ -966,7 +966,7 @@ div#update {
 
 
 //patron homepage css
-/*
+
 body.patronIndex{
     color: #222222;;
     font-family: 'Raleway', FontAwesome;
@@ -977,7 +977,7 @@ body.patronIndex{
 }
 
 
-input[type=text].patronIndex, select {
+input[type=text].patronIndex{
     width: 38%;
     padding: 12px 20px;
     margin: 10px 0;
@@ -985,8 +985,14 @@ input[type=text].patronIndex, select {
     border: 2px solid #fecc59;
     border-radius: 40px;
     box-sizing: border-box;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.2rem 0.9rem rgba(54, 19, 19, 0.158);
+    transition: 0.5s ease; 
 } 
+
+input[type=text].patronIndex:focus {
+    outline: none; 
+    box-shadow: 0 0.2rem 0.7rem rgba(54, 19, 19, 0.301);
+}
 
 input[type="submit"].patronIndex {
     margin-left: -50px;
@@ -1006,14 +1012,14 @@ input[type="submit"].patronIndex:hover {
     border: 0;
 }
 
-*/ 
+
 
 .caption {
     display: block;
     text-align: center;
     padding: 5px 8px;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -1024,15 +1030,38 @@ input[type="submit"].patronIndex:hover {
     width: 50%;
 }
 
-.thumbnail:hover{
-    border: 2px solid #6e080f;
-}
-
 .thumbnail{
     margin-bottom:25px;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.55);
-    background-color:#dedfdf;
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.11);
+    border-radius: 15px; 
+    height: 300px; 
+    background-color:#ffffff;
+    transition: 0.5s ease; 
+    img {
+        transition: 0.5s ease; 
+    }
+    .caption {
+        color: #222222; 
+        text-decoration: none; 
+        transition: 0.5s ease; 
+    }
 }
+
+
+.thumbnail:hover{
+    cursor: pointer; 
+    box-shadow: 0 0.5rem 0.8rem rgba(77, 28, 28, 0.26);
+    a {
+        img {
+            transform: scale(1.2); 
+        }
+        .caption {
+            color: $markian;  
+        }
+        text-decoration: none; 
+    }
+}
+
 
 .tab {
     position:absolute;left:350px; 

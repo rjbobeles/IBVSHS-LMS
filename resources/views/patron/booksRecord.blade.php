@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="row text-center page-heading">
+        <div class="col">
+            <h1 class="mt-4 ">View My Library Record</h1>
+            <p class="mb-5">You can view the books you have borrowed and are currently borrowing by providing your name and email address below.</p>
+            <hr class="mb-5"/>
+        </div>
+    </div>
 <div class="card">
     <div class="card-body">
-
- 
-        <h1>View Your Library Records</h1>
-        <hr>
-        <br>
         @include('inc.messages')
         <form method="POST" action="{{ route('patron.book.records') }}">
             @csrf
@@ -51,8 +53,8 @@
                 </div>
                 <div class="col-3">
                     <br>
-                    <button type="submit" name="submit" class="btn btn-primary mt-2">
-                        {{ __('View Library Records') }}
+                    <button type="submit" name="submit" class="btn btn-lms-solid mt-2">
+                        {{ __('View Library Record') }}
                     </button>
                 </div>
             </div>

@@ -17768,7 +17768,7 @@ div.dataTables_wrapper .row {
 }
 
 div.dataTables_wrapper .row:nth-child(2) {
-  padding-bottom: 3.4vw;
+  padding-bottom: 4.5vw;
   overflow-x: auto;
 }
 
@@ -18009,6 +18009,31 @@ h1.page-title + .btn-lms {
   box-shadow: 0 0 5px rgba(199, 17, 29, 0.432) !important;
 }
 
+div#homepage {
+  /*
+  .thumbnail:hover{
+      border: 2px solid #fecc59;
+  }
+
+  .thumbnail{
+      width: auto;
+      padding-top: 35px;
+      height:220px;
+      background-color:#dedfdf;
+  } 
+
+  .caption a {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      font-size: 18px;
+  }
+
+  .caption .adjust {
+      padding-top: 21px;
+  } */
+}
+
 div#homepage .searchbar {
   margin-top: 10px;
 }
@@ -18054,28 +18079,6 @@ div#homepage .center {
   margin-right: auto;
   width: 50%;
   max-width: 150px;
-}
-
-div#homepage .thumbnail:hover {
-  border: 2px solid #fecc59;
-}
-
-div#homepage .thumbnail {
-  width: auto;
-  padding-top: 35px;
-  height: 220px;
-  background-color: #dedfdf;
-}
-
-div#homepage .caption a {
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-div#homepage .caption .adjust {
-  padding-top: 21px;
 }
 
 div#homepage .tab {
@@ -18843,54 +18846,57 @@ div#update #back {
   }
 }
 
-/*
-body.patronIndex{
-    color: #222222;;
-    font-family: 'Raleway', FontAwesome;
-    font-weight: 200;
-    height: 100vh;
-    margin: 0;
-    text-decoration: none;
+body.patronIndex {
+  color: #222222;
+  font-family: "Raleway", FontAwesome;
+  font-weight: 200;
+  height: 100vh;
+  margin: 0;
+  text-decoration: none;
 }
 
-
-input[type=text].patronIndex, select {
-    width: 38%;
-    padding: 12px 20px;
-    margin: 10px 0;
-    display: inline-block;
-    border: 2px solid #fecc59;
-    border-radius: 40px;
-    box-sizing: border-box;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-} 
-
-input[type="submit"].patronIndex {
-    margin-left: -50px;
-    height: 25px;
-    width: 50px;
-    background: transparent;
-    color: #fecc59;
-    border: 0;
+input[type=text].patronIndex {
+  width: 38%;
+  padding: 12px 20px;
+  margin: 10px 0;
+  display: inline-block;
+  border: 2px solid #fecc59;
+  border-radius: 40px;
+  box-sizing: border-box;
+  box-shadow: 0 0.2rem 0.9rem rgba(54, 19, 19, 0.158);
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
 }
 
-input[type="submit"].patronIndex:hover {
-    margin-left: -50px;
-    height: 25px;
-    width: 50px;
-    background: transparent;
-    color: #ab893b;
-    border: 0;
+input[type=text].patronIndex:focus {
+  outline: none;
+  box-shadow: 0 0.2rem 0.7rem rgba(54, 19, 19, 0.301);
 }
 
-*/
+input[type=submit].patronIndex {
+  margin-left: -50px;
+  height: 25px;
+  width: 50px;
+  background: transparent;
+  color: #fecc59;
+  border: 0;
+}
+
+input[type=submit].patronIndex:hover {
+  margin-left: -50px;
+  height: 25px;
+  width: 50px;
+  background: transparent;
+  color: #ab893b;
+  border: 0;
+}
 
 .caption {
   display: block;
   text-align: center;
   padding: 5px 8px;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -18901,14 +18907,44 @@ input[type="submit"].patronIndex:hover {
   width: 50%;
 }
 
-.thumbnail:hover {
-  border: 2px solid #6e080f;
-}
-
 .thumbnail {
   margin-bottom: 25px;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.55);
-  background-color: #dedfdf;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.11);
+  border-radius: 15px;
+  height: 300px;
+  background-color: #ffffff;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.thumbnail img {
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.thumbnail .caption {
+  color: #222222;
+  text-decoration: none;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.thumbnail:hover {
+  cursor: pointer;
+  box-shadow: 0 0.5rem 0.8rem rgba(77, 28, 28, 0.26);
+}
+
+.thumbnail:hover a {
+  text-decoration: none;
+}
+
+.thumbnail:hover a img {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.thumbnail:hover a .caption {
+  color: #96232f;
 }
 
 .tab {
