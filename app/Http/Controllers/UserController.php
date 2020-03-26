@@ -88,9 +88,8 @@ class UserController extends Controller
             'deactivated' => false
         ]);
 
-        $mailer = new AppMailer();
-        $mailer->sendEmailConfirmationTo($user);
-
+        $user->sendEmailVerificationNotification();
+        
         LogUser::create([
             'actor_id' => auth()->user()->id,
             'action' => 'Create Account',

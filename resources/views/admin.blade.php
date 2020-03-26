@@ -12,10 +12,6 @@
                             <p> 
                                 Only the admin (you) can manage accounts of library users, authenticate registered <br/> accounts, and view books as well as all the transaction records.
                             </p>
-                            <br/>
-                            <a href="user.html" class="btn" id="homepage-btn">
-                                GET STARTED
-                            </a>
                         </div>
                     </div>
                 </div>

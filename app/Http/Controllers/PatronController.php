@@ -92,22 +92,29 @@ class PatronController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){  
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), 
+        [
             'role'          => ['required', 'in:Student,Teacher'],
             'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
             'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'contactno'     => ['required', 'string', 'max:16', new ValidPHNumber],
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:patrons'],
-            'id'            => ['required', 'unique:patrons'] //VALIDATION
+            'lrn'           => ['required', 'numeric', 'unique:patrons']
+        ], 
+        [
+            'lrn.required'  => 'The ID/LRN number is required to continue',
+            'lrn.numeric'   => 'The ID/LRN number has to contain only numbers',
+            'lrn.unique'    => 'The ID/LRN number has already been taken.',
+            'lrn.digits'    => 'The ID/LRN number needs to be :digits digits.'
         ]);
 
-        $validator->sometimes('id', 'digits:12', function($input) {
-            return $input->role == "Student";
+        $validator->sometimes('lrn', 'digits:6', function($input) {
+            return $input->role === "Teacher";
         });
 
-        $validator->sometimes('id', 'digits:6', function($input) {
-            return $input->lrn == "Teacher";
+        $validator->sometimes('lrn', 'digits:12', function($input) {
+            return $input->role === "Student";
         });
 
         if(!$validator->fails())
@@ -120,7 +127,7 @@ class PatronController extends Controller
                 'contactno' => $request->input('contactno'),
                 'email' => $request->input('email'),
                 'deactivated' => false,
-                'lrn'=> $request->input('id'),
+                'lrn'=> $request->input('lrn'),
             ]);
             
             LogPatron::create([
@@ -188,7 +195,6 @@ class PatronController extends Controller
         ]);
         
         $patron = Patron::find($id); 
-        $patron->role = $request->input('role');
         $patron->firstname = $request->input('firstname');
         $patron->middlename = $request->input('middlename');
         $patron->lastname = $request->input('lastname');
@@ -283,7 +289,7 @@ class PatronController extends Controller
             $records = Transaction::where('patron_id', '=', $patron->id)->get();
             $recordsName = Transaction::where('patron_id', '=', $patron->id)->first();
         } catch (\ErrorException $exception) {
-            return back()->withError("User does not exist")->withInput();
+            return back()->withError("You have no transaction records.")->withInput();
         }            
         
         return view('patron.booksRecord')->with('records', $records)->with('recordsName', $recordsName);

@@ -28,12 +28,10 @@
                     <div class="col-5 col-md-4 text-right">Role:</div>
                     <div class="col-5 col-md-6">{{ $patron->role }}</div>
                 </div>
-                @if($patron->role == "Student")
-                    <div class="row">
-                        <div class="col-5 col-md-4 text-right">LRN/Staff Number:</div>
-                        <div class="col-5 col-md-6">{{ $patron->lrn }}</div>
-                    </div>
-                @endif
+                <div class="row">
+                    <div class="col-5 col-md-4 text-right">LRN/Staff Number:</div>
+                    <div class="col-5 col-md-6">{{ $patron->lrn }}</div>
+                </div>
                 <div class="row">
                     <div class="col-5 col-md-4 text-right">Status:</div>
                     <div class="col-5 col-md-6">
