@@ -21,7 +21,7 @@ class TransactionController extends Controller
     }
 
     public function indexData() {
-        return DataTables::of(Transaction::select(['id', 'patron_id', 'book_id', 'date_issued', 'date_due', 'date_returned']))
+        return DataTables::of(Transaction::select(['id', 'patron_id', 'book_id', 'date_issued', 'date_due', 'date_returned'])->whereNull('date_returned'))
             ->addColumn('patron', function($row) {
                 $patron = Patron::find($row->patron_id);
                 return $patron->lrn . ' | ' . $patron->lastname . ', ' . $patron->firstname . ' ' . $patron->middlename;
@@ -80,15 +80,14 @@ class TransactionController extends Controller
     {
         if($request->get('query'))
         {
-            $query = $request->get('query');
+            $query_var = $request->get('query');
             $data = DB::table('books')
-                    ->where(function($query) {
-                        where('title', 'LIKE', "%{$query}%") 
-                        ->orwhere('barcodeno', 'LIKE', "%{$query}%");
+                    ->where('status', 'available')
+                    ->where(function($query) use ($query_var) {
+                        $query->where('title', 'LIKE', "%{$query_var}%")->orwhere('barcodeno', 'LIKE', "%{$query_var}%");
                     })
-                    ->where('status', '==', 'available')
                     ->take(6)
-                    ->get();
+                    ->get(); 
 
             $output = '<ul class="dropdown-menu autocomplete autocomplete-pos">';
             if(count($data)) {
@@ -107,7 +106,7 @@ class TransactionController extends Controller
         $validate = $request->validate([
             'borrower' => ['required'],
             'book' => ['required'],
-            'date_due' => ['required', 'after:today', new ValidDate()]
+            'date_due' => ['required', 'after:today', new ValidDate]
         ]);
     
         $borrower = $request->input('borrower');
@@ -121,7 +120,7 @@ class TransactionController extends Controller
         $book_n = explode(' | ', $book);
         if(count($book_n) <= 1) return redirect()->back()->withError("Book not found. Make sure to choose from the suggestions listed below.")->withInput(); 
 
-        $book_arr = DB::table('books')->where('barcodeno', '=', $book_n[0])->where('title', '=', $book_n[1])->first(array('id'));
+        $book_arr = DB::table('books')->where('barcodeno', '=', $book_n[0])->where('title', '=', $book_n[1])->where('status', 'available')->first(array('id'));
         
         if($book_arr == null)  return redirect()->back()->withError("Book not found. Make sure to choose from the suggestions listed below.")->withInput();
         if($patron_arr == null) return redirect()->back()->withError("User not found. Make sure to choose from the suggestions listed below.")->withInput();
@@ -130,8 +129,7 @@ class TransactionController extends Controller
             'patron_id' => $patron_arr->id,
             'book_id' => $book_arr->id,
             'date_issued' => date('o-m-d'),
-            'due_date' => $request->input('date_due'),
-            'date_returned' => null
+            'date_due' => $request->input('date_due')
         ]);       
 
         LogTransaction::create([
@@ -143,7 +141,7 @@ class TransactionController extends Controller
             'date_issued' => $transaction->date_issued,
             'date_due' => $transaction->date_due,
             'date_returned' => $transaction->date_returned
-        ]);
+        ]); 
 
         $book_id = $book_arr->id;
         $books = Book::find($book_id);
@@ -156,14 +154,16 @@ class TransactionController extends Controller
     public function returnBook($id)
     {
         $transactions = Transaction::find($id);
+
+        if($transactions->date_returned != null) return redirect()->route('transactions.index')->with('error', 'The book you selected is currently not being borrwed by anyone!');
         return view('librarian.transactions.returnBook')->with('transactions', $transactions);
     }
 
     public function returnBookStore(Request $request, $id)
     {
         $validate = $request->validate([
-            'condition' => ['required'],
-            'status' => ['required']
+            'condition' => ['required', 'in:Fine,Very Good,Good,Fair,Poor'],
+            'status' => ['required', 'in:Available,Reserved,Borrowed,Archived,Missing'],
         ]);
         
         //Update Transactions Table

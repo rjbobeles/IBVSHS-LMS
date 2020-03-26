@@ -41,11 +41,11 @@
                         <div class="form-group">
                             <label for="condition" class="form-label">{{ __('Book Condition:') }}</label>
                             <select id="condition" name="condition" class="form-control book-input-box">
-                                <option @if($transactions->bookTransaction->condition == "Fine") checked @endif value="Fine">Fine</option>
-                                <option @if($transactions->bookTransaction->condition == "Very Good") checked @endif value="Very Good">Very Good</option>
-                                <option @if($transactions->bookTransaction->condition == "Good") checked @endif value="Good">Good</option>
-                                <option @if($transactions->bookTransaction->condition == "Fair") checked @endif value="Fair">Fair</option>
-                                <option @if($transactions->bookTransaction->condition == "Poor") checked @endif value="Poor">Poor</option>
+                                <option @if($transactions->bookTransaction->condition == "Fine") selected @endif value="Fine">Fine</option>
+                                <option @if($transactions->bookTransaction->condition == "Very Good") selected @endif value="Very Good">Very Good</option>
+                                <option @if($transactions->bookTransaction->condition == "Good") selected @endif value="Good">Good</option>
+                                <option @if($transactions->bookTransaction->condition == "Fair") selected @endif value="Fair">Fair</option>
+                                <option @if($transactions->bookTransaction->condition == "Poor") selected @endif value="Poor">Poor</option>
                             </select>
                             @error('condition')
                                 <span class="invalid-feedback" role="alert">

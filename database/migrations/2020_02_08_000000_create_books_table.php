@@ -25,7 +25,7 @@ class CreateBooksTable extends Migration
             $table->string('publisher', 255);
             $table->string('genre', 500); 
             $table->enum('condition', ['Fine', 'Very Good', 'Good', 'Fair', 'Poor']);
-            $table->enum('status', ['Available', 'Reserved', 'Borrowed', 'Archived']);
+            $table->enum('status', ['Available', 'Reserved', 'Borrowed', 'Archived', 'Missing']);
             $table->string('barcodeno', 13); 
             $table->string('book_image', 300);
             $table->timestamps();

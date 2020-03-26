@@ -26,7 +26,7 @@ class CreateLogTransactionsTable extends Migration
             $table->string('action', 1000);
             $table->date('date_issued');
             $table->date('date_due');
-            $table->date('date_returned');
+            $table->date('date_returned')->nullable();
             $table->timestamps();
         });
     }

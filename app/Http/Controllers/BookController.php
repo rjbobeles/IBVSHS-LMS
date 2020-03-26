@@ -156,6 +156,8 @@ class BookController extends Controller
     public function edit($id)
     {
         $books = Book::find($id);
+
+        if($books->status === "Borrowed") return redirect()->route('books.index')->with('error', 'The book you selected is currently being borrowed, thus cannot be edited!');
         return view('librarian.books.edit')->with('books', $books);
     }
 
@@ -256,14 +258,14 @@ class BookController extends Controller
             $input = htmlspecialchars($request->s);
             $input = strip_tags($input, '');
 
-            $books = Book::where('title', 'LIKE', "%{$input}%")
+            $books = DB::table('books')->where('title', 'LIKE', "%{$input}%")
                 ->orWhere('author', 'LIKE', "%{$input}%")
                 ->orWhere('genre', 'LIKE', "%{$input}%")
                 ->orWhere('publisher', 'LIKE', "%{$input}%")
                 ->orWhere('isbn', 'LIKE', "%{$input}%")
                 ->get();
 
-            if(count($books) > 1) return view('patron.books')->with('book', $books);
+            if(count($books) > 0) return view('patron.books')->with('books', $books)->with('message', '');
             $message = 'No results came from your search. Try again.';
         }
       

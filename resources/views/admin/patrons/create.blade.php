@@ -100,12 +100,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('LRN/Employee ID') }}</label>
+                            <label for="lrn" class="col-md-4 col-form-label text-md-right">{{ __('LRN/Employee ID') }}</label>
 
                             <div class="col-md-6">
-                                <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" name="id" value="{{ old('id') }}" autocomplete="id">
+                                <input id="lrn" type="text" class="form-control @error('lrn') is-invalid @enderror" name="lrn" value="{{ old('lrn') }}" autocomplete="lrn" required>
 
-                                @error('id')
+                                @error('lrn')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

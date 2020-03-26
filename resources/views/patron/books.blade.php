@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            @if($message != null)
+            @if($message != "")
                 <div class="alert alert-danger">    
                     {{ $message }}
                 </div>
@@ -20,7 +20,9 @@
             </form>
 
             @if (count($books) > 0)
-               More than 1 result
+                @foreach($books as $book)
+                    {{ $book->title }}
+                @endforeach
             @else 
                 <h1 class="text-center m-5"> No books found! Contact your administrator.</h1>
             @endif
