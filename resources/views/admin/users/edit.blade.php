@@ -124,7 +124,7 @@
                         <div class="form-group row mt-5">
                             <div class="col-md-6 offset-md-4 text-right">
                                 <button type="submit" class="btn input-btn-red">
-                                    {{ __('Update User') }}
+                                    {{ __('Update User') }}</strong>
                                 </button>
                             </div>
                         </div>
