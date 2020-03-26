@@ -43,7 +43,7 @@ Route::middleware('guest')->group(function() {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('user')->group(function () { Auth::routes(['verify' => true]); });
 
-Route::middleware('auth')->group(function() { 
+Route::middleware('auth', 'isAdminLibrarian')->group(function() { 
     
     //User Route
     Route::prefix('user')->group(function () {
@@ -52,6 +52,10 @@ Route::middleware('auth')->group(function() {
         Route::get('/changepassword', 'Auth\ChangePasswordController@edit')->name('changepassword.edit');
         Route::put('/changepassword', 'Auth\ChangePasswordController@update')->name('changepassword.update');
     });
+
+    //Patrons
+    Route::resource('patrons', 'PatronController');
+    Route::get('/dt/patrons', 'PatronController@indexData')->name('patrons.index.data');
 });
 
 /*
@@ -71,13 +75,9 @@ Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function
         //Librarian Homepage
         Route::get('/', 'HomeController@Librarian')->name('librarian');
 
-        //Patrons
-        Route::resource('patrons', 'PatronController');
-
         //Datatable Routes
         Route::get('/dt/books', 'BookController@indexData')->name('books.index.data'); 
         Route::get('/dt/booksShow/{id}', 'BookController@showData')->name('books.show.data'); 
-        Route::get('/dt/patrons', 'PatronController@indexData')->name('patrons.index.data');
         Route::get('/dt/transactions', 'TransactionController@indexData')->name('transactions.index.data');
         
         //Book Controller
@@ -116,6 +116,8 @@ Route::middleware('auth', 'verified', 'isAdmin', 'isActive')->group(function() {
          Route::get('/', 'HomeController@Admin')->name('admin');
 
         //Patron Controller
+        
+        /*
         Route::get('/patrons/', 'PatronController@index')->name('admin.patrons.index');
         Route::post('/patrons/', 'PatronController@store')->name('admin.patrons.store');
         Route::get('/patrons/create', 'PatronController@create')->name('admin.patrons.create');
@@ -123,13 +125,13 @@ Route::middleware('auth', 'verified', 'isAdmin', 'isActive')->group(function() {
         Route::put('/patrons/{id}', 'PatronController@update')->name('admin.patrons.update');
         Route::get('/patrons/{id}', 'PatronController@show')->name('admin.patrons.show');
         Route::get('/patrons/{id}/edit', 'PatronController@edit')->name('admin.patrons.edit');
-
+        */
         //User Controller
         Route::resource('users', 'UserController');
 
         //Datatable Routes
         Route::get('/dt/users', 'UserController@indexData')->name('users.index.data'); 
-        Route::get('/dt/patrons', 'PatronController@indexDataAdmin')->name('admin.patrons.index.data'); 
+        //Route::get('/dt/patrons', 'PatronController@indexDataAdmin')->name('admin.patrons.index.data'); 
         Route::get('/dt/logs/user', 'LogUserController@indexData')->name('logs.user.data');
         Route::get('/dt/logs/book', 'LogBookController@indexData')->name('logs.book.data'); 
         Route::get('/dt/logs/patron', 'LogPatronController@indexData')->name('logs.patron.data');
