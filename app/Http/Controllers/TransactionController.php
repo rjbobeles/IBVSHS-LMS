@@ -176,7 +176,7 @@ class TransactionController extends Controller
         $book->condition = $request->input('condition');
         
         $status = $request->input('status');
-        if ($status == 'Returned') {
+        if ($status == 'Available') {
             $book->status = "Available";
         } else {
             $book->status = "Missing";

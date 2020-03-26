@@ -26,8 +26,7 @@ class PatronController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->role == "Librarian") return view('librarian.patrons.index');
-        else return view('admin.patrons.index');
+        return view('manage.patrons.index');
     }
 
     /**
@@ -46,34 +45,12 @@ class PatronController extends Controller
             if($row->deactivated == 1) return "Deactivated";
             else return "Active";
         })
-        ->addColumn('actions', 'librarian.patrons.action')
+        ->addColumn('actions', 'manage.patrons.action')
         ->rawColumns(['link', 'actions'])
         ->setRowId(function ($patron) { return $patron->id; })
         ->make(true);
     }
     
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexDataAdmin()
-    {
-        return Datatables::of(Patron::select(['id', 'firstname', 'middlename', 'lastname', 'middlename', 'role', 'email', 'deactivated']))
-        ->orderColumn('name', function ($query, $order) {
-            $query->orderBy('lastname', $order)->orderBy('firstname', $order)->orderBy('middlename', $order);
-        })
-        ->addColumn('name', function($row) { return $row->lastname . ', ' . $row->firstname . ' ' . $row->middlename; })
-        ->editColumn('deactivated', function($row) { 
-            if($row->deactivated == 1) return "Deactivated";
-            else return "Active";
-        })
-        ->addColumn('actions', 'admin.patrons.action')
-        ->rawColumns(['link', 'actions'])
-        ->setRowId(function ($user) { return $user->id; })
-        ->make(true);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -81,8 +58,7 @@ class PatronController extends Controller
      */
     public function create()
     {
-        if(auth()->user()->role == "Librarian") return view('librarian.patrons.create');
-        else return view('admin.patrons.create');
+        return view('manage.patrons.create');
     }
 
     /**
@@ -143,8 +119,7 @@ class PatronController extends Controller
                 'deactivated' => $patron->deactivated
             ]);
 
-            if(auth()->user()->role == "Librarian") return redirect()->route('patrons.index')->with('success', 'Patron has been successfully added!');
-            else return redirect()->route('admin.patrons.index')->with('success', 'Patron has been successfully added!');
+            return redirect()->route('patrons.index')->with('success', 'Patron has been successfully added!');
         } else return redirect()->back()->withErrors($validator)->withInput();
     }
 
@@ -157,9 +132,7 @@ class PatronController extends Controller
     public function show($id)
     {
         $patron = Patron::find($id);
-     
-        if(auth()->user()->role == "Librarian") return view('librarian.patrons.single')->with('patron', $patron);
-        else return view('admin.patrons.single')->with('patron', $patron);
+        return view('manage.patrons.single')->with('patron', $patron);
     }
 
     /**
@@ -172,8 +145,7 @@ class PatronController extends Controller
     {
         $patron = Patron::find($id);
     
-        if(auth()->user()->role == "Librarian") return view('librarian.patrons.edit')->with('patron', $patron);
-        else return view('admin.patrons.edit')->with('patron', $patron);
+        return view('manage.patrons.edit')->with('patron', $patron);
     }
 
     /**
@@ -215,9 +187,7 @@ class PatronController extends Controller
             'deactivated' => $patron->deactivated
         ]);
 
-
-        if(auth()->user()->role == "Librarian") return redirect()->route('patrons.index')->With('success', 'Patron has been successfully updated!');
-        else return redirect()->route('admin.patrons.index')->With('success', 'Patron has been successfully updated!');
+        return redirect()->route('patrons.index')->With('success', 'Patron has been successfully updated!');
     }
 
     /**
@@ -259,8 +229,7 @@ class PatronController extends Controller
             'deactivated' => $patron->deactivated
         ]);
 
-        if(auth()->user()->role == "Librarian") return redirect()->route('patrons.index')->With('success', $message);
-        return redirect()->route('admin.patrons.index')->With('success', 'Patron has been successfully updated!');
+        return redirect()->route('patrons.index')->With('success', $message);
     }
 
     public function Records(Request $request) {

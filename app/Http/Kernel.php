@@ -64,7 +64,8 @@ class Kernel extends HttpKernel
         'isAdmin' => \App\Http\Middleware\IsAdmin::class,
         'isLibrarian' => \App\Http\Middleware\IsLibrarian::class,
         'isActive' => \App\Http\Middleware\isActive::class,
-        'hasAdmin' => \App\Http\Middleware\hasAdmin::class
+        'hasAdmin' => \App\Http\Middleware\hasAdmin::class,
+        'isAdminLibrarian' => \App\Http\Middleware\isAdminLibrarian::class
     ];
 
     /**
