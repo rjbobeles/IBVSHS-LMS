@@ -3,12 +3,7 @@
 @import 'variables';
 @import 'datatables';
 
-$maroon: #96232f; 
-$grape: #741e38; 
-$mango: #ffd247; 
-$banana: #FFE9A6; 
-$legosi: #767181; 
-$rabbit: #c3c3c3; 
+
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Raleway');
@@ -67,13 +62,13 @@ h1.page-title + .btn-lms {
 
 .btn-lms {
     background-color: none;
-    border: 1px solid $burger;
+    border: 1px solid $markian;
     border-radius: 5px;
-    color: $burger; 
+    color: $markian; 
 }
 
 .btn-lms:hover {
-    background-color: $burger; 
+    background-color: $markian; 
     color: white;
     box-shadow: 0 0 5px rgba(150, 12, 21, 0.425) !important;
 }
@@ -90,14 +85,17 @@ h1.page-title + .btn-lms {
 }
 
 .btn-lms-solid {
-    background-color: $burger;
-    border: 1px solid $burger;
-    border-radius: 100px;
+    background-color: $markian;
+    border: 1px solid $markian;
+    border-radius: 5px;
     color: white;
 }
 
 .btn-lms-solid:hover {
-    color:#fecc59;
+    color: white; 
+    background-color: $isko;
+    border-color: $isko;  
+    box-shadow: 0 0 5px rgba(199, 17, 29, 0.432) !important;
 }
 
 //Franchesca css for librarian

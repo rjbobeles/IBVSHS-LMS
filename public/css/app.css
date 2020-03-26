@@ -17960,13 +17960,13 @@ h1.page-title + .btn-lms {
 
 .btn-lms {
   background-color: none;
-  border: 1px solid #6e080f;
+  border: 1px solid #96232f;
   border-radius: 5px;
-  color: #6e080f;
+  color: #96232f;
 }
 
 .btn-lms:hover {
-  background-color: #6e080f;
+  background-color: #96232f;
   color: white;
   box-shadow: 0 0 5px rgba(150, 12, 21, 0.425) !important;
 }
@@ -17982,14 +17982,17 @@ h1.page-title + .btn-lms {
 }
 
 .btn-lms-solid {
-  background-color: #6e080f;
-  border: 1px solid #6e080f;
-  border-radius: 100px;
+  background-color: #96232f;
+  border: 1px solid #96232f;
+  border-radius: 5px;
   color: white;
 }
 
 .btn-lms-solid:hover {
-  color: #fecc59;
+  color: white;
+  background-color: #811A25;
+  border-color: #811A25;
+  box-shadow: 0 0 5px rgba(199, 17, 29, 0.432) !important;
 }
 
 div#homepage .searchbar {

@@ -52,7 +52,7 @@
                     
                     <div class="row">
                         <div class="col text-center" style="padding-top: 20px;">
-                            <a href="{{ route('logs.patron.index') }}" class="btn btn-primary">Back Patron Logs</a>
+                            <a href="{{ route('logs.patron.index') }}" class="btn btn-lms-solid">Back Patron Logs</a>
                         </div>
                     </div>
                 </div>

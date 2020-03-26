@@ -38,7 +38,7 @@
                     
                     <div class="row">
                         <div class="col text-center" style="padding-top: 20px;">
-                            <a href="{{ route('logs.transaction.index') }}" class="btn btn-primary">Back Transaction Logs</a>
+                            <a href="{{ route('logs.transaction.index') }}" class="btn btn-lms-solid">Back Transaction Logs</a>
                         </div>
                     </div>
                 </div>

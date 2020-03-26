@@ -123,7 +123,7 @@
 
                         <div class="form-group row mt-5">
                             <div class="col-md-6 offset-md-4 text-right">
-                                <button type="submit" class="btn input-btn-red">
+                                <button type="submit" class="btn btn-lms-solid">
                                     {{ __('Update User') }}
                                 </button>
                             </div>

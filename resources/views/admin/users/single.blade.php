@@ -47,9 +47,9 @@
                     </div>
                     <div class="row">
                         <div class="col text-center" style="padding-top: 20px;">
-                            <a href="{{ route('users.index', $user->id) }}" class="btn btn-primary">Back Users List</a>
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
-                            <a href="#" class="btn btn-primary" onclick="event.preventDefault(); if(confirm('Are you sure?')) { document.getElementById('action-user-delete-{{ $user->id }}').submit(); }">
+                            <a href="{{ route('users.index', $user->id) }}" class="btn btn-lms-solid">Back Users List</a>
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-lms-solid">Edit</a>
+                            <a href="#" class="btn btn-lms-solid" onclick="event.preventDefault(); if(confirm('Are you sure?')) { document.getElementById('action-user-delete-{{ $user->id }}').submit(); }">
                                 @if($user->deactivated == 1)
                                     Activate User
                                 @else

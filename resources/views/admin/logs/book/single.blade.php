@@ -78,7 +78,7 @@
                     
                     <div class="row">
                         <div class="col text-center" style="padding-top: 20px;">
-                            <a href="{{ route('logs.book.index') }}" class="btn btn-primary">Back Book Logs</a>
+                            <a href="{{ route('logs.book.index') }}" class="btn btn-lms-solid">Back Book Logs</a>
                         </div>
                     </div>
                 </div>
