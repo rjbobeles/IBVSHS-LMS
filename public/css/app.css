@@ -17917,6 +17917,13 @@ select:focus {
   box-shadow: none !important;
 }
 
+.dropdown-item.active,
+.dropdown-item:active {
+  color: #16181b;
+  background-color: #FFE9A6;
+  text-decoration: none;
+}
+
 .btn.active.focus,
 .btn.active:focus,
 .btn.focus,
