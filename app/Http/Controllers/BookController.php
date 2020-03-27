@@ -14,9 +14,17 @@ use App\User;
 use App\Rules\AlphaSpace;
 use App\Rules\ISBN;
 use Yajra\Datatables\Datatables;
+use Milon\Barcode\DNS1D;
+use Milon\Barcode\DNS2D;
 
 class BookController extends Controller
 {    
+    public function barcode($id) {
+        $book = Book::find($id);
+        Storage::disk('barcodes')->put($book->barcodeno . '.png', base64_decode(DNS1D::getBarcodePNG($book->barcodeno, "EAN13", 3, 33, array(1,1,1), true)));
+        $path = storage_path('barcodes/' . $book->barcodeno . '.png');
+        return response()->download($path, '')->deleteFileAfterSend();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -29,11 +37,11 @@ class BookController extends Controller
 
     public function indexDamageData($id) {
         return Datatables::of(DamageReport::select(['id', 'patron_id', 'book_id', 'actor_id', 'comment'])->where('book_id', $id))
-        ->addColumn('patron', function() {
+        ->addColumn('patron', function($row) {
             $patron = Patron::find($row->patron_id);
             return $patron->lrn . ' | ' . $patron->lastname . ', ' . $patron->firstname . ' ' . $patron->middlename;
         })
-        ->addColumn('actor', function() {
+        ->addColumn('actor', function($row) {
             $actor = User::find($row->actor_id);
             return $actor->id . ' | ' . $actor->lastname . ', ' . $actor->firstname . ' ' . $actor->middlename;
 

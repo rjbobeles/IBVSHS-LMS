@@ -130,7 +130,10 @@ Route::middleware('auth')->group(function() {
 
             //Book Controller
             Route::resource('books', 'BookController');
-
+            Route::prefix('books')->group(function () {
+                Route::get('/barcode/{id}', 'BookController@Barcode')->name('books.barcode');
+            });
+            
             //Datatable Routes
             Route::get('/dt/books', 'BookController@indexData')->name('books.index.data'); 
             Route::get('/dt/booksShow/{id}', 'BookController@showData')->name('books.show.data'); 

@@ -56,6 +56,7 @@
                 </div>
 
                 <br/>
+                <a href="{{ route('books.barcode', $book->id) }}" class="btn btn-secondary">Download Barcode</a>
                 <a href="{{ route('books.index') }}" class="btn btn-secondary">Back to books list</a>
             </center>
         </div>

@@ -64,6 +64,11 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'barcodes' => [
+            'driver' => 'local',
+            'root' => storage_path('barcodes'),
+        ],
+
     ],
 
 ];

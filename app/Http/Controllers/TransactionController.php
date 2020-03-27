@@ -68,7 +68,8 @@ class TransactionController extends Controller
             if(count($data) > 0) {
                 foreach($data as $row)
                 {
-                    $output .= '<li class="p-1">' . $row->lastname . ', ' . $row->firstname .', ' . $row->middlename . '</li>';
+                    if($row->middlename == "") $output .= '<li class="p-1">' . $row->lastname . ', ' . $row->firstname . '</li>';
+                    else $output .= '<li class="p-1">' . $row->lastname . ', ' . $row->firstname .', ' . $row->middlename . '</li>';
                 }
             } else $output .= '<li class="p-1">NO RESULT FOUND</li>';
             $output .= '</ul>';
@@ -112,11 +113,11 @@ class TransactionController extends Controller
         $borrower = $request->input('borrower');
         $borrower_n = explode(', ', $borrower);
         if(count($borrower_n) <= 1) return redirect()->back()->withError("User not found. Make sure to choose from the suggestions listed below.")->withInput(); 
-        if(!defined($borrower_n[2])) $borrower_n[2] = " ";
 
         if(is_numeric($borrower)) $patron_arr = DB::table('patrons')->where('lrn', '=', $borrower)->first(array('id', 'lastname'));
+        else if(count($borrower_n) == 2) $patron_arr = DB::table('patrons')->where('lastname', $borrower_n[0])->where('firstname', $borrower_n[1])->first(array('id'));
         else $patron_arr = DB::table('patrons')->where('lastname', '=', $borrower_n[0])->where('firstname', '=', $borrower_n[1])->where('middlename', '=', $borrower_n[2])->first(array('id'));
-         
+        
         $book = $request->input('book');
         $book_n = explode(' | ', $book);
         if(count($book_n) <= 1) return redirect()->back()->withError("Book not found. Make sure to choose from the suggestions listed below.")->withInput(); 
@@ -124,7 +125,7 @@ class TransactionController extends Controller
         $book_arr = DB::table('books')->where('barcodeno', '=', $book_n[0])->where('title', '=', $book_n[1])->where('status', 'available')->first(array('id'));
         
         if($book_arr == null)  return redirect()->back()->withError("Book not found. Make sure to choose from the suggestions listed below.")->withInput();
-        if($patron_arr == null) return redirect()->back()->withError("User not found. Make sure to choose from the suggestions listed below.")->withInput();
+        if($patron_arr == null) return redirect()->back()->withError("[2] User not found. Make sure to choose from the suggestions listed below.")->withInput();
             
         $transaction = Transaction::create([
             'patron_id' => $patron_arr->id,

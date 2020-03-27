@@ -138,6 +138,6 @@
         </div>
 @endsection
 
-@section('script')
+@section('scripts')
 <script src="{{ asset('js/ajax.js') }}"></script>
 @endsection
