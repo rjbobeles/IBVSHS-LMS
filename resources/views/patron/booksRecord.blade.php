@@ -68,11 +68,17 @@
                 <table class="table table-striped">
                     <tr>
                         <th>Book Title</th>
+                        <th>Call Number</th>
+                        <th>Date Borrowed</th>
+                        <th>Date Due</th>
                         <th>Status</th>
                     </tr>
                     @foreach ($records as $record)
                         <tr>
                             <td>{{ $record->bookTransaction->title }}</td>
+                            <td>{{ $record->bookTransaction->callnumber }}</td>
+                            <td>{{ $record->date_issued }}</td>
+                            <td>{{ $record->date_due }}</td>
                             <td>
                                 @if ($record->date_returned != NULL)
                                     Returned

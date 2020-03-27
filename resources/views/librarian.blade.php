@@ -2,10 +2,6 @@
 
 @section('content')
 <div class="container" id="homepage">
-    <!-- <form action="#" class="searchbar">
-        <input type="search" name="search" id="search" placeholder="Search Books...">
-        <input type="submit" value="&#xf002;" style="display:none;">
-    </form> -->
     <div class="row text-center page-heading">
         <div class="col">
             <h1 class="mt-4 ">Ignacio B. Villamor - Senior High School</h1>
@@ -22,7 +18,7 @@
                 <a href="{{ route('books.index') }}"> 
                     <img src="{{ asset('images/icons/030-book-25.png') }}" style="width:42%" class="center patronIndex img-responsive">
                     <div class="caption mt-4">
-                        Manage Library
+                        Manage Books
                     </div>
                 </a>
             </div> 

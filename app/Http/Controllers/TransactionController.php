@@ -111,8 +111,9 @@ class TransactionController extends Controller
     
         $borrower = $request->input('borrower');
         $borrower_n = explode(', ', $borrower);
-        if(count($borrower_n) <= 2) return redirect()->back()->withError("User not found. Make sure to choose from the suggestions listed below.")->withInput(); 
-        
+        if(count($borrower_n) <= 1) return redirect()->back()->withError("User not found. Make sure to choose from the suggestions listed below.")->withInput(); 
+        if(!defined($borrower_n[2])) $borrower_n[2] = " ";
+
         if(is_numeric($borrower)) $patron_arr = DB::table('patrons')->where('lrn', '=', $borrower)->first(array('id', 'lastname'));
         else $patron_arr = DB::table('patrons')->where('lastname', '=', $borrower_n[0])->where('firstname', '=', $borrower_n[1])->where('middlename', '=', $borrower_n[2])->first(array('id'));
          

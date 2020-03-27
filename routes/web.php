@@ -10,6 +10,9 @@
 |
 */
 
+Route::get('/credits', 'CreditsController@Index')->name('credits');
+Route::get('/credits', 'CreditsController@Secret')->name('secre');
+
 /*
 |--------------------------------------------------------------------------
 | Patron Route
@@ -43,9 +46,17 @@ Route::middleware('guest')->group(function() {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('user')->group(function () { Auth::routes(['verify' => true]); });
 
-Route::middleware('auth', 'isAdminLibrarian')->group(function() { 
-    
-    //User Route
+
+Route::middleware('auth')->group(function() { 
+    /*
+    |--------------------------------------------------------------------------
+    | User Route
+    |--------------------------------------------------------------------------
+    |
+    | Routes that can only be accessible by users
+    |
+    */
+
     Route::prefix('user')->group(function () {
            
         //Change Password
@@ -53,116 +64,129 @@ Route::middleware('auth', 'isAdminLibrarian')->group(function() {
         Route::put('/changepassword', 'Auth\ChangePasswordController@update')->name('changepassword.update');
     });
 
-    //Patrons
-    Route::resource('patrons', 'PatronController');
-    Route::get('/dt/patrons', 'PatronController@indexData')->name('patrons.index.data');
-});
 
-/*
-|--------------------------------------------------------------------------
-| Librarian Route
-|--------------------------------------------------------------------------
-|
-| Routes that can only be accessible by Librarians
-|
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | Manage Route
+    |--------------------------------------------------------------------------
+    |
+    | Routes that can only be accessible by Admins / Librarians (Depending on scenario)
+    |
+    */
 
-Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function() {
-    
-    //Librarian Route
-    Route::prefix('librarian')->group(function () {
+    //Manage Route
+    Route::prefix('manage', 'verified', 'isActive')->group(function () {
 
-        //Librarian Homepage
-        Route::get('/', 'HomeController@Librarian')->name('librarian');
+        //Admin
+        Route::group(['middleware' => ['isAdmin']], function () {
+            //Users
+            Route::resource('users', 'UserController');
 
-        //Datatable Routes
-        Route::get('/dt/books', 'BookController@indexData')->name('books.index.data'); 
-        Route::get('/dt/booksShow/{id}', 'BookController@showData')->name('books.show.data'); 
-        Route::get('/dt/transactions', 'TransactionController@indexData')->name('transactions.index.data');
+            //Datatable Routes
+            Route::get('/dt/users', 'UserController@indexData')->name('users.index.data'); 
+            Route::get('/dt/logs/user', 'LogUserController@indexData')->name('logs.user.data');
+            Route::get('/dt/logs/book', 'LogBookController@indexData')->name('logs.book.data'); 
+            Route::get('/dt/logs/patron', 'LogPatronController@indexData')->name('logs.patron.data');
+            Route::get('/dt/logs/transaction', 'LogTransactionController@indexData')->name('logs.transaction.data');
+
+            //System Logs
+            Route::prefix('logs')->group(function () {
         
-        //Book Controller
-        Route::resource('books', 'BookController');
+                //User Logs
+                Route::prefix('user')->group(function () {
+                    Route::get('/', 'LogUserController@index')->name('logs.user.index');
+                    Route::get('/{id}', 'LogUserController@show')->name('logs.user.show');
+                });
 
-        //Transaction Controller
-        Route::prefix('transactions')->group(function () {
-            Route::get('/', 'TransactionController@index')->name('transactions.index');
-            Route::get('/create', 'TransactionController@create')->name('transactions.create');
-            Route::post('/create/fetchPatron', 'TransactionController@fetchPatron');
-            Route::post('/create/fetchBook', 'TransactionController@fetchBook');
-            Route::get('/{id}', 'TransactionController@show')->name('transactions.show');
-            Route::post('/create', 'TransactionController@store')->name('transactions.store');
-            Route::get('/{id}/returnBook', 'TransactionController@returnBook')->name('transactions.returnBook');
-            Route::post('/{id}/returnBook', 'TransactionController@returnBookStore')->name('transactions.returnBookStore');
+                //Book Logs
+                Route::prefix('book')->group(function () {
+                    Route::get('/', 'LogBookController@index')->name('logs.book.index');
+                    Route::get('/{id}', 'LogBookController@show')->name('logs.book.show');
+                });
+
+                //Patron Logs
+                Route::prefix('patron')->group(function () {
+                    Route::get('/', 'LogPatronController@index')->name('logs.patron.index');
+                    Route::get('/{id}', 'LogPatronController@show')->name('logs.patron.show');
+                });
+
+                //Transaction Logs
+                Route::prefix('transaction')->group(function () {
+                    Route::get('/', 'LogTransactionController@index')->name('logs.transaction.index');
+                    Route::get('/{id}', 'LogTransactionController@show')->name('logs.transaction.show');
+                });
+            });
+        });
+
+        //Admin or Librarian
+        Route::group(['middleware' => ['isAdminLibrarian']], function () {
+            //Patrons
+            Route::resource('patrons', 'PatronController');
+            Route::get('/dt/patrons', 'PatronController@indexData')->name('patrons.index.data');
+        });
+
+        //Librarian
+        Route::group(['middleware' => ['isLibrarian']], function () {
+
+            //Book Controller
+            Route::resource('books', 'BookController');
+
+            //Datatable Routes
+            Route::get('/dt/books', 'BookController@indexData')->name('books.index.data'); 
+            Route::get('/dt/booksShow/{id}', 'BookController@showData')->name('books.show.data'); 
+            Route::get('/dt/transactions', 'TransactionController@indexData')->name('transactions.index.data');
+            Route::get('/dt/damage/{id}', 'BookController@indexDamageData')->name('damage.show.data');
+
+            //Transaction Controller
+            Route::prefix('transactions')->group(function () {
+                Route::get('/', 'TransactionController@index')->name('transactions.index');
+                Route::get('/create', 'TransactionController@create')->name('transactions.create');
+                Route::post('/create/fetchPatron', 'TransactionController@fetchPatron');
+                Route::post('/create/fetchBook', 'TransactionController@fetchBook');
+                Route::get('/{id}', 'TransactionController@show')->name('transactions.show');
+                Route::post('/create', 'TransactionController@store')->name('transactions.store');
+                Route::get('/{id}/returnBook', 'TransactionController@returnBook')->name('transactions.returnBook');
+                Route::post('/{id}/returnBook', 'TransactionController@returnBookStore')->name('transactions.returnBookStore');
+            });
         });
     });
-});
 
-
-/*
-|--------------------------------------------------------------------------
-| Admin Route
-|--------------------------------------------------------------------------
-|
-| Routes that can only be accessible by Admins
-|
-*/
-
-Route::middleware('auth', 'verified', 'isAdmin', 'isActive')->group(function() {
-
-    //Admin Route
-    Route::prefix('admin')->group(function () {
-
-         //Admin Homepage
-         Route::get('/', 'HomeController@Admin')->name('admin');
-
-        //Patron Controller
-        
-        /*
-        Route::get('/patrons/', 'PatronController@index')->name('admin.patrons.index');
-        Route::post('/patrons/', 'PatronController@store')->name('admin.patrons.store');
-        Route::get('/patrons/create', 'PatronController@create')->name('admin.patrons.create');
-        Route::delete('/patrons/{id}', 'PatronController@destroy')->name('admin.patrons.destroy');
-        Route::put('/patrons/{id}', 'PatronController@update')->name('admin.patrons.update');
-        Route::get('/patrons/{id}', 'PatronController@show')->name('admin.patrons.show');
-        Route::get('/patrons/{id}/edit', 'PatronController@edit')->name('admin.patrons.edit');
-        */
-        //User Controller
-        Route::resource('users', 'UserController');
-
-        //Datatable Routes
-        Route::get('/dt/users', 'UserController@indexData')->name('users.index.data'); 
-        //Route::get('/dt/patrons', 'PatronController@indexDataAdmin')->name('admin.patrons.index.data'); 
-        Route::get('/dt/logs/user', 'LogUserController@indexData')->name('logs.user.data');
-        Route::get('/dt/logs/book', 'LogBookController@indexData')->name('logs.book.data'); 
-        Route::get('/dt/logs/patron', 'LogPatronController@indexData')->name('logs.patron.data');
-        Route::get('/dt/logs/transaction', 'LogTransactionController@indexData')->name('logs.transaction.data');
-
-        //System Logs
-        Route::prefix('logs')->group(function () {
     
-            //User Logs
-            Route::prefix('user')->group(function () {
-                Route::get('/', 'LogUserController@index')->name('logs.user.index');
-                Route::get('/{id}', 'LogUserController@show')->name('logs.user.show');
-            });
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Route
+    |--------------------------------------------------------------------------
+    |
+    | Routes that can only be accessible by Admins
+    |
+    */
 
-            //Book Logs
-            Route::prefix('book')->group(function () {
-                Route::get('/', 'LogBookController@index')->name('logs.book.index');
-                Route::get('/{id}', 'LogBookController@show')->name('logs.book.show');
-            });
+    Route::middleware('auth', 'verified', 'isAdmin', 'isActive')->group(function() {
 
-            //Patron Logs
-            Route::prefix('patron')->group(function () {
-                Route::get('/', 'LogPatronController@index')->name('logs.patron.index');
-                Route::get('/{id}', 'LogPatronController@show')->name('logs.patron.show');
-            });
+        //Admin Route
+        Route::prefix('admin')->group(function () {
+    
+             //Admin Homepage
+             Route::get('/', 'HomeController@Admin')->name('admin');         
+        });
+    });
 
-            //Transaction Logs
-            Route::prefix('transaction')->group(function () {
-                Route::get('/', 'LogTransactionController@index')->name('logs.transaction.index');
-                Route::get('/{id}', 'LogTransactionController@show')->name('logs.transaction.show');
-            });
+    /*
+    |--------------------------------------------------------------------------
+    | Librarian Route
+    |--------------------------------------------------------------------------
+    |
+    | Routes that can only be accessible by Librarians
+    |
+    */
+
+    //Librarian Specific Routes
+    Route::middleware('auth', 'verified', 'isLibrarian', 'isActive')->group(function() {
+        //Librarian Route
+        Route::prefix('librarian')->group(function () {
+        
+            //Librarian Homepage
+            Route::get('/', 'HomeController@Librarian')->name('librarian');
         });
     });
 });

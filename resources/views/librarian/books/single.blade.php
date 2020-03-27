@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container">
     <h4>
         <strong>{{ $book->title}}</strong>
@@ -76,14 +75,34 @@
             </tr>
         </thead>
     </table>
+    <br><br><br>
+    <hr>
+    <h4>Damage Report Log</h4> 
+                    
+    <table id="damage-table" class="table table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Patron</th>
+                <th>Issued By</th>
+                <th>Comments</th>
+            </tr>
+        </thead>
+    </table>
 </div>
 @endsection
 
 
 @section('scripts')
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 <script defer>
     $(function() {
         $('#books-table').DataTable({
+            dom:  "<'row'<'col-sm-12 col-md-6'B>>" + "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: [ 'print', 'csv'],
             processing: true,
             serverside: true,
             responsive: true,
@@ -97,6 +116,23 @@
                 { data: 'date_returned', name: 'date_due', searchable: true, sortable : false, visible: true },
             ]
         });
+
+        $('#damage-table').DataTable({
+            dom:  "<'row'<'col-sm-12 col-md-6'B>>" + "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: [ 'print', 'csv'],
+            processing: true,
+            serverside: true,
+            responsive: true,
+            "scrollX": true,
+            ajax: '{!! route('damage.show.data', $book->id) !!}',
+            columns: [
+                { data: 'id', name: 'id', searchable: false, sortable : true, visible: true },
+                { data: 'patron', name: 'patron', searchable: true, sortable : true, visible: true },
+                { data: 'actor', name: 'actor', searchable: true, sortable : true, visible: true },
+                { data: 'comment', name: 'comment', searchable: false, sortable : false, visible: true },
+            ]
+        });
+
     });
 </script>
 @endsection

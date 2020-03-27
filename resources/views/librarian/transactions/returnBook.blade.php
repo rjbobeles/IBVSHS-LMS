@@ -16,7 +16,7 @@
             <!--Borrowed Book Label with image, title, and author-->
             <div class="card book-input-box">
                 <div class="card-body text-center">
-                    <img class="pb-4" style="width:50%;" src="/storage/book_images/{{ $transactions->bookTransaction->book_image }}"/>
+                    <img class="pb-4" style="width:50%;" src="@if($transactions->bookTransaction->book_image == 'no-image.png') {{ asset('images/no-image.png') }}  @else {{ asset('storage/book_images/' . $transactions->bookTransaction->book_image) }} @endif "/>
                     <h6><b>{{ $transactions->bookTransaction->title }}</b></h6>
                     <small>by {{ $transactions->bookTransaction->author }}</small>
                 </div>
@@ -136,4 +136,8 @@
             </div>
             
         </div>
+@endsection
+
+@section('script')
+<script src="{{ asset('js/ajax.js') }}"></script>
 @endsection

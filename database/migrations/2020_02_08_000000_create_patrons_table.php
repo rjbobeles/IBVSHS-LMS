@@ -17,7 +17,7 @@ class CreatePatronsTable extends Migration
             $table->bigIncrements('id');
             $table->string('role', 30);
             $table->string('firstname', 50);
-            $table->string('middlename', 50);
+            $table->string('middlename', 50)->nullable();
             $table->string('lastname', 50);
             $table->string('email', 250);
             $table->string('contactno', 20);

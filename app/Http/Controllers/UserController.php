@@ -68,7 +68,7 @@ class UserController extends Controller
         $validate = $request->validate([
             'role'          => ['required', 'in:Admin,Librarian'],
             'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
-            'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
+            'middlename'    => ['nullable', 'max:50', new AlphaSpace],
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'username'      => ['required', 'string', 'max:255', 'unique:users'],
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -146,7 +146,7 @@ class UserController extends Controller
         $validate = $request->validate([
             'role'          => ['required', 'in:Admin,Librarian'],
             'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
-            'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
+            'middlename'    => ['nullable', 'max:50', new AlphaSpace],
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'username'      => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
             'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],

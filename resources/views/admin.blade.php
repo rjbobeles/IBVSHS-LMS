@@ -21,26 +21,20 @@
                     <div class="row">
                         <div class="col-lg"><hr/>
                             <h6><strong>USER ACCOUNTS</strong></h6> <br id="footer-br"/><hr/>
-                            <a href="user.html" id="footer-text">Add users</a> <br/>
-                            <a href="user.html" id="footer-text">Update users</a> <br/>
-                            <a href="user.html" id="footer-text">Reset Password</a> <br/>
-                            <a href="user.html" id="footer-text">Deactivate Accounts</a>
+                            <a href="{{ route('users.create') }}" id="footer-text">Add users</a> <br/>
+                            <a href="{{ route('users.index') }}" id="footer-text">Manage users</a> <br/>
+                                
                             <br/><br/><hr/>
                         </div>
                         <div class="col-lg">
                             <h6><strong>INFORMATION</strong></h6> <br id="footer-br"/><hr/>
-                            <a href="books_audit.html" id="footer-text">View Book Logs</a> <br/>
-                            <a href="user_audit.html" id="footer-text">View User Logs</a> <br/>
-                            <a href="patron_audit.html" id="footer-text">View Patron Logs</a> <br/>
-                            <a href="transactions.html" id="footer-text">View Transactions</a>
+                            <a href="{{ route('logs.book.index') }}" id="footer-text">View Book Logs</a> <br/>
+                            <a href="{{ route('logs.user.index') }}" id="footer-text">View User Logs</a> <br/>
+                            <a href="{{ route('logs.patron.index') }}" id="footer-text">View Patron Logs</a> <br/>
+                            <a href="{{ route('logs.transaction.index') }}" id="footer-text">View Transactions</a>
                             <br/><br/><hr/>
                         </div>
-                        <div class="col-lg">
-                            <h6><strong>HELP</strong></h6> <br id="footer-br"/><hr/>
-                            <a href="" id="footer-text">F.A.Q</a> <br/>
-                            <a href="" id="footer-text">Dashboard and Reports</a>
-                            <br/><br/><hr/>
-                        </div>
+                        <div class="col-lg"></div>
                         <div class="col-lg"></div>
                         <div class="col-lg">
                             <h6><strong>CONTACT INFORMATION</strong></h6> <br id="footer-br"/><hr/>

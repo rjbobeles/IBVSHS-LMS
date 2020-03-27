@@ -55,7 +55,7 @@
                             <label for="middlename" class="col-md-4 col-form-label text-md-right">{{ __('Middle Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="middlename" type="text" class="form-control @error('middlename') is-invalid @enderror" name="middlename" value="{{ old('middlename') }}" required autocomplete="middlename">
+                                <input id="middlename" type="text" class="form-control @error('middlename') is-invalid @enderror" name="middlename" value="{{ old('middlename') }}" autocomplete="middlename">
 
                                 @error('middlename')
                                     <span class="invalid-feedback" role="alert">

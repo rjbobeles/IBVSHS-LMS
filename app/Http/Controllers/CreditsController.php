@@ -6,7 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\DamageReport;
 
-class DamageReportController extends Controller
+class CreditsController extends Controller
 {
-    
+    public function Index() 
+    {
+
+    }
+
+    public function Secret() 
+    {
+
+    }
 }

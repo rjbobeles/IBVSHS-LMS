@@ -31,7 +31,7 @@
                                         </span>
                                     @enderror
 
-                                    <input id="middlename" placeholder="middle name" type="text" class="mt-3 form-control @error('middlename') is-invalid @enderror" name="middlename" value="{{ old('middlename') }}" required autocomplete="middlename">
+                                    <input id="middlename" placeholder="middle name" type="text" class="mt-3 form-control @error('middlename') is-invalid @enderror" name="middlename" value="{{ old('middlename') }}" autocomplete="middlename">
 
                                     @error('middlename')
                                         <span class="invalid-feedback" role="alert">

@@ -18,7 +18,7 @@ class hasAdmin
     public function handle($request, Closure $next, $guard = null)
     {
         if(User::where("role","=", "admin")->count() > 0)
-            return abort(404);
+            return redirect()->route('login');
         else 
             return $next($request);
     } 

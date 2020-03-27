@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Book;
+use App\DamageReport;
 use App\LogBook;
 use App\Patron;
 use App\Transaction;
@@ -24,6 +25,20 @@ class BookController extends Controller
     public function index()
     {
         return view('librarian.books.index');
+    }
+
+    public function indexDamageData($id) {
+        return Datatables::of(DamageReport::select(['id', 'patron_id', 'book_id', 'actor_id', 'comment'])->where('book_id', $id))
+        ->addColumn('patron', function() {
+            $patron = Patron::find($row->patron_id);
+            return $patron->lrn . ' | ' . $patron->lastname . ', ' . $patron->firstname . ' ' . $patron->middlename;
+        })
+        ->addColumn('actor', function() {
+            $actor = User::find($row->actor_id);
+            return $actor->id . ' | ' . $actor->lastname . ', ' . $actor->firstname . ' ' . $actor->middlename;
+
+        })
+        ->make(true);    
     }
 
     /**

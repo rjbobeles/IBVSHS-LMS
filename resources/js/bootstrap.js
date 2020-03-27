@@ -11,6 +11,14 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+    require( 'jszip' );
+    require( 'pdfmake' );
+    require( 'datatables.net');
+    require( 'datatables.net-bs4');
+    require( 'datatables.net-buttons' )();
+    require( 'datatables.net-buttons-bs4' )();
+    require( 'datatables.net-responsive' )();
+    require( 'datatables.net-responsive-bs4' )();
 } catch (e) {}
 
 /**

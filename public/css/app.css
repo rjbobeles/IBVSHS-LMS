@@ -17768,7 +17768,6 @@ div.dataTables_wrapper .row {
 }
 
 div.dataTables_wrapper .row:nth-child(2) {
-  padding-bottom: 4.5vw;
   overflow-x: auto;
 }
 

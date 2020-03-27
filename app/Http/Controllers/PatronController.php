@@ -36,7 +36,7 @@ class PatronController extends Controller
      */
     public function indexData()
     {
-        return Datatables::of(Patron::select(['id', 'firstname', 'middlename', 'lastname', 'middlename', 'role', 'email', 'deactivated', 'lrn']))
+        return Datatables::of(Patron::select(['id', 'firstname', 'middlename', 'lastname', 'role', 'email', 'deactivated', 'lrn']))
         ->orderColumn('name', function ($query, $order) {
             $query->orderBy('lastname', $order)->orderBy('firstname', $order)->orderBy('middlename', $order);
         })
@@ -72,7 +72,7 @@ class PatronController extends Controller
         [
             'role'          => ['required', 'in:Student,Teacher'],
             'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
-            'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
+            'middlename'    => ['nullable', 'string', 'max:50', new AlphaSpace],
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'contactno'     => ['required', 'string', 'max:16', new ValidPHNumber],
             'email'         => ['required', 'string', 'email', 'max:255', 'unique:patrons'],
@@ -160,7 +160,7 @@ class PatronController extends Controller
         $patron = Patron::find($id);
         $validate = $request->validate([
             'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
-            'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
+            'middlename'    => ['nullable', 'string', 'max:50', new AlphaSpace],
             'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
             'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('patrons')->ignore($patron->id)],
             'contactno'     => ['required', 'string', 'max:16', new ValidPHNumber],
