@@ -4,9 +4,9 @@ div.dataTables_wrapper
         margin: 20px 0px 20px 0px;
     }
 
-    .row:nth-child(2) {
+    .row:nth-child(3) {
         //padding-bottom: 4.5vw; 
-        overflow-x: auto; 
+        //overflow-x: auto; 
         .dataTables_scrollHead, .dataTables_scrollBody {
             overflow: visible !important; 
         }
@@ -98,7 +98,7 @@ div.dataTables_wrapper
         display: block; 
         transform: translate(27px); 
     }  
-}
+} 
 
 .table-action-menu {
     .dropleft .dropdown-menu {

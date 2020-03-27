@@ -56,7 +56,7 @@
                     
                     <div class="row">
                         <div class="col text-center" style="padding-top: 20px;">
-                            <a href="{{ route('logs.user.index') }}" class="btn btn-primary">Back User Logs</a>
+                            <a href="{{ route('logs.user.index') }}" class="btn btn-lms-solid">Back User Logs</a>
                         </div>
                     </div>
                 </div>

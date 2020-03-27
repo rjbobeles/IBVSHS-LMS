@@ -2,11 +2,11 @@
 
 @section('content')
 <div style="background-color: #92130f;" class="container-fluid m-0">
-    <img src="{{ asset('images/login-photo.png') }}" id="login-img">
-    <img src="{{ asset('images/book-shelf.jpg') }}" id="login-img-2">
+    <img src="{{ asset('images/login-photo.png') }}" id="login-img" class="min-720">
+    <img src="{{ asset('images/book-shelf.jpg') }}" id="login-img-2" class="min-720">
 
     <div class="col">
-    <div class="row" style="height: calc(100vh - 120.5px);">
+    <div class="row" style="height: calc(100vh - 120.5px); min-height: 720px;"> 
         <div class="col-xl-5 my-auto text-center">
             <h1>LIBRARY</h1>
             <h3>MANAGEMENT SYSTEM</h3>
@@ -14,7 +14,7 @@
         </div>
         <div class="col-xl-2"></div>
         <div class="col-xl-4 my-auto">
-            <div class="mx-lg-5">
+            <div class="mx-lg-7 mx-auto" id="registration-container">
                 <div class="card shadow-lg p-3">
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">

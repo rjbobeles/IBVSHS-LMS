@@ -17767,12 +17767,8 @@ div.dataTables_wrapper .row {
   margin: 20px 0px 20px 0px;
 }
 
-div.dataTables_wrapper .row:nth-child(2) {
-  overflow-x: auto;
-}
-
-div.dataTables_wrapper .row:nth-child(2) .dataTables_scrollHead,
-div.dataTables_wrapper .row:nth-child(2) .dataTables_scrollBody {
+div.dataTables_wrapper .row:nth-child(3) .dataTables_scrollHead,
+div.dataTables_wrapper .row:nth-child(3) .dataTables_scrollBody {
   overflow: visible !important;
 }
 
@@ -19131,5 +19127,13 @@ a.home-icon-link:hover img {
 .get-started {
   font-size: 32px;
   font-family: "Raleway", "sans-serif";
+}
+
+#registration-container {
+  max-width: 500px;
+}
+
+.min-720 {
+  min-height: 720px;
 }
 
