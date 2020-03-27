@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="page-title">Books <a href="{{ route('books.create') }}" class="btn btn-lms btn-sm">+ Add Book</a> </h1> 
-                    
+                    @include('inc.messages')                    
                     <table id="books-table" class="table table-bordered" style="width:100%">
                         <thead>
                             <tr>
