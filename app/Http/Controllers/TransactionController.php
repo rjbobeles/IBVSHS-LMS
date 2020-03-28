@@ -179,8 +179,10 @@ class TransactionController extends Controller
         
         $status = $request->input('status');
         if ($status == 'Available') {
+            $message = "Book returned successfully!";
             $book->status = "Available";
         } else {
+            $message = "Book has been marked as missing!";
             $book->status = "Missing";
         }
         $book->update();
@@ -195,6 +197,6 @@ class TransactionController extends Controller
             ]);
         }
 
-        return redirect()->route('transactions.create')->with('success', 'Book returned successfully!');
+        return redirect()->route('transactions.create')->with('success', $message);
     }
 }
