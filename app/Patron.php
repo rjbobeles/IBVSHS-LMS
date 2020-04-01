@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Patron extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'role', 'firstname', 'middlename', 'lastname', 'email', 'contactno', 'deactivated', 'lrn'
     ];
 
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-    
     //Patron -> Transaction
     public function patronTransaction() {
         return $this->hasMany('App\Transaction', 'patron_id', 'id');

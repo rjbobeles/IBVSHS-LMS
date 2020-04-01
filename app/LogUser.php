@@ -11,7 +11,6 @@ class LogUser extends Model
      *
      * @var array
      */
-
     protected $fillable = [
         'actor_id', 'action', 'user_id', 'firstname', 'middlename', 'lastname', 'email', 'username', 'password', 'contactno', 'role', 'deactivated'
     ];

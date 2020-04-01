@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    
     protected $fillable = [
         'patron_id', 'book_id', 'date_issued', 'date_due', 'date_returned'
     ];

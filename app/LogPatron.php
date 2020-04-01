@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogPatron extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'actor_id', 'action', 'patron_id', 'role', 'firstname', 'middlename', 'lastname', 'email', 'contactno', 'deactivated', 'lrn'
     ];

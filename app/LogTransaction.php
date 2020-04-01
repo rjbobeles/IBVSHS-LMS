@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogTransaction extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'actor_id', 'action', 'transaction_id', 'patron_id', 'book_id', 'date_issued', 'date_due', 'date_returned'
     ];

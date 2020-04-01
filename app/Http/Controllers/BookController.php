@@ -83,7 +83,7 @@ class BookController extends Controller
         $validate = $request->validate([
             'callnumber' => ['required'],
             'title' => ['required'],
-            'author' => ['required', 'max:300', new AlphaSpace],
+            'author' => ['required', 'max:300'],
             'isbn' => ['required', new ISBN],
             'year_published' => ['required', 'integer', 'min:4'],
             'publisher' => ['required', 'max:255'],
@@ -196,7 +196,7 @@ class BookController extends Controller
         $validate = $request->validate([
             'callnumber' => ['required'],
             'title' => ['required'],
-            'author' => ['required', 'max:300', new AlphaSpace],
+            'author' => ['required', 'max:300'],
             'isbn' => ['required', new ISBN],
             'year_published' => ['required', 'integer', 'min:4'],
             'publisher' => ['required', 'max:255'],
