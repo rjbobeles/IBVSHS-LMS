@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Viewing User: '. $logBook->id )}}</div>
+                <div class="card-header">{{ __('Viewing Book Log: '. $logBook->id )}}</div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-5 col-md-4 text-right">Issued By:</div>
