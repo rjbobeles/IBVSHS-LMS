@@ -10,7 +10,7 @@
             <form action="{{ route('patron.book.index') }}" method="get" class="my-3">
 				<div class="form-row d-flex justify-content-between">
 					<div class="col-md-4">
-						<div class="navbooks">
+						<div class="navbooks" style="display: none;">
 							<a class="active" href="#">All Books</a></li>
 							<a href="#">Available Books</a></li>
 							<a href="#">Unavailable Books</a></li>

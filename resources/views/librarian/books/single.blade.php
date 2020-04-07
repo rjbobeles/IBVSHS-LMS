@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', '- Book')
 @section('content')
 <div class="container">
     <h4>
