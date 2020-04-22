@@ -8,9 +8,10 @@ use App\DamageReport;
 
 class CreditsController extends Controller
 {
+
     public function Index() 
     {
-
+        return view('credits'); 
     }
 
     public function Secret() 

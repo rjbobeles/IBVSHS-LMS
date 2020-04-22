@@ -11,7 +11,7 @@
 */
 
 Route::get('/credits', 'CreditsController@Index')->name('credits');
-Route::get('/credits', 'CreditsController@Secret')->name('secre');
+//Route::get('/credits', 'CreditsController@Secret')->name('secre');
 
 /*
 |--------------------------------------------------------------------------

@@ -1228,3 +1228,40 @@ a.home-icon-link:hover {
 .min-720 {
     min-height: 720px; 
 }
+
+//Credits CSS 
+
+.credits {
+
+    .phase, .team {
+        font-weight: bold !important; 
+        h2 {
+            font-weight: bold !important; 
+        }
+    }
+
+    .hoomans {
+        list-style-type: none; 
+        margin-left: 10px; 
+        width: 100%; 
+        text-align: left; 
+
+        .hoomans-item {
+            display: flex; 
+            .w-30 {
+                width: 30%; 
+            }
+            .w-35 {
+                width: 35%; 
+            }
+            .role {
+                text-align: right; 
+                padding: 0px 10px;
+                display: inline-block;
+                font-weight: bold; 
+            }
+        }
+
+    }
+
+}
